@@ -1,0 +1,61 @@
+<!-- <form #form="ngForm" (ngSubmit)="onLogin(form)">
+  <h2>Đăng nhập</h2>
+  <label for="username">Tên đăng nhập</label>
+  <input type="text" id="username" name="username" ngModel required>
+
+  <label for="password">Mật khẩu</label>
+  <input type="password" id="password" name="password" ngModel required>
+
+  <button type="submit">Đăng nhập</button>
+</form>
+
+
+<hr>
+
+
+<form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+  <h2>Đăng ký</h2>
+  <input name="name" ngModel placeholder="Tên" required>
+  <input name="email" ngModel placeholder="Email" required>
+  <input name="password" type="password" ngModel placeholder="Mật khẩu" required>
+  <button type="submit">Đăng ký</button>
+</form> -->
+
+
+<form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+  <h3>Đăng nhập</h3>
+  <input type="email" name="email" ngModel required email placeholder="Email">
+  <div *ngIf="loginForm.submitted && loginForm.controls ['email']?.invalid" style="color:red">
+    Email không hợp lệ
+  </div>
+
+  <input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+  <div *ngIf="loginForm.submitted && loginForm.controls ['password']?.invalid" style="color:red">
+    Mật khẩu ít nhất 6 ký tự
+  </div>
+
+  <button type="submit">Đăng nhập</button>
+</form>
+
+<hr>
+
+<form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+  <h3>Đăng ký</h3>
+  <input type="text" name="username" ngModel required placeholder="Tên người dùng">
+  <div *ngIf="registerForm.submitted && registerForm.controls ['username']?.invalid" style="color:red">
+    Tên không được bỏ trống
+  </div>
+
+  <input type="email" name="email" ngModel required email placeholder="Email">
+  <div *ngIf="registerForm.submitted && registerForm.controls ['email']?.invalid" style="color:red">
+    Email không hợp lệ
+  </div>
+
+  <input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+  <div *ngIf="registerForm.submitted && registerForm.controls ['password']?.invalid" style="color:red">
+    Mật khẩu ít nhất 6 ký tự
+  </div>
+
+  <button type="submit">Đăng ký</button>
+</form>
+

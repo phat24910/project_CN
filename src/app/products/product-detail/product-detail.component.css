@@ -1,0 +1,27 @@
+.detail-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Time New Roman', sans-serif;
+}
+
+.detail-container h2 {
+  color: #1f0de4;
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.detail-container p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin: 12px 0;
+}
+
+.detail-container strong {
+  color: #000;
+  min-width: 50px;
+}

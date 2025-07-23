@@ -1,0 +1,50 @@
+<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <div class="cart-item-content">
+      <img [src]="item.image" alt="Ảnh sản phẩm" class="cart-item-image" />
+      <div class="cart-item-details">
+        <p><strong>{{ item.title }}</strong></p>
+        <p>
+          Giá gốc: {{ item.price | number:'1.2-2' }}$
+          <span *ngIf="item.discountRate"> <strong style="color:red"> (Giảm {{ item.discountRate }}%)</strong></span>
+        </p>
+        <p><strong>Giá sau giảm:</strong> {{ item.priceAfterDiscount || item.price | number:'1.2-2' }}$</p>
+        <p>Số lượng: {{ item.quantity }}</p>
+
+        <div class="quantity-control">
+          <button (click)="decreaseQuantity(item)">−</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)">+</button>
+        </div>
+
+        <button (click)="removeItem(item.id)">Xóa</button>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <div class="cart-summary">
+    <p><strong>Tổng tiền:</strong> {{ total | number:'1.2-2' }}$</p>
+
+    <input [(ngModel)]="discountCode" placeholder="Nhập mã giảm giá (VD: GIAM10)">
+    <button (click)="applyDiscount()">Áp dụng</button>
+
+    <p *ngIf="discountPercent > 0">
+      <strong>Giảm {{ discountPercent }}%:</strong> -{{ total * discountPercent / 100 | number:'1.2-2' }}$
+    </p>
+
+    <p><strong>Thành tiền:</strong> {{ totalAfterDiscount | number:'1.2-2' }}$</p>
+
+    <button (click)="checkout()">Thanh toán</button>
+    <button (click)="clearCart()">Xóa giỏ hàng</button>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <p>Không có sản phẩm nào trong giỏ hàng.</p>
+</ng-template>
+
+
+
+
+

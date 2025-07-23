@@ -1,0 +1,44 @@
+<div class="container">
+
+  <h2> Danh sách sản phẩm</h2>
+
+  <!-- Tìm kiếm và lọc -->
+  <div class="filter-bar">
+    <input class="search-box" type="text" placeholder="Tìm sản phẩm..." [(ngModel)]="searchText">
+
+    <select (change)="onCategoryChange($event)">
+      <option value="">Tất cả</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+
+  <!-- Danh sách sản phẩm -->
+  <div class="product-grid">
+  <div class="product-card" *ngFor="let product of filteredProducts | search:searchText" appHighlight>
+
+    <app-product-item></app-product-item>
+
+  <!-- Hình ảnh sản phẩm -->
+  <img [src]="product.image" [alt]="product.title" class="product-img" />
+
+  <!-- Tiêu đề và giá -->
+  <h4 class="product-title">{{ product.title }}</h4>
+  <p class="product-price">{{ product.price | currency:'USD' }}</p>
+
+  <!-- Đánh giá sao -->
+    <div class="rating">
+      <ng-container *ngFor="let star of getStars(product.rating.rate); let i = index">
+        <span [class.filled]="i < product.rating.rate">★</span>
+      </ng-container>
+      <span class="rating-rate">({{ product.rating?.rate }})</span>
+      <span class="rating-count">({{ product.rating?.count }} đánh giá)</span>
+    </div>
+
+    <!-- Nút -->
+    <div class="btn-group">
+      <button [routerLink]="[product.id]">Xem chi tiết</button>
+      <button (click)="addToCart(product)">Thêm vào giỏ hàng</button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,24 @@
+nav {
+  background-color: #eeeeee;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #5446f2;
+  font-weight: 800;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  border-radius: 10px;
+}
+
+

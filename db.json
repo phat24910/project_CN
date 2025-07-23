@@ -1,0 +1,54 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "iPhone 15 Pro",
+      "price": 999,
+      "description": "Smartphone mới nhất của Apple",
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://dummyimage.com/600x400/000/fff&text=iPhone+15+Pro"
+    },
+    {
+      "id": "2",
+      "title": "Samsung Galaxy S24",
+      "price": 899,
+      "description": "Flagship Android mạnh mẽ",
+      "brand": "Samsung",
+      "category": "smartphones",
+      "thumbnail": "https://dummyimage.com/600x400/000/fff&text=Galaxy+S24"
+    },
+    {
+      "id": "3",
+      "title": "Xiaomi 13 Ultra",
+      "price": 799,
+      "description": "Camera đỉnh, hiệu năng tốt",
+      "brand": "Xiaomi",
+      "category": "smartphones",
+      "thumbnail": "https://dummyimage.com/600x400/000/fff&text=Xiaomi+13+Ultra"
+    },
+    {
+      "id": "4",
+      "title": "MacBook Pro M3",
+      "price": 1999,
+      "description": "Laptop mạnh mẽ dùng chip M3",
+      "brand": "Apple",
+      "category": "laptops",
+      "thumbnail": "https://dummyimage.com/600x400/000/fff&text=MacBook+Pro+M3"
+    },
+    {
+      "id": "5",
+      "title": "Asus ROG Strix",
+      "price": 1699,
+      "description": "Laptop gaming cao cấp",
+      "brand": "Asus",
+      "category": "laptops",
+      "thumbnail": "https://dummyimage.com/600x400/000/fff&text=ROG+Strix"
+    },
+    {
+      "id": "d7ef",
+      "title": "SamSung A35",
+      "description": "thiet ke dep mat, khung vien bang nhua"
+    }
+  ]
+}
