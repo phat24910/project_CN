@@ -1,3 +1,10 @@
+@import "ng-zorro-antd/ng-zorro-antd.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -5,6 +12,6 @@ body {
   padding: 20px;
 }
 
-a {
+/* a {
   color: #007bff;
-}
+} */

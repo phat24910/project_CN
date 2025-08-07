@@ -1,24 +1,37 @@
-form {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-form h2 {
+/* div {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 4px;
-  color: #555;
+button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[disabled] {
+  background-color: #c9ced2;
+  cursor: not-allowed;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+form h3 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 input {
@@ -30,25 +43,73 @@ input {
   box-sizing: border-box;
 }
 
-button {
+form button[type="submit"] {
   width: 100%;
-  padding: 10px;
-  background-color: #1976d2;
-  color: white;
+  background-color: #edf0ee;
+  font-weight: bold;
+}
+
+form button[type="submit"]:hover {
+  background-color: #d6dcd7;
+}
+
+div[style*="color:red"] {
+  font-size: 14px;
+  margin-bottom: 10px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+.form-wrapper {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ee4d2d;
+  font-weight: bold;
+}
+
+.submit-btn {
+  background-color: #ee4d2d !important;
+  color: white !important;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
+  margin-top: 12px;
 }
 
-button:hover {
-  background-color: #125ea8;
+.submit-btn:hover {
+  background-color: #d7422a !important;
 }
 
-hr {
-  margin: 40px auto;
-  width: 80%;
-  border: none;
-  border-top: 1px solid #ddd;
+.switch-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+button[nz-button] {
+  border-radius: 4px !important;
+  height: 40px;
+
 }

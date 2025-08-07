@@ -72,6 +72,7 @@ export class CartService {
     if (found) {
       found.quantity++;
       this.updateCartCount();
+      this.saveCart();
     }
   }
 
@@ -80,6 +81,7 @@ export class CartService {
     if (found && found.quantity > 1) {
       found.quantity--;
       this.updateCartCount();
+      this.saveCart();
     }
   }
 

@@ -1,12 +1,214 @@
-<h1>Quản Lý Sản Phẩm</h1>
-
+<!-- <h1>Quản Lý Sản Phẩm</h1>
 <nav>
-  <img src="assets/logo.jpg" alt="logo" class="logo">
-  <a routerLink="/"> Home</a> |
+  <a routerLink="/">  <img src="assets/logo.jpg" alt="logo" class="logo"></a>
   <a routerLink="/product-form"> Thêm sản phẩm</a> |
   <a routerLink="/auth"> Đăng nhập / Đăng ký</a> |
   <a routerLink="/cart"> Giỏ hàng ({{ total }})</a>
 </nav>
-<hr>
+
+<div class="user-dropdown" *ngIf="userName">
+  <a nz-dropdown [nzDropdownMenu]="menu" class="account-link">
+    <nz-avatar nzSize="small" nzIcon="user" class="account-avatar"></nz-avatar>
+    {{ userName }}
+  </a>
+
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-item (click)="showInfo()">Thông tin</li>
+      <li nz-menu-item (click)="changePassword()">Đổi mật khẩu</li>
+      <li nz-menu-item (click)="logout()">Đăng xuất</li>
+    </ul>
+  </nz-dropdown-menu>
+</div> -->
+
+
+<!-- <a routerLink="/product-form"> Thêm sản phẩm</a> | -->
+
+
+
+<header class="flex items-center justify-between bg-[#f66c10] px-5 py-2 text-white">
+  <div class="flex items-center">
+    <a (click)="goHome()" class="cursor-pointer">
+      <img src="assets/logo.svg" alt="Logo" class="h-14" />
+    </a>
+  </div>
+
+  <div class="flex flex-1 justify-center px-5">
+    <div class="w-full max-w-[500px] flex items-center gap-2">
+      <input
+        nz-input
+        placeholder="Tìm sản phẩm"
+        [(ngModel)]="searchText"
+        (keyup.enter)="onSearchChange()"
+        class="w-full px-3 py-[6px] rounded border-none focus:outline-none"
+      />
+
+      <button
+        nz-button
+        nzType="default"
+        class="p-2 text-white bg-[#f66c10] border-none hover:bg-orange-600 focus:bg-orange-700 flex items-center justify-center"
+        (click)="onSearchChange()">
+        <span nz-icon nzType="search" nzTheme="outline" class="text-xl"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <a routerLink="/cart" class="text-white font-medium no-underline flex items-center gap-1">
+      <span nz-icon nzType="shopping-cart" nzTheme="outline"  class="text-2xl"></span>
+      <span *ngIf="total > 0">({{ total }})</span>
+    </a>
+
+    <!-- Đã đăng nhập-->
+    <ng-container *ngIf="userName; else guestLinks">
+      <a
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        class="flex items-center text-white font-medium no-underline cursor-pointer ml-6"
+      >
+        <nz-avatar nzSize="small" nzIcon="user" class="mr-1 bg-white text-[#f5a52d]" />
+        {{ userName }}
+      </a>
+
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item (click)="showInfo()">Thông tin</li>
+          <li nz-menu-item (click)="changePassword()">Đổi mật khẩu</li>
+          <li nz-menu-item (click)="logout()">Đăng xuất</li>
+        </ul>
+      </nz-dropdown-menu>
+    </ng-container>
+
+    <!--Chưa đăng nhập-->
+    <ng-template #guestLinks>
+      <a routerLink="/auth" class="text-white font-medium no-underline ml-6 hover:font-bold hover:text-white">Đăng nhập / Đăng ký</a>
+    </ng-template>
+  </div>
+</header>
+
+<!-- <nz-modal [nzContent]="contentTpl"
+[(nzVisible)]="changePasswordVisible" nzTitle="Đổi mật khẩu"
+(nzOnCancel)="handleCancel()" (nzOnOk)="handleChangePassword()">
+
+<ng-template #contentTpl>
+  <nz-alert
+  *ngIf="showAlert"
+  [nzType]="alertType"
+  [nzMessage]="alertMessage"
+  nzShowIcon
+  style="margin-bottom: 16px;">
+</nz-alert>
+
+  <form #passwordForm="ngForm">
+    <div nz-form-item>
+      <div nz-form-label><label>Mật khẩu cũ</label></div>
+      <div nz-form-control>
+        <input nz-input type="password" name="oldPassword" [(ngModel)]="passwordData.oldPassword" required>
+      </div>
+    </div>
+
+    <div nz-form-item>
+      <div nz-form-label><label>Mật khẩu mới</label></div>
+      <div nz-form-control>
+        <input nz-input type="password" name="newPassword" [(ngModel)]="passwordData.newPassword" required>
+      </div>
+    </div>
+
+    <div nz-form-item>
+      <div nz-form-label><label>Xác nhận mật khẩu mới</label></div>
+      <div nz-form-control>
+        <input nz-input type="password" name="confirmPassword" [(ngModel)]="passwordData.confirmPassword" required>
+      </div>
+    </div>
+
+  </form>
+</ng-template>
+</nz-modal> -->
+
+
+<nz-modal [nzContent]="contentTpl"
+  [(nzVisible)]="changePasswordVisible"
+  nzTitle="Đổi mật khẩu"
+  [nzFooter]="footerTpl"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #contentTpl>
+    <nz-alert
+      *ngIf="showAlert"
+      [nzType]="alertType"
+      [nzMessage]="alertMessage"
+      nzShowIcon
+      style="margin-bottom: 16px;">
+    </nz-alert>
+
+    <form #passwordForm="ngForm">
+      <div nz-form-item>
+        <div nz-form-label><label>Mật khẩu cũ</label></div>
+        <div nz-form-control>
+          <input
+            nz-input
+            type="password"
+            name="oldPassword"
+            [(ngModel)]="passwordData.oldPassword"
+            required
+          >
+        </div>
+      </div>
+
+      <div nz-form-item>
+        <div nz-form-label><label>Mật khẩu mới</label></div>
+        <div nz-form-control>
+          <input
+            nz-input
+            type="password"
+            name="newPassword"
+            [(ngModel)]="passwordData.newPassword"
+            required
+          >
+        </div>
+      </div>
+
+      <div nz-form-item>
+        <div nz-form-label><label>Xác nhận mật khẩu mới</label></div>
+        <div nz-form-control>
+          <input
+            nz-input
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="passwordData.confirmPassword"
+            required
+          >
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <button nz-button (click)="handleCancel()">Hủy</button>
+    <button
+      nz-button
+      class="!bg-orange-500 !border-orange-500 text-white hover:!bg-orange-600"
+      (click)="handleChangePassword()"> Xác nhận
+    </button>
+  </ng-template>
+</nz-modal>
+
+
+<ng-container *ngIf="alert">
+  <nz-alert
+    [nzType]="alert.type"
+    [nzMessage]="alert.message"
+    nzShowIcon
+    nzBanner
+    class="my-4 max-w-xl mx-auto"
+  ></nz-alert>
+</ng-container>
+
+
+<hr> 
 <router-outlet></router-outlet>
+<app-footer></app-footer>
+
+
+
 

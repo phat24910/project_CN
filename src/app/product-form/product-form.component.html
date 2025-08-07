@@ -1,4 +1,4 @@
-<h2>Thêm sản phẩm</h2>
+<!-- <h2>Thêm sản phẩm</h2>
 <form [formGroup]="productForm" (ngSubmit)="submit()">
   <label>Tên sản phẩm:</label>
   <input formControlName="name"/>
@@ -10,5 +10,93 @@
   <textarea formControlName="description"></textarea>
   <br><br>
   <button type="submit">Thêm</button>
-</form>
+</form> -->
 
+
+
+
+
+
+<!-- <nz-card [nzTitle]="titleTemplate" nzBordered="true" style="max-width: 600px; margin: auto;">
+  <ng-template #titleTemplate>
+    <span class="text-xl font-bold text-center">Thêm sản phẩm</span>
+  </ng-template>
+  <form [formGroup]="productForm" (ngSubmit)="submit()" nz-form [nzLayout]="'vertical'">
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="name">Tên sản phẩm</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Vui lòng nhập tên sản phẩm'">
+        <input nz-input formControlName="name" id="name" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="price">Giá</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Vui lòng nhập giá hợp lệ'">
+        <nz-input-number formControlName="price" [nzMin]="0" [nzStep]="1000" style="width: 100%;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="description">Mô tả</nz-form-label>
+      <nz-form-control>
+        <textarea nz-input formControlName="description" id="description" rows="4"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="productForm.invalid">Thêm sản phẩm</button>
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
+</nz-card> -->
+
+
+
+
+<nz-card [nzTitle]="titleTemplate" nzBordered="true" style="max-width: 600px; margin: auto;">
+  <ng-template #titleTemplate>
+    <span class="text-xl font-bold text-center">Thêm sản phẩm</span>
+  </ng-template>
+
+  <form [formGroup]="productForm" (ngSubmit)="submit()" nz-form [nzLayout]="'vertical'">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="title">Tên sản phẩm</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Vui lòng nhập tên sản phẩm'">
+        <input nz-input formControlName="title" id="title" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true" nzFor="price">Giá</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Vui lòng nhập giá hợp lệ'">
+        <nz-input-number formControlName="price" [nzMin]="0" [nzStep]="1000" style="width: 100%;" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="description">Mô tả</nz-form-label>
+      <nz-form-control>
+        <textarea nz-input formControlName="description" id="description" rows="4"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- (Tùy chọn) thêm brand, category nếu cần -->
+    <!--
+    <nz-form-item>
+      <nz-form-label nzFor="brand">Thương hiệu</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="brand" id="brand" />
+      </nz-form-control>
+    </nz-form-item>
+    -->
+
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="productForm.invalid">Thêm sản phẩm</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>

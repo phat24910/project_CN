@@ -1,61 +1,188 @@
-<!-- <form #form="ngForm" (ngSubmit)="onLogin(form)">
-  <h2>Đăng nhập</h2>
-  <label for="username">Tên đăng nhập</label>
-  <input type="text" id="username" name="username" ngModel required>
+<!-- <div>
+  <button (click)="isLogin = true" [disabled]="isLogin">Đã có tài khoản? Đăng nhập</button>
+  <button (click)="isLogin = false" [disabled]="!isLogin">Chưa có tài khoản? Đăng ký</button>
+</div>
 
-  <label for="password">Mật khẩu</label>
-  <input type="password" id="password" name="password" ngModel required>
-
-  <button type="submit">Đăng nhập</button>
-</form>
-
-
-<hr>
-
-
-<form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
-  <h2>Đăng ký</h2>
-  <input name="name" ngModel placeholder="Tên" required>
-  <input name="email" ngModel placeholder="Email" required>
-  <input name="password" type="password" ngModel placeholder="Mật khẩu" required>
-  <button type="submit">Đăng ký</button>
-</form> -->
-
-
-<form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+Form Đăng nhập
+<form *ngIf="isLogin" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
   <h3>Đăng nhập</h3>
   <input type="email" name="email" ngModel required email placeholder="Email">
-  <div *ngIf="loginForm.submitted && loginForm.controls ['email']?.invalid" style="color:red">
+  <div *ngIf="loginForm.submitted && loginForm.controls['email']?.invalid" style="color:red">
     Email không hợp lệ
   </div>
 
   <input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
-  <div *ngIf="loginForm.submitted && loginForm.controls ['password']?.invalid" style="color:red">
+  <div *ngIf="loginForm.submitted && loginForm.controls['password']?.invalid" style="color:red">
     Mật khẩu ít nhất 6 ký tự
   </div>
 
   <button type="submit">Đăng nhập</button>
 </form>
 
-<hr>
-
-<form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+Form Đăng ký
+<form *ngIf="!isLogin" #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
   <h3>Đăng ký</h3>
   <input type="text" name="username" ngModel required placeholder="Tên người dùng">
-  <div *ngIf="registerForm.submitted && registerForm.controls ['username']?.invalid" style="color:red">
+  <div *ngIf="registerForm.submitted && registerForm.controls['username']?.invalid" style="color:red">
     Tên không được bỏ trống
   </div>
 
   <input type="email" name="email" ngModel required email placeholder="Email">
-  <div *ngIf="registerForm.submitted && registerForm.controls ['email']?.invalid" style="color:red">
+  <div *ngIf="registerForm.submitted && registerForm.controls['email']?.invalid" style="color:red">
     Email không hợp lệ
   </div>
 
   <input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
-  <div *ngIf="registerForm.submitted && registerForm.controls ['password']?.invalid" style="color:red">
+  <div *ngIf="registerForm.submitted && registerForm.controls['password']?.invalid" style="color:red">
     Mật khẩu ít nhất 6 ký tự
   </div>
 
   <button type="submit">Đăng ký</button>
+</form> -->
+
+
+
+
+<!-- <div style="margin-bottom: 16px;">
+  <button nz-button [nzType]="isLogin ? 'default' : 'primary'" (click)="isLogin = true" [disabled]="isLogin">
+    Đăng nhập
+  </button>
+  <button nz-button [nzType]="!isLogin ? 'default' : 'primary'" (click)="isLogin = false" [disabled]="!isLogin">
+    Chưa có tài khoản? Đăng ký
+  </button>
+</div> -->
+
+<!-- <nz-alert
+  *ngIf="showAlert"
+  [nzType]="alertType"
+  [nzMessage]="alertMessage"
+  nzShowIcon
+  (nzOnClose)="showAlert = false"
+  nzCloseable>
+</nz-alert>
+
+
+<form *ngIf="isLogin" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" nz-form [nzLayout]="'vertical'">
+  <h3>Đăng nhập</h3>
+
+  <nz-form-item>
+    <nz-form-label>Email</nz-form-label>
+    <nz-form-control [nzErrorTip]="'Email không hợp lệ'">
+      <input nz-input type="email" name="email" ngModel required email placeholder="Email">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Mật khẩu</nz-form-label>
+    <nz-form-control [nzErrorTip]="'Mật khẩu ít nhất 6 ký tự'">
+      <input nz-input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button nzType="primary" [disabled]="loginForm.invalid" type="submit">Đăng nhập</button>
 </form>
+
+<form *ngIf="!isLogin" #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)" nz-form [nzLayout]="'vertical'">
+  <h3>Đăng ký</h3>
+
+  <nz-form-item>
+    <nz-form-label>Tên người dùng</nz-form-label>
+    <nz-form-control [nzErrorTip]="'Tên không được bỏ trống'">
+      <input nz-input type="text" name="username" ngModel required placeholder="Tên người dùng">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Email</nz-form-label>
+    <nz-form-control [nzErrorTip]="'Email không hợp lệ'">
+      <input nz-input type="email" name="email" ngModel required email placeholder="Email">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Mật khẩu</nz-form-label>
+    <nz-form-control [nzErrorTip]="'Mật khẩu ít nhất 6 ký tự'">
+      <input nz-input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button nzType="primary" [disabled]="registerForm.invalid" type="submit">Đăng ký</button>
+
+</form>
+
+ <div style="margin-bottom: 16px;">
+  <button nz-button [nzType]="isLogin ? 'default' : 'primary'" (click)="isLogin = true" [disabled]="isLogin">
+    Đăng nhập
+  </button>
+  <button nz-button [nzType]="!isLogin ? 'default' : 'primary'" (click)="isLogin = false" [disabled]="!isLogin">
+    Chưa có tài khoản? Đăng ký
+  </button>
+</div> -->
+
+
+
+<nz-alert
+  *ngIf="showAlert"
+  [nzType]="alertType"
+  [nzMessage]="alertMessage"
+  nzShowIcon
+  (nzOnClose)="showAlert = false"
+  nzCloseable>
+</nz-alert>
+
+<div class="form-wrapper">
+  <form *ngIf="isLogin" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" nz-form [nzLayout]="'vertical'" class="form-box">
+    <h2 class="form-title">Đăng nhập</h2>
+
+    <nz-form-item>
+      <nz-form-label>Email</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Email không hợp lệ'">
+        <input nz-input type="email" name="email" ngModel required email placeholder="Email">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Mật khẩu</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Mật khẩu ít nhất 6 ký tự'">
+        <input nz-input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+      </nz-form-control>
+    </nz-form-item>
+
+    <button nz-button nzType="default" appPrimaryOrange class="submit-btn" [disabled]="loginForm.invalid" type="submit">Đăng nhập</button>
+  </form>
+
+  <form *ngIf="!isLogin" #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)" nz-form [nzLayout]="'vertical'" class="form-box">
+    <h2 class="form-title">Đăng ký</h2>
+
+    <nz-form-item>
+      <nz-form-label>Tên người dùng</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Tên không được bỏ trống'">
+        <input nz-input type="text" name="username" ngModel required placeholder="Tên người dùng">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Email</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Email không hợp lệ'">
+        <input nz-input type="email" name="email" ngModel required email placeholder="Email">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Mật khẩu</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Mật khẩu ít nhất 6 ký tự'">
+        <input nz-input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+      </nz-form-control>
+    </nz-form-item>
+
+    <button nz-button nzType="default" appPrimaryOrange class="submit-btn" [disabled]="registerForm.invalid" type="submit">Đăng ký</button>
+  </form>
+
+  <div class="switch-buttons">
+    <button nz-button appPrimaryOrange [nzType]="isLogin ? 'default' : 'primary'" (click)="isLogin = true" [disabled]="isLogin">Đăng nhập</button>
+    <button nz-button appPrimaryOrange [nzType]="!isLogin ? 'default' : 'primary'" (click)="isLogin = false" [disabled]="!isLogin">Chưa có tài khoản? Đăng ký</button>
+  </div>
+</div>
+
+
 

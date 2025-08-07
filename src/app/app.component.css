@@ -1,4 +1,4 @@
-nav {
+/* nav {
   background-color: #eeeeee;
   padding: 10px;
   text-align: center;
@@ -20,5 +20,86 @@ nav a:hover {
   width: auto;
   border-radius: 10px;
 }
+
+
+
+
+.user-dropdown {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.user-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.user-icon {
+  font-size: 18px;
+} */
+
+
+
+
+
+
+
+
+
+/* .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f5a52d;
+  padding: 10px 20px;
+  color: white;
+}
+
+.header-left .logo {
+  height: 40px;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input {
+  border-radius: 4px;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-link,
+.header-cart,
+.account-link {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.account-avatar {
+  margin-right: 4px;
+} */
+
+
 
 

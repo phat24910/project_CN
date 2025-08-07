@@ -1,36 +1,20 @@
-<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
-  <div *ngFor="let item of cartItems" class="cart-item">
-    <div class="cart-item-content">
-      <img [src]="item.image" alt="Ảnh sản phẩm" class="cart-item-image" />
-      <div class="cart-item-details">
-        <p><strong>{{ item.title }}</strong></p>
-        <p>
-          Giá gốc: {{ item.price | number:'1.2-2' }}$
-          <span *ngIf="item.discountRate"> <strong style="color:red"> (Giảm {{ item.discountRate }}%)</strong></span>
-        </p>
-        <p><strong>Giá sau giảm:</strong> {{ item.priceAfterDiscount || item.price | number:'1.2-2' }}$</p>
-        <p>Số lượng: {{ item.quantity }}</p>
-
-        <div class="quantity-control">
-          <button (click)="decreaseQuantity(item)">−</button>
-          <span>{{ item.quantity }}</span>
-          <button (click)="increaseQuantity(item)">+</button>
-        </div>
-
-        <button (click)="removeItem(item.id)">Xóa</button>
-      </div>
-    </div>
-    <hr>
-  </div>
+<!-- <div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+  <app-cart-item
+    *ngFor="let item of cartItems"
+    [item]="item"
+    (increase)="increaseQuantity($event)"
+    (decrease)="decreaseQuantity($event)"
+    (remove)="removeItem($event)">
+  </app-cart-item>
 
   <div class="cart-summary">
     <p><strong>Tổng tiền:</strong> {{ total | number:'1.2-2' }}$</p>
 
-    <input [(ngModel)]="discountCode" placeholder="Nhập mã giảm giá (VD: GIAM10)">
+    <input [(ngModel)]="discountCode" placeholder="Nhập mã giảm giá (VD: giam10)">
     <button (click)="applyDiscount()">Áp dụng</button>
 
     <p *ngIf="discountPercent > 0">
-      <strong>Giảm {{ discountPercent }}%:</strong> -{{ total * discountPercent / 100 | number:'1.2-2' }}$
+      <strong>Giảm {{ discountPercent }}%:</strong> - {{ total * discountPercent / 100 | number:'1.2-2' }}$
     </p>
 
     <p><strong>Thành tiền:</strong> {{ totalAfterDiscount | number:'1.2-2' }}$</p>
@@ -42,6 +26,80 @@
 
 <ng-template #emptyCart>
   <p>Không có sản phẩm nào trong giỏ hàng.</p>
+</ng-template> -->
+
+
+
+
+<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+  <app-cart-item
+    *ngFor="let item of cartItems"
+    [item]="item"
+    (increase)="increaseQuantity($event)"
+    (decrease)="decreaseQuantity($event)"
+    (remove)="removeItem($event)">
+  </app-cart-item>
+
+  <nz-card class="cart-summary">
+    <div class="border border-primary rounded-lg p-4 bg-white shadow-sm flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="discountCode"
+            placeholder="Nhập mã giảm giá (VD: giam10)"
+            class="border-primary focus:border-primary focus:shadow-none rounded-md"
+            style="min-width: 0; flex: 1;"
+          />
+          <button
+            nz-button
+            nzType="primary"
+            (click)="applyDiscount()"
+            class="bg-primary border-primary hover:bg-orange-600 focus:bg-orange-700 text-white font-semibold px-5"
+            style="min-width: 100px;"
+          >
+            Áp dụng
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <p *ngIf="discountPercent > 0" class="text-s">
+          <strong>Giảm {{ discountPercent }}%:</strong>
+          – {{ total * discountPercent / 100 | number:'1.2-2' }} $
+        </p>
+        <p class="text-lg font-bold text-primary">
+          <span>Thành tiền:</span> {{ totalAfterDiscount | number:'1.2-2' }} $
+        </p>
+      </div>
+
+      <div class="flex gap-2 mt-2">
+        <button
+          nz-button
+          nzType="primary"
+          (click)="checkout()"
+          class="text-white font-semibold flex-1 border-primary"
+          style="background-color: #ff6600 !important; border-color: #ff6600 !important; box-shadow: none;"
+        >
+          Thanh toán
+        </button>
+        <button
+          nz-button
+          nzDanger
+          (click)="clearCart()"
+          class="flex-1"
+        >
+          Xóa giỏ hàng
+        </button>
+      </div>
+    </div>
+  </nz-card>
+</div>
+
+<ng-template #emptyCart>
+  <nz-empty nzNotFoundImage="simple"></nz-empty>
+  <button nz-button nzType="primary" routerLink="/">Tiếp tục mua sắm</button>
 </ng-template>
 
 

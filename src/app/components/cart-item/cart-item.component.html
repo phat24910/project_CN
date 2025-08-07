@@ -1,0 +1,40 @@
+<nz-card class="cart-item mb-4" nzBordered [nzHoverable]="true">
+  <div class="flex flex-row gap-4 items-center p-2">
+    <img
+      [src]="item.thumbnail"
+      [alt]="item.title"
+      class="w-20 h-20 sm:w-24 sm:h-24 object-contain flex-shrink-0"
+    />
+    <div class="flex-1 flex flex-col justify-between h-full min-w-0">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <h4 class="text-base sm:text-lg font-semibold mb-0 break-words">{{ item.title }}</h4>
+        <span class="text-xs text-gray-500 truncate">{{ item.sku }}</span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-1">
+        <div class="flex flex-col gap-1">
+          <span class="text-sm">Giá gốc: <span class="font-semibold">{{ item.price | number:'1.2-2' }} $</span>
+            <span *ngIf="item.discountPercentage" class="text-red-600 font-bold ml-1">(Giảm {{ item.discountPercentage }}%)</span>
+          </span>
+          <span class="text-sm font-medium"><strong>Giá sau giảm:</strong> {{ (item.price - (item.price * item.discountPercentage / 100)) | number:'1.2-2' }} $</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button nz-button nzShape="circle" (click)="onDecrease()">−</button>
+          <span class="font-semibold">{{ item.quantity }}</span>
+          <button nz-button nzShape="circle" (click)="onIncrease()">+</button>
+        </div>
+      </div>
+      <div class="flex flex-row items-center justify-between mt-2">
+        <p class="text-xs text-gray-500 m-0" *ngIf="item.availabilityStatus">
+          Tình trạng: {{ item.availabilityStatus }}
+        </p>
+        <button nz-button nzType="default" nzDanger (click)="onRemove()">Xóa</button>
+      </div>
+    </div>
+  </div>
+  <!-- Tổng tiền cho từng sản phẩm -->
+  <div class="mt-3 border-t pt-3 text-right">
+    <p class="text-base font-semibold">
+      <strong>Tổng tiền:</strong> {{ ((item.price - (item.price * item.discountPercentage / 100)) * item.quantity) | number:'1.2-2' }} $
+    </p>
+  </div>
+</nz-card>
