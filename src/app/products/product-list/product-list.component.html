@@ -1,207 +1,26 @@
-<!-- <div class="container">
-
-  <h2> Danh sách sản phẩm</h2> -->
-
-  <!--Tìm kiếm và lọc -->
-  <!-- <div class="filter-bar">
-    <input class="search-box" type="text" placeholder="Tìm sản phẩm..." [(ngModel)]="searchText">
-
-    <select (change)="onCategoryChange($event)">
-      <option value="">Tất cả</option>
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-    </select>
-  </div> -->
-
-
-  <!-- Danh sách sản phẩm -->
-  <!-- <div class="product-grid">
-  <div class="product-card" *ngFor="let product of filteredProducts | search:searchText" appHighlight> -->
-
-
-  <!-- Hình ảnh sản phẩm -->
-  <!-- <img [src]="product.image" [alt]="product.title" class="product-img" /> -->
-
-  <!-- Tiêu đề và giá -->
-  <!-- <h4 class="product-title">{{ product.title }}</h4>
-  <p class="product-price">{{ product.price | currency:'USD' }}</p> -->
-
-  <!-- Đánh giá sao -->
-    <!-- <div class="rating">
-      <ng-container *ngFor="let star of getStars(product.rating.rate); let i = index">
-        <span [class.filled]="i < product.rating.rate">★</span>
-      </ng-container>
-      <span class="rating-rate">({{ product.rating?.rate }})</span>
-      <span class="rating-count">({{ product.rating?.count }} đánh giá)</span>
-    </div> -->
-
-    <!-- Nút -->
-    <!-- <div class="btn-group">
-      <button [routerLink]="[product.id]">Xem chi tiết</button>
-      <button (click)="addToCart(product)">Thêm vào giỏ hàng</button>
-    </div>
-  </div> -->
-
-<!-- </div> -->
-
-
-
-
-
-
-<!-- <div class="container">
-  <h2>Danh sách sản phẩm</h2>
-
-  Tìm kiếm và lọc
-  <div class="filter-bar">
-    <input class="search-box" type="text" placeholder="Tìm sản phẩm..." [(ngModel)]="searchText" />
-
-    <select (change)="onCategoryChange($event)">
-      <option value="">Tất cả</option>
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-    </select>
-  </div>
-
-  component con
-  <div class="product-grid">
-    <app-product-item
-      *ngFor="let product of filteredProducts | search: searchText"
-      [product]="product"
-      (addToCart)="addToCart($event)">
-    </app-product-item>
-  </div>
-
-</div> -->
-
-
-
-
-<!-- <div class="container mx-auto p-4">
-  <h2 class="text-2xl font-bold mb-6">Danh sách sản phẩm</h2>
-
-  <div class="flex gap-[10px] mb-5" style="margin-bottom: 16px;">
-    <nz-input-group nzPrefixIcon="search" style="width: 300px; margin-right: 16px;">
-      <input
-        nz-input
-        placeholder="Tìm sản phẩm..."
-        [(ngModel)]="searchText" />
-    </nz-input-group>
-
-    <nz-select
-    class="w-full md:w-[200px]"
-      style="width: 200px;"
-      [(ngModel)]="selectedCategory"
-      (ngModelChange)="onCategoryChange($event)"
-      nzPlaceHolder="Chọn danh mục"
-      [nzSize]="'large'">
-      <nz-option nzValue="" nzLabel="Tất cả"></nz-option>
-      <nz-option
-        *ngFor="let category of categories"
-        [nzValue]="category"
-        [nzLabel]="category">
-      </nz-option>
-    </nz-select>
-  </div>
-
-  <div nz-row [nzGutter]="16">
-    <div nz-col [nzSpan]="6" *ngFor="let product of filteredProducts | search: searchText">
-
-      <app-product-item
-        [product]="product"
-        (addToCart)="addToCart($event)">
-      </app-product-item>
-    </div>
-  </div>
-
-  <div *ngIf="isLoading" role="status" class="max-w-sm animate-pulse">
-    <p>Loading...</p>
-    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-  </div>
-
-</div> -->
-
-
-
-
-
-<!-- <div class="container mx-auto p-4">
-  <h2 class="text-2xl font-bold mb-6 text-center sm:text-left">Danh sách sản phẩm</h2>
-
-  <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mb-6 w-full">
-    <nz-select
-      class="w-full sm:w-[200px]"
-      [(ngModel)]="selectedCategory"
-      (ngModelChange)="onCategoryChange($event)"
-      nzPlaceHolder="Chọn danh mục"
-      [nzLoading]="isLoading">
-      <nz-option nzValue="" nzLabel="Tất cả"></nz-option>
-      <nz-option
-        *ngFor="let category of categories"
-        [nzValue]="category"
-        [nzLabel]="category">
-      </nz-option>
-    </nz-select>
-  </div> -->
-
-
-  <!-- Danh sách sản phẩm -->
-  <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <div *ngFor="let product of filteredProducts | search: searchText">
-      <app-product-item
-        [product]="product"
-        (addToCart)="addToCart($event)">
-      </app-product-item>
-    </div>
-  </div> -->
-
-  <!-- Loading -->
-  <!-- <div *ngIf="isLoading" role="status" class="max-w-sm animate-pulse mt-6 mx-auto">
-    <p class="text-center text-gray-500">Đang tải sản phẩm...</p>
-    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-  </div>
-</div> -->
-
-
-
-
-
-
-
-
-
-
 <div class="container mx-auto p-4">
-  <h2 class="text-2xl font-bold mb-6 text-center sm:text-left">Danh sách sản phẩm</h2>
+  <h2 class="text-2xl font-bold mb-6 text-center sm:text-left">
+    {{ 'productList.title' | transloco }}</h2>
 
   <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mb-6 w-full">
     <nz-select
-  class="custom-category-select w-full sm:w-[160px] md:w-[200px] lg:w-[240px]"
-  [(ngModel)]="selectedCategory"
-  (ngModelChange)="onCategoryChange($event)"
-  nzPlaceHolder="Chọn danh mục"
-  [nzLoading]="isLoadingCategories">
-  <nz-option nzValue="" nzLabel="Tất cả"></nz-option>
-  <nz-option
-    *ngFor="let category of categories"
+    class="custom-category-select w-full sm:w-[160px] md:w-[200px] lg:w-[240px]"
+    [(ngModel)]="selectedCategory"
+    (ngModelChange)="onCategoryChange($event)"
+    nzPlaceHolder="{{ 'productList.selectCategory' | transloco }}"
+    [nzLoading]="isLoadingCategories">
+    <nz-option nzValue="" nzLabel="{{ 'productList.all' | transloco }}"></nz-option>
+
+    <nz-option *ngFor="let category of categories"
     [nzValue]="category"
     [nzLabel]="category">
-  </nz-option>
-</nz-select>
-
+    </nz-option>
+    </nz-select>
   </div>
 
   <!--Loading-->
   <div *ngIf="isLoading" class="max-w-sm animate-pulse mt-6 mx-auto">
-    <p class="text-center text-gray-500">Đang tải sản phẩm...</p>
+    <p class="text-center text-gray-500">{{ 'productList.loadingProducts' | transloco }}</p>
     <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
     <div class="h-2 bg-gray-200 rounded-full max-w-[360px] mb-2.5"></div>
     <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
@@ -212,7 +31,7 @@
 
   <!-- Skeleton khi chọn danh mục -->
   <div *ngIf="!isLoading && isCategoryLoading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <p class="text-center text-gray-500">Đang tải...</p>
+    <p class="text-center text-gray-500">{{ 'productList.loading' | transloco }}</p>
     <div class="h-4 bg-gray-200 rounded w-3/4"></div>
     <div class="h-4 bg-gray-200 rounded w-1/2"></div>
   </div>
@@ -228,16 +47,27 @@
   </div> -->
 
   <div *ngIf="!isLoading && !isCategoryLoading">
-    <div *ngIf="products.length === 0" class="col-span-full text-center text-gray-500 py-8 text-sm">
-      Không có sản phẩm nào
+    <div *ngIf="total === 0" class="col-span-full text-center text-gray-500 py-8 text-sm">
+      {{ 'productList.noProducts' | transloco }}
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" *ngIf="products.length > 0">
-      <div *ngFor="let product of products">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" *ngIf="total > 0">
+      <div *ngFor="let product of pagedProducts">
         <app-product-item
-          [product]="product"
-          (addToCart)="addToCart($event)">
+        [product]="product"
+        (addToCart)="addToCart($event)">
         </app-product-item>
       </div>
+    </div>
+
+    <div class="flex justify-center mt-8" *ngIf="total > pageSize">
+      <nz-pagination
+        [nzPageIndex]="pageIndex"
+        [nzTotal]="total"
+        [nzPageSize]="pageSize"
+        (nzPageIndexChange)="onPageChange($event)"
+        [nzShowQuickJumper]="true"
+        [nzShowSizeChanger]="false">
+      </nz-pagination>
     </div>
   </div>
 </div>

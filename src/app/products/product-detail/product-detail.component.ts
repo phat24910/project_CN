@@ -30,6 +30,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../core/product.service';
 import { CartService } from '../../services/cart.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-product-detail',
@@ -44,6 +45,7 @@ export class ProductDetailComponent implements OnInit {
     private service: ProductService,
     private cartService: CartService,
     private notification: NzNotificationService,
+    private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
@@ -51,13 +53,12 @@ export class ProductDetailComponent implements OnInit {
     this.service.getProduct(id).subscribe(p => (this.product = p));
   }
 
-  //  Thêm vào giỏ
   addToCart(): void {
     this.cartService.addToCart(this.product);
-    this.notification.success('Thành công', 'Đã thêm sản phẩm vào giỏ hàng!');
+    this.notification.success(this.translocoService.translate('productDetail.notification.successTitle'),
+    this.translocoService.translate('productDetail.notification.successMsg'));
   }
 
-  //  Mua ngay
   buyNow(): void {
     this.addToCart();
   }

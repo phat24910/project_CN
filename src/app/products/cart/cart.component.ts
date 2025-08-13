@@ -72,6 +72,7 @@ import { Component, OnInit } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CartService } from '../../services/cart.service';
+import { TranslocoService} from '@jsverse/transloco';
 
 @Component({
   selector: 'app-cart',
@@ -84,14 +85,18 @@ export class CartComponent implements OnInit {
   total = 0; // Tổng tiền trước khi giảm giá
   discountPercent = 0; // Phần trăm giảm giá
   totalAfterDiscount = 0; // Tổng tiền sau giảm giá
+  qrData: string = ''; // Dữ liệu QR code
+  showQrCode: boolean = false;
 
   constructor(private cartService: CartService,
     private notification: NzNotificationService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
     this.loadCart();
+    this.qrData = this.translocoService.translate('cart.qrTitle') + `${this.totalAfterDiscount.toFixed(2)}$`;
   }
 
   loadCart(): void {
@@ -112,13 +117,14 @@ export class CartComponent implements OnInit {
 
   removeItem(id: number): void {
     this.modal.confirm({
-      nzTitle: 'Bạn chắc chắn muốn xóa sản phẩm này?',
-      nzOkText: 'Xóa',
+      nzTitle: this.translocoService.translate('cart.modal.removeTitle'),
+      nzOkText: this.translocoService.translate('cart.modal.removeOk'),
       nzOkDanger: true,
-      nzCancelText: 'Hủy',
+      nzCancelText: this.translocoService.translate('cart.modal.removeCancel'),
       nzOnOk: () => {
         this.cartService.removeItem(id);
-        this.notification.info('Đã xóa', 'Sản phẩm đã được xóa khỏi giỏ hàng');
+        this.notification.info(this.translocoService.translate('cart.modal.removeSuccessTitle'),
+        this.translocoService.translate('cart.modal.removeSuccessMsg'));
         this.loadCart();
       }
     });
@@ -126,17 +132,26 @@ export class CartComponent implements OnInit {
 
   clearCart(): void {
     this.modal.confirm({
-      nzTitle: 'Bạn chắc chắn muốn xóa tất cả sản phẩm?',
-      nzOkText: 'Xóa',
+      nzTitle: this.translocoService.translate('cart.modal.clearTitle'),
+      nzOkText: this.translocoService.translate('cart.modal.removeOk'),
       nzOkDanger: true,
-      nzCancelText: 'Hủy',
+      nzCancelText: this.translocoService.translate('cart.modal.removeCancel'),
       nzOnOk: () => {
         this.cartService.clearCart();
-        this.notification.info('Đã xóa', 'Tất cả sản phẩm đã được xóa khỏi giỏ hàng');
+        this.notification.info(this.translocoService.translate('cart.modal.removeSuccessTitle'),
+        this.translocoService.translate('cart.modal.removeSuccessMsg'));
         this.loadCart();
       }
     });
   }
+
+  confirmPayment(): void {
+    alert(this.translocoService.translate('cart.paymentConfirm'));
+    this.clearCart();       // Xoá giỏ hàng
+    this.qrData = '';       // Xoá dữ liệu QR
+    this.showQrCode = false; // Ẩn mã QR
+  }
+
 
   applyDiscount(): void {
     const code = this.discountCode.trim().toLowerCase();
@@ -151,7 +166,8 @@ export class CartComponent implements OnInit {
       default:
         this.discountPercent = 0;
         if (this.discountCode) {
-          this.notification.error('Mã giảm giá không hợp lệ', 'Vui lòng nhập đúng mã giảm giá!');
+          this.notification.error(this.translocoService.translate('cart.discountErrorTitle'),
+          this.translocoService.translate('cart.discountErrorMsg'));
         }
         break;
     }
@@ -171,11 +187,12 @@ export class CartComponent implements OnInit {
 
   checkout(): void {
     if (this.cartItems.length === 0) {
-      alert('Giỏ hàng trống!');
+      alert(this.translocoService.translate('cart.alert.emptyCart'));
       return;
     }
 
-    alert(` Thanh toán thành công!\nTổng tiền: ${this.totalAfterDiscount.toFixed(2)}$`);
-    this.clearCart();
+    this.qrData =`${this.translocoService.translate('cart.total')}: ${this.totalAfterDiscount.toFixed(2)}$`;
+    this.showQrCode = true;
+    // this.clearCart();
   }
 }

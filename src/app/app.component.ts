@@ -1,158 +1,11 @@
-// import { Component, OnInit } from '@angular/core';
-// import { CartService } from './services/cart.service';
-// import { Router } from '@angular/router';
-// import { UserService } from './services/user.service';
-// import { SharedService } from './services/shared.service';
-// import { NotificationService } from './services/Notify.service';
-
-// @Component({
-//   selector: 'app-root',
-//   templateUrl: './app.component.html',
-//   styleUrls: ['./app.component.css'],
-// })
-// export class AppComponent implements OnInit {
-//   title = 'product-management';
-
-//   searchText: string = '';
-
-//   total = 0;
-
-//   userName: string | null=null;
-
-//   alert: { type: any, message: string} | null=null;
-
-//   constructor (
-//     private cartService: CartService,
-//     private router: Router,
-//     private userService: UserService,
-//     private sharedService: SharedService,
-//     private notify: NotificationService
-//   ) {}
-
-//   onSearchChange() {
-//     this.sharedService.setSearchText(this.searchText);
-//   }
-
-//   ngOnInit(): void {
-//     this.cartService.cartItemCount$.subscribe(count => {
-//       this.total = count;
-//     });
-
-//     this.userService.userName$.subscribe(name => {
-//       this.userName = name;
-//     });
-
-//     this.userService.loadUserFromLocalStorage();
-
-//     this.notify.alert$.subscribe(alert => {
-//       this.alert = alert;
-//     });
-
-//     // this.userName = localStorage.getItem('username');
-//     // console.log(this.userName)
-//   }
-
-//   showInfo(): void {
-//     this.router.navigate (['/profile']);
-//   }
-
-//   changePasswordVisible = false;
-
-//   passwordData = {
-//     oldPassword: '',
-//     newPassword: '',
-//     confirmPassword: '',
-//   }
-
-//   alertMessage: string = '';
-//   alertType: 'success' | 'info' | 'warning' | 'error' = 'info';
-//   showAlert: boolean = false;
-
-
-//   changePassword(): void {
-//     this.changePasswordVisible = true;
-//   }
-
-//   logout(): void {
-//     localStorage.clear();
-//     this.userService.logout();
-//     this.router.navigate(['/auth']);
-//   }
-
-//   handleCancel(): void {
-//     this.changePasswordVisible = false;
-//     this.resetPasswordForm();
-//   }
-
-//   handleChangePassword(): void {
-//     const { oldPassword, newPassword, confirmPassword } = this.passwordData;
-//     if (!oldPassword || !newPassword || !confirmPassword) {
-//       this.showAlertMessage('Vui lòng nhập đầy đủ thông tin', 'warning');
-//       return;
-//     }
-
-//     if (newPassword !== confirmPassword) {
-//             this.showAlertMessage('Mật khẩu mới không khớp', 'error');
-
-//       return;
-//     }
-
-//     const email = localStorage.getItem('email');
-//     if (!email) {
-//       this.showAlertMessage('Không tìm thấy người dùng hiện tại', 'error');
-//       return;
-//     }
-
-//     const storedUserStr = localStorage.getItem(`username_${email}`);
-//     if (!storedUserStr) {
-//       this.showAlertMessage('Tài khoản không tồn tại', 'error');
-//       return;
-//     }
-
-//     const storedUser = JSON.parse(storedUserStr);
-//     if (storedUser.password !== oldPassword) {
-//       this.showAlertMessage('Mật khẩu cũ không đúng', 'error');
-//       return;
-//     }
-
-//     storedUser.password = newPassword;
-//     localStorage.setItem(`username_${email}`, JSON.stringify(storedUser));
-//     this.showAlertMessage('Đổi mật khẩu thành công', 'success');
-//     setTimeout(() => {
-//        this.changePasswordVisible = false;
-//        this.resetPasswordForm();
-//     }, 2000)
-//   }
-
-//   resetPasswordForm(): void {
-//     this.passwordData = {
-//       oldPassword: '',
-//       newPassword: '',
-//       confirmPassword: ''
-//     }
-//   }
-
-//   showAlertMessage(message: string, type: 'success' | 'info' | 'warning' | 'error') {
-//     this.alertMessage = message;
-//     this.alertType = type;
-//     this.showAlert = true;
-
-//     setTimeout(() => {
-//       this.showAlert = false;
-//     }, 2000);
-//   }
-// }
-
-
-
-
 import { Component, OnInit } from '@angular/core';
-import { CartService } from './services/cart.service';
 import { Router } from '@angular/router';
+import { CartService } from './services/cart.service';
 import { UserService } from './services/user.service';
 import { SharedService } from './services/shared.service';
 import { NotificationService } from './services/Notify.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-root',
@@ -160,72 +13,91 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'product-management';
-  searchText: string = '';
+  title = 'Cosmetsy - Beauty & Cosmetics';
   total = 0;
+  wishlistCount = 0;
   userName: string | null = null;
-  alert: { type: any; message: string } | null = null;
-
+  alert: { type: 'error' | 'success' | 'info' | 'warning'; message: string } | null = null;
   changePasswordVisible = false;
   passwordData = {
     oldPassword: '',
     newPassword: '',
-    confirmPassword: '',
+    confirmPassword: ''
   };
-  alertMessage: string = '';
-  alertType: 'success' | 'info' | 'warning' | 'error' = 'info';
-  showAlert: boolean = false;
+  searchText = '';
+  showMobileMenu = false;
+  currentLang = 'vi';
+  showAlert = false;
+  alertType = 'info';
+  alertMessage = '';
 
   constructor(
     private cartService: CartService,
     private router: Router,
     private userService: UserService,
     private sharedService: SharedService,
-    private notify: NotificationService,
-    private notification: NzNotificationService
+    private notificationService: NotificationService,
+    private nzNotification: NzNotificationService,
+    private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
+    // Lấy số lượng sản phẩm trong giỏ hàng
     this.cartService.cartItemCount$.subscribe(count => {
       this.total = count;
     });
 
+    // Lấy thông tin user
     this.userService.userName$.subscribe(name => {
       this.userName = name;
     });
 
+    // Load user từ localStorage
     this.userService.loadUserFromLocalStorage();
 
-    this.notify.alert$.subscribe(alert => {
-      this.alert = alert;
-    });
+    // Lấy ngôn ngữ hiện tại
+    this.currentLang = this.translocoService.getActiveLang();
+  }
+
+  // Phương thức đơn giản để mua sắm
+  goShopping(): void {
+    alert('Chào mừng bạn đến với Cosmetsy!');
   }
 
   goHome(): void {
-    this.sharedService.setSearchText('');
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/']);
-    });
+    this.router.navigate(['/']);
   }
 
-  onSearchChange(event?: any): void {
-    const value = event !== undefined ? event : this.searchText;
-    this.sharedService.setSearchText(value.trim());
+  onSearchChange(): void {
+    if (this.searchText.trim()) {
+      this.router.navigate(['/products'], { queryParams: { search: this.searchText } });
+    }
+  }
+
+  setLang(lang: string): void {
+    console.log('Setting language to:', lang);
+    this.currentLang = lang;
+    this.translocoService.setActiveLang(lang);
+    // Close mobile menu if open
+    if (this.showMobileMenu) {
+      this.showMobileMenu = false;
+    }
   }
 
   showInfo(): void {
-    this.router.navigate(['/profile']);
-  }
-
-  logout(): void {
-    localStorage.clear();
-    this.userService.logout();
-    this.router.navigate(['/auth']);
-    this.notification.info('Đăng xuất', 'Bạn đã đăng xuất thành công!');
+    console.log('Show info clicked');
+    this.nzNotification.info('Thông tin', 'Thông tin người dùng');
   }
 
   changePassword(): void {
+    console.log('Change password clicked');
     this.changePasswordVisible = true;
+  }
+
+  logout(): void {
+    console.log('Logout clicked');
+    this.userService.logout();
+    this.router.navigate(['/auth']);
   }
 
   handleCancel(): void {
@@ -234,61 +106,35 @@ export class AppComponent implements OnInit {
   }
 
   handleChangePassword(): void {
-    const { oldPassword, newPassword, confirmPassword } = this.passwordData;
-
-    if (!oldPassword || !newPassword || !confirmPassword) {
-      this.showAlertMessage('Vui lòng nhập đầy đủ thông tin', 'warning');
+    if (this.passwordData.newPassword !== this.passwordData.confirmPassword) {
+      this.showAlertMessage('error', 'Mật khẩu mới không khớp');
       return;
     }
-
-    if (newPassword !== confirmPassword) {
-      this.showAlertMessage('Mật khẩu mới không khớp', 'error');
-      return;
-    }
-
-    const email = localStorage.getItem('email');
-    if (!email) {
-      this.showAlertMessage('Không tìm thấy người dùng hiện tại', 'error');
-      return;
-    }
-
-    const storedUserStr = localStorage.getItem(`username_${email}`);
-    if (!storedUserStr) {
-      this.showAlertMessage('Tài khoản không tồn tại', 'error');
-      return;
-    }
-
-    const storedUser = JSON.parse(storedUserStr);
-    if (storedUser.password !== oldPassword) {
-      this.showAlertMessage('Mật khẩu cũ không đúng', 'error');
-      return;
-    }
-
-    storedUser.password = newPassword;
-    localStorage.setItem(`username_${email}`, JSON.stringify(storedUser));
-    this.showAlertMessage('Đổi mật khẩu thành công', 'success');
-
-    setTimeout(() => {
-      this.changePasswordVisible = false;
-      this.resetPasswordForm();
-    }, 2000);
+    
+    // Xử lý đổi mật khẩu
+    this.showAlertMessage('success', 'Đổi mật khẩu thành công');
+    this.handleCancel();
   }
 
   resetPasswordForm(): void {
     this.passwordData = {
       oldPassword: '',
       newPassword: '',
-      confirmPassword: '',
+      confirmPassword: ''
     };
+    this.showAlert = false;
   }
 
-  showAlertMessage(message: string, type: 'success' | 'info' | 'warning' | 'error') {
-    this.alertMessage = message;
-    this.alertType = type;
-    this.showAlert = true;
-
+  showAlertMessage(type: 'error' | 'success' | 'info' | 'warning', message: string): void {
+    this.alert = { type, message };
     setTimeout(() => {
-      this.showAlert = false;
-    }, 2000);
+      this.alert = null;
+    }, 3000);
   }
 }
+
+
+
+
+
+

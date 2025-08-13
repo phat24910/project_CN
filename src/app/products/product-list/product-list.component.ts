@@ -1,199 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { ProductService } from '../../core/product.service';
-// import { CartService } from '../../services/cart.service';
-// import { Router } from '@angular/router';
-// import { SharedService } from '../../services/shared.service';
-
-// @Component({
-//   selector: 'app-product-list',
-//   templateUrl: './product-list.component.html',
-//   styleUrls: ['./product-list.component.css']
-// })
-// export class ProductListComponent implements OnInit {
-//   products: any[] = [];
-
-//   searchText = '';
-
-//   categories: string[] = [];
-//   filteredProducts: any[] = [];
-//   selectedCategory: string ='';
-
-//   isLoading: boolean = true;
-//   isLoadingCategories: boolean = true;
-
-//   constructor(
-//     private service: ProductService,
-//     private cartService: CartService,
-//     private router: Router,
-//     private sharedService: SharedService
-//   ) {}
-
-//   ngOnInit(): void {
-//     this.service.getProducts().subscribe((data: any[]) => {
-//       this.products = data.products;
-//       this.loadAllProducts();
-
-//       this.service.getCategories().subscribe(data => {
-//         this.categories =data;
-//         this.isLoadingCategories = false;
-//     });
-//       this.products = data;
-//       this.isLoading = false;
-//       this.filteredProducts = data;
-//     });
-
-
-
-//     this.sharedService.searchText$.subscribe((text) => {
-//       this.searchText = text.toLowerCase();
-//       this.filteredProducts = this.products.filter(product =>
-//         product.title.toLowerCase().includes(this.searchText)
-//       );
-//     });
-//   }
-
-//     loadAllProducts(): void {
-//       this.service.getProducts().subscribe(data => { this.filteredProducts = data; });
-//     }
-
-//     loadProductsByCategory(category: string): void {
-//   if (!category) {
-//     this.loadAllProducts();
-//   } else {
-//     this.isLoading = true;
-//     this.service.getProductsByCategory(category).subscribe(data => {
-//       this.filteredProducts = data;
-//       this.isLoading = false;
-//     });
-//   }
-// }
-
-
-//     onCategoryChange(event: string): void {
-
-//       const selectedCategory = event;
-//       this.loadProductsByCategory(selectedCategory);
-
-//     }
-
-//     goToDetail(id: number): void {
-//       this.router.navigate(['/products', id]);
-//     }
-
-//     addToCart(product: any):void {
-//       this.cartService.addToCart(product);
-//       alert('Đã thêm vào giỏ hàng');
-//     }
-
-//     getStars (rate: number): number [] {
-//       return[1,2,3,4,5];
-//     }
-// }
-
-
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { ProductService } from '../../core/product.service';
-// import { CartService } from '../../services/cart.service';
-// import { Router } from '@angular/router';
-// import { SharedService } from '../../services/shared.service';
-
-// @Component({
-//   selector: 'app-product-list',
-//   templateUrl: './product-list.component.html',
-//   styleUrls: ['./product-list.component.css']
-// })
-// export class ProductListComponent implements OnInit {
-//   products: any[] = [];
-//   filteredProducts: any[] = [];
-
-//   categories: string[] = [];
-//   selectedCategory: string = '';
-//   searchText: string = '';
-
-//   isLoading: boolean = true;
-//   isLoadingCategories: boolean = true;
-//   isCategoryLoading: boolean = false;
-
-//   constructor(
-//     private service: ProductService,
-//     private cartService: CartService,
-//     private router: Router,
-//     private sharedService: SharedService
-//   ) {}
-
-//   ngOnInit(): void {
-//     this.loadAllProducts();
-//     this.loadCategories();
-
-//     this.sharedService.searchText$.subscribe((text) => {
-//       this.searchText = text.toLowerCase();
-//       this.applySearchFilter();
-//     });
-//   }
-
-//   loadAllProducts(): void {
-//     this.isLoading = true;
-//     this.service.getProducts().subscribe((data: any[]) => {
-//       this.products = data;
-//       this.filteredProducts = data;
-//       this.isLoading = false;
-//       this.applySearchFilter();
-//     });
-//   }
-
-//   loadCategories(): void {
-//     this.isLoadingCategories = true;
-//     this.service.getCategories().subscribe(data => {
-//       this.categories = data;
-//       this.isLoadingCategories = false;
-//     });
-//   }
-
-//   loadProductsByCategory(category: string): void {
-//     this.selectedCategory = category;
-//     this.isCategoryLoading = true;
-
-//     const observable = category
-//       ? this.service.getProductsByCategory(category)
-//       : this.service.getProducts();
-
-//     observable.subscribe((data: any[]) => {
-//       this.products = data;
-//       this.filteredProducts = data;
-//       this.isCategoryLoading = false;
-//       this.applySearchFilter();
-//     });
-//   }
-
-//   onCategoryChange(category: string): void {
-//     this.loadProductsByCategory(category);
-//   }
-
-//   addToCart(product: any): void {
-//     this.cartService.addToCart(product);
-//     alert('Đã thêm vào giỏ hàng');
-//   }
-
-//   goToDetail(id: number): void {
-//     this.router.navigate(['/products', id]);
-//   }
-
-//   getStars(rate: number): number[] {
-//     return [1, 2, 3, 4, 5];
-//   }
-
-//   applySearchFilter(): void {
-//     this.filteredProducts = this.products.filter(product =>
-//       product.title.toLowerCase().includes(this.searchText)
-//     );
-//   }
-// }
-
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ProductService } from '../../core/product.service';
@@ -202,6 +6,7 @@ import { Router } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-product-list',
@@ -219,12 +24,19 @@ export class ProductListComponent implements OnInit {
   isLoadingCategories: boolean = true;
   isCategoryLoading: boolean = false;
 
+  // Phân trang
+  pageSize = 8;
+  pageIndex = 1;
+  total = 0;
+  pagedProducts: any[] = [];
+
   constructor(
     private service: ProductService,
     private cartService: CartService,
     private router: Router,
     private sharedService: SharedService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private transloco: TranslocoService
   ) {}
 
   ngOnInit(): void {
@@ -259,17 +71,31 @@ export class ProductListComponent implements OnInit {
     observable.subscribe((data: any[]) => {
       this.products = data;
       this.isLoading = false;
+      this.total = data.length;
+      this.pageIndex = 1;
+      this.updatePagedProducts();
     });
   }
 
-  loadCategories(): void {
-  this.isLoadingCategories = true;
-  this.service.getCategories().subscribe((data: any[]) => {
-    this.categories = data.map(cat => typeof cat === 'string' ? cat : cat.name);
-    this.isLoadingCategories = false;
-  });
-}
+  updatePagedProducts(): void {
+    const start = (this.pageIndex - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.pagedProducts = this.products.slice(start, end);
+  }
 
+  onPageChange(page: number): void {
+    this.pageIndex = page;
+    this.updatePagedProducts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  loadCategories(): void {
+    this.isLoadingCategories = true;
+    this.service.getCategories().subscribe((data: any[]) => {
+      this.categories = data.map(cat => typeof cat === 'string' ? cat : cat.name);
+      this.isLoadingCategories = false;
+    });
+  }
 
   onCategoryChange(category: string): void {
     this.selectedCategory = category;
@@ -284,7 +110,10 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: any): void {
     this.cartService.addToCart(product);
-    this.notification.success('Thành công', 'Đã thêm sản phẩm vào giỏ hàng!');
+    this.notification.success(
+      this.transloco.translate('productList.notification.successTitle'),
+      this.transloco.translate('productList.notification.successMsg')
+    );
   }
 
   goToDetail(id: number): void {

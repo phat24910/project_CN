@@ -1,49 +1,141 @@
-<footer class="w-full bg-white border-t border-orange-400 mt-12 pt-10 pb-6 px-4">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-    <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
-      <span class="text-s font-bold text-dark-300 mb-2">SÀN THƯƠNG MẠI</span>
-      <p class="text-sm text-gray-500 max-w-xs">
-        Trang web cung cấp sản phẩm chất lượng, uy tín, giá hợp lý và giao hàng nhanh trên toàn quốc.
+<footer class="bg-gradient-to-br from-orange-50 to-orange-100 border-t border-orange-200 pt-16 pb-8 px-4 mt-16 text-gray-800 font-light relative overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-10 left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-10 w-40 h-40 bg-orange-400 rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+    <!-- Info -->
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="relative">
+          <img src="/assets/Logo.svg" alt="Logo" class="h-16 w-auto drop-shadow-lg" />
+          <div class="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full animate-pulse"></div>
+        </div>
+        <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent tracking-wide">
+          {{ 'footer.marketplace' | transloco }}
+        </span>
+      </div>
+      <p class="text-base text-gray-600 max-w-xs leading-relaxed">
+        {{ 'footer.description' | transloco }}
       </p>
-    </div>
-
-    <div class="flex flex-col items-center lg:items-start">
-      <h3 class="text-s font-semibold mb-3 text-dark-300">LIÊN KẾT NHANH</h3>
-      <ul class="space-y-2">
-        <li><a routerLink="/" class="hover:text-orange-500 transition">Trang chủ</a></li>
-        <li><a routerLink="/about" class="hover:text-orange-500 transition">Về chúng tôi</a></li>
-        <li><a routerLink="/contact" class="hover:text-orange-500 transition">Liên hệ</a></li>
-      </ul>
-    </div>
-
-    <div class="flex flex-col items-center lg:items-start">
-      <h3 class="text-s font-semibold mb-3 text-dark-300">LIÊN HỆ</h3>
-      <ul class="space-y-2 text-sm">
-         <li class="flex items-center"><span nz-icon nzType="environment" class="mr-2 text-orange-500"></span>123 Đường ABC, TP.HCM</li>
-        <li class="flex items-center"><span nz-icon nzType="phone" class="mr-2 text-orange-500"></span>0123 456 789</li>
-        <li class="flex items-center"><span nz-icon nzType="mail" class="mr-2 text-orange-500"></span>phat&#64;example.com</li>
-      </ul>
-    </div>
-
-    <div class="flex flex-col items-center lg:items-start">
-      <h3 class="text-s font-semibold mb-4 text-dark-300">THEO DÕI CHÚNG TÔI</h3>
-      <div class="flex gap-4">
-        <a href="https://facebook.com" aria-label="Facebook" class="p-2 bg-orange-100 rounded-full hover:bg-orange-200 transition-transform transform hover:scale-110">
+      <div class="flex gap-3 mt-4">
+        <a href="https://facebook.com" target="_blank" 
+           class="w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-lg hover:bg-orange-50 transition-all duration-300 transform hover:scale-110">
           <span nz-icon nzType="facebook" nzTheme="outline" class="text-xl text-orange-600"></span>
         </a>
-        <a href="https://linkedin.com" aria-label="LinkedIn" class="p-2 bg-orange-100 rounded-full hover:bg-orange-200 transition-transform transform hover:scale-110">
-          <span nz-icon nzType="linkedin" nzTheme="outline" class="text-xl text-orange-600"></span>
-        </a>
-        <a href="https://instagram.com" aria-label="Instagram" class="p-2 bg-orange-100 rounded-full hover:bg-orange-200 transition-transform transform hover:scale-110">
+        <a href="https://instagram.com" target="_blank" 
+           class="w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-lg hover:bg-orange-50 transition-all duration-300 transform hover:scale-110">
           <span nz-icon nzType="instagram" nzTheme="outline" class="text-xl text-orange-600"></span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" 
+           class="w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-lg hover:bg-orange-50 transition-all duration-300 transform hover:scale-110">
+          <span nz-icon nzType="linkedin" nzTheme="outline" class="text-xl text-orange-600"></span>
         </a>
       </div>
     </div>
 
-    <div class="w-full flex justify-center mt-8">
-      <div class="text-center text-xs text-gray-500">
-        © 2025 Sàn thương mại. All rights reserved.
+    <!-- Links -->
+    <div>
+      <h3 class="text-xl font-bold mb-6 text-orange-700 relative">
+        {{ 'footer.quickLinks' | transloco }}
+        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></span>
+      </h3>
+      <ul class="space-y-4 text-base">
+        <li>
+          <a routerLink="/" class="hover:text-orange-600 transition-all duration-300 flex items-center gap-2 group">
+            <span class="w-0 h-0.5 bg-orange-500 group-hover:w-4 transition-all duration-300"></span>
+            {{ 'footer.home' | transloco }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/products" class="hover:text-orange-600 transition-all duration-300 flex items-center gap-2 group">
+            <span class="w-0 h-0.5 bg-orange-500 group-hover:w-4 transition-all duration-300"></span>
+            {{ 'footer.products' | transloco }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/about" class="hover:text-orange-600 transition-all duration-300 flex items-center gap-2 group">
+            <span class="w-0 h-0.5 bg-orange-500 group-hover:w-4 transition-all duration-300"></span>
+            {{ 'footer.about' | transloco }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contact" class="hover:text-orange-600 transition-all duration-300 flex items-center gap-2 group">
+            <span class="w-0 h-0.5 bg-orange-500 group-hover:w-4 transition-all duration-300"></span>
+            {{ 'footer.contact' | transloco }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/promo" class="hover:text-orange-600 transition-all duration-300 flex items-center gap-2 group">
+            <span class="w-0 h-0.5 bg-orange-500 group-hover:w-4 transition-all duration-300"></span>
+            {{ 'footer.promo' | transloco }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div>
+      <h3 class="text-xl font-bold mb-6 text-orange-700 relative">
+        {{ 'footer.newsletterTitle' | transloco }}
+        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></span>
+      </h3>
+      <p class="text-base text-gray-600 mb-4 leading-relaxed">
+        {{ 'footer.newsletterDesc' | transloco }}
+      </p>
+      <form class="flex gap-2">
+        <input type="email" 
+               [placeholder]="'footer.emailPlaceholder' | transloco" 
+               class="px-4 py-3 rounded-l-lg border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base flex-1 bg-white shadow-sm transition-all duration-300" />
+        <button type="submit" 
+                class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-r-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-md">
+          {{ 'footer.subscribe' | transloco }}
+        </button>
+      </form>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h3 class="text-xl font-bold mb-6 text-orange-700 relative">
+        {{ 'footer.contactTitle' | transloco }}
+        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></span>
+      </h3>
+      <ul class="space-y-4 text-base">
+        <li class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/50 transition-all duration-300">
+          <span class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+            <span nz-icon nzType="environment" class="text-orange-600"></span>
+          </span>
+          <span class="text-gray-700">{{ 'footer.address' | transloco }}</span>
+        </li>
+        <li class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/50 transition-all duration-300">
+          <span class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+            <span nz-icon nzType="phone" class="text-orange-600"></span>
+          </span>
+          <span class="text-gray-700">{{ 'footer.phone' | transloco }}</span>
+        </li>
+        <li class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/50 transition-all duration-300">
+          <span class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+            <span nz-icon nzType="mail" class="text-orange-600"></span>
+          </span>
+          <span class="text-gray-700">{{ 'footer.email' | transloco }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom section -->
+  <div class="w-full flex justify-center mt-12 pt-8 border-t border-orange-200 relative z-10">
+    <div class="text-center">
+      <div class="text-sm text-gray-500 mb-2">{{ 'footer.copyright' | transloco }}</div>
+      <div class="flex items-center justify-center gap-4 text-xs text-gray-400">
+        <a href="#" class="hover:text-orange-600 transition-colors duration-300">Privacy Policy</a>
+        <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+        <a href="#" class="hover:text-orange-600 transition-colors duration-300">Terms of Service</a>
+        <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+        <a href="#" class="hover:text-orange-600 transition-colors duration-300">Cookie Policy</a>
       </div>
     </div>
   </div>

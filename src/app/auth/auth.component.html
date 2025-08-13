@@ -132,57 +132,60 @@ Form Đăng ký
 
 <div class="form-wrapper">
   <form *ngIf="isLogin" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" nz-form [nzLayout]="'vertical'" class="form-box">
-    <h2 class="form-title">Đăng nhập</h2>
+    <h2 class="form-title">{{'auth.login_title' | transloco}}</h2>
 
     <nz-form-item>
-      <nz-form-label>Email</nz-form-label>
-      <nz-form-control [nzErrorTip]="'Email không hợp lệ'">
-        <input nz-input type="email" name="email" ngModel required email placeholder="Email">
+      <nz-form-label>{{'auth.email' | transloco}}</nz-form-label>
+      <nz-form-control [nzErrorTip]="'auth.invalid_email' | transloco">
+        <input nz-input type="email" name="email" ngModel required email placeholder="{{'auth.email' | transloco}}">
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label>Mật khẩu</nz-form-label>
-      <nz-form-control [nzErrorTip]="'Mật khẩu ít nhất 6 ký tự'">
-        <input nz-input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+      <nz-form-label>{{'auth.password' | transloco}}</nz-form-label>
+      <nz-form-control [nzErrorTip]="'auth.password_min' | transloco">
+        <input nz-input type="password" name="password" ngModel required minlength="6"
+        placeholder="{{'auth.password' | transloco}}">
       </nz-form-control>
     </nz-form-item>
 
-    <button nz-button nzType="default" appPrimaryOrange class="submit-btn" [disabled]="loginForm.invalid" type="submit">Đăng nhập</button>
+    <button nz-button nzType="default" appPrimaryOrange class="submit-btn" [disabled]="loginForm.invalid" type="submit">
+      {{'auth.login' | transloco}}
+    </button>
   </form>
 
   <form *ngIf="!isLogin" #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)" nz-form [nzLayout]="'vertical'" class="form-box">
-    <h2 class="form-title">Đăng ký</h2>
+    <h2 class="form-title">{{'auth.register_title' | transloco}}</h2>
 
     <nz-form-item>
-      <nz-form-label>Tên người dùng</nz-form-label>
-      <nz-form-control [nzErrorTip]="'Tên không được bỏ trống'">
-        <input nz-input type="text" name="username" ngModel required placeholder="Tên người dùng">
+      <nz-form-label>{{'auth.username' | transloco}}</nz-form-label>
+      <nz-form-control [nzErrorTip]="'auth.username_required' | transloco">
+        <input nz-input type="text" name="username" ngModel required placeholder="{{'auth.username' | transloco}}">
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label>Email</nz-form-label>
-      <nz-form-control [nzErrorTip]="'Email không hợp lệ'">
-        <input nz-input type="email" name="email" ngModel required email placeholder="Email">
+      <nz-form-label>{{'auth.email' | transloco}}</nz-form-label>
+      <nz-form-control [nzErrorTip]="'auth.invalid_email' | transloco">
+        <input nz-input type="email" name="email" ngModel required email placeholder="{{'auth.email' | transloco}}">
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label>Mật khẩu</nz-form-label>
-      <nz-form-control [nzErrorTip]="'Mật khẩu ít nhất 6 ký tự'">
-        <input nz-input type="password" name="password" ngModel required minlength="6" placeholder="Mật khẩu">
+      <nz-form-label>{{'auth.password' | transloco}}</nz-form-label>
+      <nz-form-control [nzErrorTip]="'auth.password_min' | transloco">
+        <input nz-input type="password" name="password" ngModel required minlength="6" placeholder="{{'auth.password' | transloco}}">
       </nz-form-control>
     </nz-form-item>
 
-    <button nz-button nzType="default" appPrimaryOrange class="submit-btn" [disabled]="registerForm.invalid" type="submit">Đăng ký</button>
+    <button nz-button nzType="default" appPrimaryOrange class="submit-btn" [disabled]="registerForm.invalid"
+    type="submit">{{'auth.register' | transloco}}</button>
   </form>
 
   <div class="switch-buttons">
-    <button nz-button appPrimaryOrange [nzType]="isLogin ? 'default' : 'primary'" (click)="isLogin = true" [disabled]="isLogin">Đăng nhập</button>
-    <button nz-button appPrimaryOrange [nzType]="!isLogin ? 'default' : 'primary'" (click)="isLogin = false" [disabled]="!isLogin">Chưa có tài khoản? Đăng ký</button>
+    <button nz-button appPrimaryOrange [nzType]="isLogin ? 'default' : 'primary'" (click)="isLogin = true" [disabled]="isLogin">
+      {{'auth.switch_to_login' | transloco}}</button>
+    <button nz-button appPrimaryOrange [nzType]="!isLogin ? 'default' : 'primary'" (click)="isLogin = false" [disabled]="!isLogin">
+      {{'auth.switch_to_register' | transloco}}</button>
   </div>
 </div>
-
-
-

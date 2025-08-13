@@ -48,7 +48,7 @@
             type="text"
             nz-input
             [(ngModel)]="discountCode"
-            placeholder="Nhập mã giảm giá (VD: giam10)"
+            
             class="border-primary focus:border-primary focus:shadow-none rounded-md"
             style="min-width: 0; flex: 1;"
           />
@@ -59,18 +59,18 @@
             class="bg-primary border-primary hover:bg-orange-600 focus:bg-orange-700 text-white font-semibold px-5"
             style="min-width: 100px;"
           >
-            Áp dụng
+            {{ 'cart.apply' | transloco }}
           </button>
         </div>
       </div>
 
       <div class="flex flex-col gap-1">
         <p *ngIf="discountPercent > 0" class="text-s">
-          <strong>Giảm {{ discountPercent }}%:</strong>
+          <strong>{{ 'cart.discountLabel' | transloco: { percent: discountPercent } }}</strong>
           – {{ total * discountPercent / 100 | number:'1.2-2' }} $
         </p>
         <p class="text-lg font-bold text-primary">
-          <span>Thành tiền:</span> {{ totalAfterDiscount | number:'1.2-2' }} $
+          <span>{{ 'cart.total' | transloco }}</span> {{ totalAfterDiscount | number:'1.2-2' }} $
         </p>
       </div>
 
@@ -82,7 +82,7 @@
           class="text-white font-semibold flex-1 border-primary"
           style="background-color: #ff6600 !important; border-color: #ff6600 !important; box-shadow: none;"
         >
-          Thanh toán
+          {{ 'cart.checkout' | transloco }}
         </button>
         <button
           nz-button
@@ -90,16 +90,30 @@
           (click)="clearCart()"
           class="flex-1"
         >
-          Xóa giỏ hàng
+          {{ 'cart.clearCart' | transloco }}
         </button>
       </div>
+
+      <div class="flex flex-col items-center mt-4" *ngIf="showQrCode">
+        <p class="mb-2 text-sm text-gray-500">{{ 'cart.qrTitle' | transloco }}:</p>
+        <qr-code [value]="qrData" [size]="180" class="mx-auto mb-4"></qr-code>
+        <button
+        nz-button
+        nzType="primary"
+        (click)="confirmPayment()"
+        class= "text-white font-semibold"
+        >
+          {{ 'cart.confirmPayment' | transloco }}
+        </button>
+      </div>
+
     </div>
   </nz-card>
 </div>
 
 <ng-template #emptyCart>
   <nz-empty nzNotFoundImage="simple"></nz-empty>
-  <button nz-button nzType="primary" routerLink="/">Tiếp tục mua sắm</button>
+  <button nz-button nzType="primary" routerLink="/">{{ 'cart.empty.continueShopping' | transloco }}</button>
 </ng-template>
 
 

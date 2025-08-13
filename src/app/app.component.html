@@ -1,136 +1,258 @@
-<!-- <h1>Quản Lý Sản Phẩm</h1>
-<nav>
-  <a routerLink="/">  <img src="assets/logo.jpg" alt="logo" class="logo"></a>
-  <a routerLink="/product-form"> Thêm sản phẩm</a> |
-  <a routerLink="/auth"> Đăng nhập / Đăng ký</a> |
-  <a routerLink="/cart"> Giỏ hàng ({{ total }})</a>
-</nav>
+<!-- Main Header -->
 
-<div class="user-dropdown" *ngIf="userName">
-  <a nz-dropdown [nzDropdownMenu]="menu" class="account-link">
-    <nz-avatar nzSize="small" nzIcon="user" class="account-avatar"></nz-avatar>
-    {{ userName }}
-  </a>
+<header class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between py-4">
 
-  <nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu>
-      <li nz-menu-item (click)="showInfo()">Thông tin</li>
-      <li nz-menu-item (click)="changePassword()">Đổi mật khẩu</li>
-      <li nz-menu-item (click)="logout()">Đăng xuất</li>
-    </ul>
-  </nz-dropdown-menu>
-</div> -->
-
-
-<!-- <a routerLink="/product-form"> Thêm sản phẩm</a> | -->
-
-
-
-<header class="flex items-center justify-between bg-[#f66c10] px-5 py-2 text-white">
-  <div class="flex items-center">
-    <a (click)="goHome()" class="cursor-pointer">
-      <img src="assets/logo.svg" alt="Logo" class="h-14" />
-    </a>
-  </div>
-
-  <div class="flex flex-1 justify-center px-5">
-    <div class="w-full max-w-[500px] flex items-center gap-2">
-      <input
-        nz-input
-        placeholder="Tìm sản phẩm"
-        [(ngModel)]="searchText"
-        (keyup.enter)="onSearchChange()"
-        class="w-full px-3 py-[6px] rounded border-none focus:outline-none"
-      />
-
-      <button
-        nz-button
-        nzType="default"
-        class="p-2 text-white bg-[#f66c10] border-none hover:bg-orange-600 focus:bg-orange-700 flex items-center justify-center"
-        (click)="onSearchChange()">
-        <span nz-icon nzType="search" nzTheme="outline" class="text-xl"></span>
-      </button>
-    </div>
-  </div>
-
-  <div class="flex items-center gap-3">
-    <a routerLink="/cart" class="text-white font-medium no-underline flex items-center gap-1">
-      <span nz-icon nzType="shopping-cart" nzTheme="outline"  class="text-2xl"></span>
-      <span *ngIf="total > 0">({{ total }})</span>
-    </a>
-
-    <!-- Đã đăng nhập-->
-    <ng-container *ngIf="userName; else guestLinks">
-      <a
-        nz-dropdown
-        [nzDropdownMenu]="menu"
-        class="flex items-center text-white font-medium no-underline cursor-pointer ml-6"
-      >
-        <nz-avatar nzSize="small" nzIcon="user" class="mr-1 bg-white text-[#f5a52d]" />
-        {{ userName }}
+      <!-- Logo -->
+      <a (click)="goHome()" class="flex items-center gap-4 cursor-pointer group">
+        <div class="relative">
+          <img src="assets/Logo.svg" alt="Cosmetsy Logo" class="h-16 w-16 object-contain group-hover:scale-105 transition-transform duration-200" />
+          <div class="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full animate-pulse"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
+            {{'app.title' | transloco}}
+          </span>
+<!--          <span class="text-sm text-gray-500 font-medium">Beauty & Cosmetics</span>-->
+        </div>
       </a>
 
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu>
-          <li nz-menu-item (click)="showInfo()">Thông tin</li>
-          <li nz-menu-item (click)="changePassword()">Đổi mật khẩu</li>
-          <li nz-menu-item (click)="logout()">Đăng xuất</li>
-        </ul>
-      </nz-dropdown-menu>
-    </ng-container>
 
-    <!--Chưa đăng nhập-->
-    <ng-template #guestLinks>
-      <a routerLink="/auth" class="text-white font-medium no-underline ml-6 hover:font-bold hover:text-white">Đăng nhập / Đăng ký</a>
-    </ng-template>
+
+      <!-- Language Selector (Desktop) -->
+
+      <div class="lang-switch flex gap-2 items-center justify-center p-2">
+        <button
+          nz-button
+          nz-dropdown
+          [nzDropdownMenu]="langMenuTop"
+          nzPlacement="bottomLeft"
+          nzTrigger="click"
+          [nzClickHide]="true"
+          [nzOverlayClassName]="'lang-switch-overlay'"
+        class="text-gray-600 border border-gray-300 bg-white hover:bg-orange-50 hover:border-orange-300 transition-all duration-200 px-3 py-2 rounded-md flex items-center gap-2"
+        >
+        <span class="font-medium text-sm">{{ currentLang === 'vi' ? 'VN' : 'EN' }}</span>
+        <span nz-icon nzType="down" nzTheme="outline"></span>
+        </button>
+        <nz-dropdown-menu #langMenuTop="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="setLang('vi')">VN - Tiếng Việt</li>
+            <li nz-menu-item (click)="setLang('en')">EN - English</li>
+          </ul>
+        </nz-dropdown-menu>
+
+
+
+      <!-- Wishlist -->
+        <a href="#" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200 group">
+          <span nz-icon nzType="heart" nzTheme="outline" class="text-lg text-gray-600 group-hover:text-orange-600"></span>
+          <span class="absolute -top-1 -right-1 bg-orange-500 text-xs px-1 py-0.5 rounded-full text-white font-semibold">0</span>
+        </a>
+
+        <!-- Cart -->
+        <a routerLink="/cart" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200 group">
+          <span nz-icon nzType="shopping-cart" nzTheme="outline" class="text-lg text-gray-600 group-hover:text-orange-600"></span>
+          <span *ngIf="total > 0" class="absolute -top-1 -right-1 bg-orange-500 text-xs px-1 py-0.5 rounded-full text-white font-semibold animate-bounce">{{ total }}</span>
+        </a>
+
+                 <!-- User Menu -->
+         <ng-container *ngIf="userName; else guestLinks">
+           <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight" nzTrigger="click"
+            class="flex items-center gap-2 w-10 h-10 rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-colors duration-200 justify-center shadow">
+             <nz-avatar nzSize="small" nzIcon="user" class="text-white" />
+           </button>
+           <nz-dropdown-menu #menu="nzDropdownMenu">
+             <ul nz-menu>
+               <li nz-menu-item (click)="showInfo()" class="flex items-center gap-2">
+                 <span nz-icon nzType="user" nzTheme="outline"></span>
+                 {{'app.info' | transloco}}
+               </li>
+               <li nz-menu-item (click)="changePassword()" class="flex items-center gap-2">
+                 <span nz-icon nzType="lock" nzTheme="outline"></span>
+                 {{'app.changePassword' | transloco}}
+               </li>
+               <li nz-menu-item (click)="logout()" class="flex items-center gap-2 text-red-600">
+                 <span nz-icon nzType="logout" nzTheme="outline"></span>
+                 {{'app.logout' | transloco}}
+               </li>
+             </ul>
+           </nz-dropdown-menu>
+         </ng-container>
+        <ng-template #guestLinks>
+          <a routerLink="/auth"
+           class="w-10 h-10 flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-colors duration-200 shadow">
+            <span nz-icon nzType="user" nzTheme="outline" class="text-lg"></span>
+          </a>
+        </ng-template>
+
+        <!-- Mobile menu button -->
+        <button class="lg:hidden text-gray-600 text-xl p-2 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200" (click)="showMobileMenu = true">
+          <span nz-icon nzType="menu" nzTheme="outline"></span>
+        </button>
+      </div>
+    </div>
   </div>
+
+  <!-- Search Bar -->
+  <div class="border-t border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div class="flex items-center justify-center">
+        <div class="flex items-center bg-gray-50 rounded-full px-4 py-2 w-full max-w-md shadow-sm border border-gray-200 focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-100 transition-all duration-200">
+          <span nz-icon nzType="search" nzTheme="outline" class="text-gray-400 mr-2"></span>
+          <input nz-input
+            [(ngModel)]="searchText"
+            (keyup.enter)="onSearchChange()"
+            [placeholder]="'app.searchPlaceholder' | transloco"
+            class="bg-transparent border-none focus:outline-none px-2 py-1 text-sm w-full min-w-0" />
+          <button (click)="onSearchChange()"
+                  class="ml-2 rounded-full bg-orange-500 hover:bg-orange-600 p-2 text-white transition-colors duration-200 shadow">
+            <span nz-icon nzType="search" nzTheme="outline" class="text-lg text-white"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+  <div class="border-t border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="hidden lg:flex items-center justify-center py-4 desktop-nav">
+        <div class="flex items-center gap-8 text-base font-medium">
+          <a routerLink="/" routerLinkActive="text-orange-600"
+             class="transition-all duration-200 hover:text-orange-600 relative group">
+            {{ 'footer.home' | transloco }}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
+          </a>
+          <a routerLink="/products" routerLinkActive="text-orange-600"
+             class="transition-all duration-200 hover:text-orange-600 relative group">
+            {{ 'footer.products' | transloco }}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
+          </a>
+          <a routerLink="/about" routerLinkActive="text-orange-600"
+             class="transition-all duration-200 hover:text-orange-600 relative group">
+            {{ 'footer.about' | transloco }}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
+          </a>
+          <a routerLink="/contact" routerLinkActive="text-orange-600"
+             class="transition-all duration-200 hover:text-orange-600 relative group">
+            {{ 'footer.contact' | transloco }}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
+          </a>
+          <a routerLink="/promo" routerLinkActive="text-orange-600"
+             class="transition-all duration-200 hover:text-orange-600 relative group">
+            {{ 'footer.promo' | transloco }}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
 </header>
 
-<!-- <nz-modal [nzContent]="contentTpl"
-[(nzVisible)]="changePasswordVisible" nzTitle="Đổi mật khẩu"
-(nzOnCancel)="handleCancel()" (nzOnOk)="handleChangePassword()">
+<!-- Mobile Menu Overlay -->
+<div *ngIf="showMobileMenu" class="fixed inset-0 z-[999] bg-black/50 flex backdrop-blur-sm">
+  <div class="w-80 max-w-full bg-white h-full flex flex-col p-6 relative animate-slideInLeft shadow-2xl">
+    <button class="absolute top-4 right-4 text-2xl p-2 rounded-full hover:bg-gray-100 transition-all duration-200" (click)="showMobileMenu = false">
+      <span nz-icon nzType="close" nzTheme="outline"></span>
+    </button>
 
-<ng-template #contentTpl>
-  <nz-alert
-  *ngIf="showAlert"
-  [nzType]="alertType"
-  [nzMessage]="alertMessage"
-  nzShowIcon
-  style="margin-bottom: 16px;">
-</nz-alert>
+    <!-- Mobile Logo -->
+    <div class="mb-8 flex items-center gap-3">
+      <img src="assets/Logo.svg" alt="Logo" class="h-12 w-auto" />
+      <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
+        {{'app.title' | transloco}}
+      </span>
+    </div>
 
-  <form #passwordForm="ngForm">
-    <div nz-form-item>
-      <div nz-form-label><label>Mật khẩu cũ</label></div>
-      <div nz-form-control>
-        <input nz-input type="password" name="oldPassword" [(ngModel)]="passwordData.oldPassword" required>
+
+
+    <!-- Mobile Navigation -->
+    <nav class="flex flex-col gap-2 text-lg font-semibold mobile-nav">
+      <a routerLink="/" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
+        <span nz-icon nzType="home" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
+        <span class="group-hover:text-orange-600">{{ 'footer.home' | transloco }}</span>
+      </a>
+      <a routerLink="/products" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
+        <span nz-icon nzType="shopping" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
+        <span class="group-hover:text-orange-600">{{ 'footer.products' | transloco }}</span>
+      </a>
+      <a routerLink="/about" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
+        <span nz-icon nzType="info-circle" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
+        <span class="group-hover:text-orange-600">{{ 'footer.about' | transloco }}</span>
+      </a>
+      <a routerLink="/contact" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
+        <span nz-icon nzType="phone" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
+        <span class="group-hover:text-orange-600">{{ 'footer.contact' | transloco }}</span>
+      </a>
+      <a routerLink="/promo" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
+        <span nz-icon nzType="gift" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
+        <span class="group-hover:text-orange-600">{{ 'footer.promo' | transloco }}</span>
+      </a>
+    </nav>
+
+    <!-- Mobile Settings -->
+    <div class="mt-8 flex flex-col gap-4">
+      <div class="flex gap-2">
+        <button nz-button nz-dropdown [nzDropdownMenu]="langMenuMobile" nzPlacement="bottomLeft" nzTrigger="click" [nzOverlayClassName]="'lang-switch-mobile-overlay'"
+                class="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-200 text-base font-semibold bg-white hover:bg-orange-50 transition-all duration-200">
+          <span nz-icon nzType="global" nzTheme="outline" class="text-orange-600"></span>
+          <span>{{ currentLang === 'vi' ? 'VN' : 'EN' }}</span>
+          <span nz-icon nzType="down" nzTheme="outline"></span>
+        </button>
+        <nz-dropdown-menu #langMenuMobile="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="setLang('vi')">VN - Tiếng Việt</li>
+            <li nz-menu-item (click)="setLang('en')">EN - English</li>
+          </ul>
+        </nz-dropdown-menu>
+        <button class="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-200 text-base font-semibold bg-white opacity-60 cursor-not-allowed">
+          <span nz-icon nzType="dollar" nzTheme="outline"></span>
+          <span>USD</span>
+          <span nz-icon nzType="down" nzTheme="outline"></span>
+        </button>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex gap-4 justify-center mt-6">
+        <a href="https://facebook.com" target="_blank"
+           class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 hover:bg-orange-200 transition-all duration-200">
+          <span nz-icon nzType="facebook" nzTheme="outline"></span>
+        </a>
+        <a href="https://instagram.com" target="_blank"
+           class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 hover:bg-orange-200 transition-all duration-200">
+          <span nz-icon nzType="instagram" nzTheme="outline"></span>
+        </a>
+        <a href="https://linkedin.com" target="_blank"
+           class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 hover:bg-orange-200 transition-all duration-200">
+          <span nz-icon nzType="linkedin" nzTheme="outline"></span>
+        </a>
       </div>
     </div>
 
-    <div nz-form-item>
-      <div nz-form-label><label>Mật khẩu mới</label></div>
-      <div nz-form-control>
-        <input nz-input type="password" name="newPassword" [(ngModel)]="passwordData.newPassword" required>
-      </div>
+    <!-- Mobile Footer -->
+    <div class="mt-auto text-xs text-gray-400 text-center pt-8 border-t border-gray-200">
+      {{ 'app.copyright' | transloco }}
     </div>
+  </div>
+  <div class="flex-1 cursor-pointer" (click)="showMobileMenu = false"></div>
+</div>
 
-    <div nz-form-item>
-      <div nz-form-label><label>Xác nhận mật khẩu mới</label></div>
-      <div nz-form-control>
-        <input nz-input type="password" name="confirmPassword" [(ngModel)]="passwordData.confirmPassword" required>
-      </div>
-    </div>
-
-  </form>
-</ng-template>
-</nz-modal> -->
-
-
+<!-- Change Password Modal -->
 <nz-modal [nzContent]="contentTpl"
   [(nzVisible)]="changePasswordVisible"
-  nzTitle="Đổi mật khẩu"
+  nzTitle="{{ 'app.changePassword' | transloco }}"
   [nzFooter]="footerTpl"
   (nzOnCancel)="handleCancel()"
+  class="custom-modal"
 >
   <ng-template #contentTpl>
     <nz-alert
@@ -141,9 +263,9 @@
       style="margin-bottom: 16px;">
     </nz-alert>
 
-    <form #passwordForm="ngForm">
+    <form #passwordForm="ngForm" class="space-y-4">
       <div nz-form-item>
-        <div nz-form-label><label>Mật khẩu cũ</label></div>
+        <div nz-form-label><label class="font-medium text-gray-700">{{'app.oldPassword' | transloco}}</label></div>
         <div nz-form-control>
           <input
             nz-input
@@ -151,12 +273,13 @@
             name="oldPassword"
             [(ngModel)]="passwordData.oldPassword"
             required
+            class="rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500"
           >
         </div>
       </div>
 
       <div nz-form-item>
-        <div nz-form-label><label>Mật khẩu mới</label></div>
+        <div nz-form-label><label class="font-medium text-gray-700">{{'app.newPassword' | transloco}}</label></div>
         <div nz-form-control>
           <input
             nz-input
@@ -164,12 +287,13 @@
             name="newPassword"
             [(ngModel)]="passwordData.newPassword"
             required
+            class="rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500"
           >
         </div>
       </div>
 
       <div nz-form-item>
-        <div nz-form-label><label>Xác nhận mật khẩu mới</label></div>
+        <div nz-form-label><label class="font-medium text-gray-700">{{'app.confirmPassword' | transloco}}</label></div>
         <div nz-form-control>
           <input
             nz-input
@@ -177,6 +301,7 @@
             name="confirmPassword"
             [(ngModel)]="passwordData.confirmPassword"
             required
+            class="rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500"
           >
         </div>
       </div>
@@ -184,31 +309,34 @@
   </ng-template>
 
   <ng-template #footerTpl>
-    <button nz-button (click)="handleCancel()">Hủy</button>
+    <button nz-button (click)="handleCancel()"
+            class="border-gray-300 text-gray-700 hover:border-orange-500 hover:text-orange-600">
+      {{'app.cancel' | transloco}}
+    </button>
     <button
       nz-button
-      class="!bg-orange-500 !border-orange-500 text-white hover:!bg-orange-600"
-      (click)="handleChangePassword()"> Xác nhận
+      class="!bg-gradient-to-r !from-orange-500 !to-orange-600 !border-orange-500 text-white hover:!from-orange-600 hover:!to-orange-700 shadow-md"
+      (click)="handleChangePassword()">
+      {{'app.confirm' | transloco}}
     </button>
   </ng-template>
 </nz-modal>
 
-
+<!-- Alert Messages -->
 <ng-container *ngIf="alert">
   <nz-alert
     [nzType]="alert.type"
     [nzMessage]="alert.message"
     nzShowIcon
     nzBanner
-    class="my-4 max-w-xl mx-auto"
+    class="my-4 max-w-xl mx-auto rounded-lg shadow-md"
   ></nz-alert>
 </ng-container>
 
+<!-- Main Content -->
+<main class="min-h-screen bg-gray-50">
+  <router-outlet></router-outlet>
+</main>
 
-<hr> 
-<router-outlet></router-outlet>
 <app-footer></app-footer>
-
-
-
 

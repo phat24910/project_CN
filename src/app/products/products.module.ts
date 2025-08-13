@@ -26,6 +26,9 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzInputNumberModule} from 'ng-zorro-antd/input-number';
 import { NzImageModule } from 'ng-zorro-antd/image';
+import { QrCodeModule } from 'ng-qrcode';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { TranslocoModule} from '@jsverse/transloco';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,6 @@ import { NzImageModule } from 'ng-zorro-antd/image';
     CartItemComponent,
   ],
 
-  // providers: [CartService],
   imports: [
     CommonModule,
     FormsModule,
@@ -61,7 +63,10 @@ import { NzImageModule } from 'ng-zorro-antd/image';
     NzTypographyModule,
     ReactiveFormsModule,
     NzInputNumberModule,
-    NzImageModule
+    NzImageModule,
+    QrCodeModule,
+    NzPaginationModule,
+    TranslocoModule
 ]
 })
 export class ProductsModule {}

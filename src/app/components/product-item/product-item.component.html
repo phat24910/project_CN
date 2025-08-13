@@ -17,7 +17,7 @@
     </h3>
     <div class="flex justify-center items-center gap-2 mt-1 flex-wrap">
       <span class="text-orange-500 font-bold text-base sm:text-lg">{{ product.price | currency:'USD' }}</span>
-      <span *ngIf="product.discountPercentage" class="text-x text-red-600 font-bold bg-red-50 rounded px-1"> -{{ product.discountPercentage }}%</span>
+      <span *ngIf="product.discountPercentage" class="text-x text-red-600 font-bold bg-red-50 rounded px-1"> - {{ product.discountPercentage }}%</span>
     </div>
     <!-- <div class="text-xs text-gray-500 mt-1" *ngIf="product.stock !== undefined">
       Kho: <span class="font-semibold">{{ product.stock }}</span>
@@ -32,18 +32,18 @@
       class="text-base">
     </nz-rate>
     <span class="text-gray-500 text-xs mt-0.5">
-      ({{ product.rating || 0 }} sao)
+      ({{ product.rating || 0 }} {{ 'product.stars' | transloco }})
     </span>
   </div>
 
-  <div class="mt-3 mb-2 flex flex-col gap-2 px-2 sm:flex-row sm:justify-center sm:gap-2">
+  <div class="mt-3 mb-2 flex flex-col gap-2 sm:px-2 sm:flex-row sm:gap-2 sm:justify-center">
     <button
       nz-button
       nzType="default"
       class="border border-orange-500 text-orange-500 bg-white hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500 transition-colors duration-200 w-full sm:w-auto"
       [routerLink]="[product.id]"
       tabindex="0">
-      Xem chi tiết
+      {{ 'product.viewDetails' | transloco }}
     </button>
     <button
       nz-button
@@ -51,13 +51,8 @@
       [ngClass]="'bg-orange-500 !important text-white !important border border-orange-500 !important hover:bg-orange-600 !important hover:border-orange-600 !important focus:bg-orange-600 !important active:bg-orange-700 !important focus:ring-0 focus:outline-none focus:border-orange-500 transition-colors duration-200 w-full sm:w-auto'"
       (click)="onAddToCart()"
       tabindex="0">
-      Thêm vào giỏ
+      {{ 'product.addToCart' | transloco }}
     </button>
   </div>
 
 </nz-card>
-
-
-
-
-
