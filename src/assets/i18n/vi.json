@@ -1,0 +1,167 @@
+{
+  "auth": {
+    "login_title": "Đăng nhập",
+    "register_title": "Đăng ký",
+    "email": "Email",
+    "invalid_email": "Email không hợp lệ",
+    "password": "Mật khẩu",
+    "password_min": "Mật khẩu ít nhất 6 ký tự",
+    "username": "Tên người dùng",
+    "username_required": "Tên không được bỏ trống",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "switch_to_login": "Đăng nhập",
+    "switch_to_register": "Chưa có tài khoản? Đăng ký",
+    "alerts": {
+      "fill_all_login": "Vui lòng điền đầy đủ thông tin để đăng nhập",
+      "email_not_registered": "Email chưa được đăng ký",
+      "password_incorrect": "Mật khẩu không đúng",
+      "login_success": "Đăng nhập thành công",
+      "fill_all_register": "Vui lòng điền đầy đủ thông tin để đăng ký",
+      "email_exists": "Email đã được đăng ký. Vui lòng sử dụng email khác",
+      "register_success": "Đăng ký thành công"
+    }
+  },
+
+   "cartItem": {
+    "originalPrice": "Giá gốc",
+    "discount": "Giảm",
+    "finalPrice": "Giá sau giảm",
+    "status": "Tình trạng",
+    "remove": "Xóa",
+    "total": "Tổng tiền"
+  },
+
+  "product": {
+    "viewDetails": "Xem chi tiết",
+    "addToCart": "Thêm vào giỏ",
+    "stock": "Kho",
+    "stars": "sao"
+  },
+
+  "footer": {
+  "marketplace": "SÀN THƯƠNG MẠI",
+  "description": "Trang web cung cấp sản phẩm chất lượng, uy tín, giá hợp lý và giao hàng nhanh trên toàn quốc.",
+  "quickLinks": "LIÊN KẾT NHANH",
+  "home": "Trang chủ",
+  "products": "Sản phẩm",
+  "about": "Về chúng tôi",
+  "contact": "Liên hệ",
+  "promo": "Khuyến mãi",
+  "contactTitle": "LIÊN HỆ",
+  "newsletterTitle": "BẢN TIN",
+  "newsletterDesc": "Đăng ký nhận bản tin để cập nhật ưu đãi mới nhất.",
+  "emailPlaceholder": "Nhập email của bạn",
+  "subscribe": "Đăng ký",
+  "address": "123 Đường ABC, TP.HCM",
+  "phone": "0123 456 789",
+  "email": "phat@example.com",
+  "followUs": "THEO DÕI CHÚNG TÔI",
+  "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu."
+  },
+
+  "cart": {
+    "discountPlaceholder": "Nhập mã giảm giá (VD: giam10)",
+    "apply": "Áp dụng",
+    "discountLabel": "Giảm {{percent}}%:",
+    "total": "Thành tiền:",
+    "checkout": "Thanh toán",
+    "clearCart": "Xóa giỏ hàng",
+    "qrTitle": "Quét mã QR để thanh toán:",
+    "confirmPayment": "Xác nhận đã thanh toán",
+    "empty": {
+      "continueShopping": "Tiếp tục mua sắm"
+    },
+    "modal": {
+      "removeTitle": "Bạn chắc chắn muốn xóa sản phẩm này?",
+      "removeOk": "Xóa",
+      "removeCancel": "Hủy",
+      "removeSuccessTitle": "Đã xóa",
+      "removeSuccessMsg": "Sản phẩm đã được xóa khỏi giỏ hàng",
+      "clearTitle": "Bạn chắc chắn muốn xóa tất cả sản phẩm?",
+      "clearSuccessMsg": "Tất cả sản phẩm đã được xóa khỏi giỏ hàng"
+    },
+    "alert": {
+      "emptyCart": "Giỏ hàng trống!"
+    },
+    "discountErrorTitle": "Mã giảm giá không hợp lệ",
+    "discountErrorMsg": "Vui lòng nhập đúng mã giảm giá!",
+    "paymentConfirmed": "Thanh toán đã được xác nhận. Cảm ơn bạn!"
+  },
+
+  "productDetail": {
+    "sku": "Mã sản phẩm",
+    "stock": "Kho",
+    "stars": "sao",
+    "category": "Danh mục",
+    "weight": "Trọng lượng",
+    "dimensions": "Kích thước",
+    "availability": "Tình trạng",
+    "warranty": "Bảo hành",
+    "returnPolicy": "Hoàn trả",
+    "buyNow": "Mua ngay",
+    "addToCart": "Thêm vào giỏ",
+    "userReviews": "Đánh giá người dùng",
+    "noReview": "Chưa có đánh giá nào.",
+    "notification": {
+      "successTitle": "Thành công",
+      "successMsg": "Đã thêm sản phẩm vào giỏ hàng!"
+    }
+  },
+
+  "productList": {
+    "title": "Danh sách sản phẩm",
+    "selectCategory": "Chọn danh mục",
+    "all": "Tất cả",
+    "loadingProducts": "Đang tải sản phẩm...",
+    "loading": "Đang tải...",
+    "noProducts": "Không có sản phẩm nào",
+    "notification": {
+      "successTitle": "Thành công",
+      "successMsg": "Đã thêm sản phẩm vào giỏ hàng!"
+    }
+  },
+
+  "profile": {
+    "title": "Thông tin cá nhân",
+    "username": "Tên tài khoản",
+    "email": "Email"
+  },
+
+  "app": {
+    "title": "Thương mại điện tử",
+    "help": "Trợ giúp",
+    "contact": "Liên hệ",
+    "promo": "Khuyến mãi",
+    "searchPlaceholder": "Tìm kiếm sản phẩm...",
+    "info": "Thông tin",
+    "changePassword": "Đổi mật khẩu",
+    "logout": "Đăng xuất",
+    "loginRegister": "Đăng nhập / Đăng ký",
+    "oldPassword": "Mật khẩu cũ",
+    "newPassword": "Mật khẩu mới",
+    "confirmPassword": "Xác nhận mật khẩu mới",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "loadingProducts": "Đang tải sản phẩm...",
+    "loading": "Đang tải...",
+    "noProducts": "Không có sản phẩm nào",
+    "addedToCart": "Đã thêm sản phẩm vào giỏ hàng!",
+    "success": "Thành công",
+    "accountInfo": "Thông tin tài khoản",
+    "username": "Tên tài khoản",
+    "email": "Email",
+    "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu."
+
+  },
+
+   "notification": {
+    "logoutSuccess": "Bạn đã đăng xuất thành công.",
+    "fillAll": "Vui lòng điền đầy đủ các trường.",
+    "passwordMismatch": "Mật khẩu mới và xác nhận mật khẩu không khớp.",
+    "userNotFound": "Không tìm thấy người dùng.",
+    "accountNotFound": "Không tìm thấy tài khoản.",
+    "oldPasswordIncorrect": "Mật khẩu cũ không đúng.",
+    "changePasswordSuccess": "Đổi mật khẩu thành công."
+  }
+}

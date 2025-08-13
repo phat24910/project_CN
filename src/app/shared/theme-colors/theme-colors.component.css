@@ -1,0 +1,42 @@
+:root {
+  --primary-color: #ff6600; /* Màu cam chủ đạo */
+  --primary-hover: #e65c00; /* Màu cam khi hover */
+  --secondary-color: #333333;
+  --text-light: #ffffff;
+}
+
+
+
+
+
+/* Bảng màu chủ đạo */
+:root {
+  --primary-color: #ff7f00;    /* Cam chủ đạo */
+  --primary-light: #ffa64d;    /* Cam nhạt */
+  --primary-dark: #cc6600;     /* Cam đậm */
+
+  --secondary-color: #0052cc;  /* Xanh dương phụ trợ */
+  --secondary-light: #4d88ff;  /* Xanh nhạt */
+  --secondary-dark: #003d99;   /* Xanh đậm */
+
+  --accent-color: #00cc88;     /* Xanh lá nhấn */
+  --accent-light: #4dffbf;
+  --accent-dark: #009966;
+
+  --neutral-color: #333333;    /* Màu chữ chính */
+  --neutral-light: #f5f5f5;    /* Màu nền sáng */
+  --neutral-dark: #1a1a1a;     /* Màu nền tối */
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
+.text-primary {
+  color: var(--primary-color);
+}
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+.text-secondary {
+  color: var(--secondary-color);
+}

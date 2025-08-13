@@ -1,0 +1,168 @@
+{
+  "auth": {
+    "login_title": "Login",
+    "register_title": "Register",
+    "email": "Email",
+    "invalid_email": "Invalid email",
+    "password": "Password",
+    "password_min": "Password must be at least 6 characters",
+    "username": "Username",
+    "username_required": "Username is required",
+    "login": "Login",
+    "register": "Register",
+    "switch_to_login": "Login",
+    "switch_to_register": "Don't have an account? Register",
+    "alerts": {
+      "fill_all_login": "Please fill all fields to login",
+      "email_not_registered": "Email is not registered",
+      "password_incorrect": "Incorrect password",
+      "login_success": "Login successful",
+      "fill_all_register": "Please fill all fields to register",
+      "email_exists": "Email already registered. Please use another email",
+      "register_success": "Registration successful"
+    }
+  },
+
+  "cartItem": {
+    "originalPrice": "Original price",
+    "discount": "Discount",
+    "finalPrice": "Final price",
+    "status": "Status",
+    "remove": "Remove",
+    "total": "Total"
+  },
+
+  "product": {
+    "viewDetails": "View details",
+    "addToCart": "Add to cart",
+    "stock": "Stock",
+    "stars": "stars"
+  },
+
+  "footer": {
+  "marketplace": "MARKETPLACE",
+  "description": "Website providing high-quality products, trustworthy service, reasonable prices, and fast nationwide delivery.",
+  "quickLinks": "QUICK LINKS",
+  "home": "Home",
+  "products": "Products",
+  "about": "About Us",
+  "contact": "Contact",
+  "promo": "Promotions",
+  "contactTitle": "CONTACT",
+  "newsletterTitle": "NEWSLETTER",
+  "newsletterDesc": "Subscribe to our newsletter for the latest updates and offers.",
+  "emailPlaceholder": "Enter your email address",
+  "subscribe": "Subscribe",
+  "address": "123 ABC Street, Ho Chi Minh City",
+  "phone": "+84 123 456 789",
+  "email": "phat@example.com",
+  "followUs": "FOLLOW US",
+  "copyright": "© 2025 Marketplace. All rights reserved."
+  },
+
+  "cart": {
+    "discountPlaceholder": "Enter discount code (e.g., giam10)",
+    "apply": "Apply",
+    "discountLabel": "Discount {{percent}}%:",
+    "total": "Total:",
+    "checkout": "Checkout",
+    "clearCart": "Clear Cart",
+    "qrTitle": "Scan the QR code to pay:",
+    "confirmPayment": "Confirm Payment",
+    "empty": {
+      "continueShopping": "Continue Shopping"
+    },
+    "modal": {
+      "removeTitle": "Are you sure you want to remove this product?",
+      "removeOk": "Remove",
+      "removeCancel": "Cancel",
+      "removeSuccessTitle": "Removed",
+      "removeSuccessMsg": "The product has been removed from the cart",
+      "clearTitle": "Are you sure you want to clear all products?",
+      "clearSuccessMsg": "All products have been removed from the cart"
+    },
+    "alert": {
+      "emptyCart": "Cart is empty!"
+    },
+    "discountErrorTitle": "Invalid discount code",
+    "discountErrorMsg": "Please enter a valid discount code!",
+    "paymentConfirmed": "Payment confirmed. Thank you!"
+  },
+
+  "productDetail": {
+    "sku": "SKU",
+    "stock": "Stock",
+    "stars": "stars",
+    "category": "Category",
+    "weight": "Weight",
+    "dimensions": "Dimensions",
+    "availability": "Availability",
+    "warranty": "Warranty",
+    "returnPolicy": "Return Policy",
+    "buyNow": "Buy Now",
+    "addToCart": "Add to Cart",
+    "userReviews": "User Reviews",
+    "noReview": "No reviews yet.",
+    "notification": {
+      "successTitle": "Success",
+      "successMsg": "Product has been added to your cart!"
+    }
+  },
+
+  "productList": {
+    "title": "Product List",
+    "selectCategory": "Select category",
+    "all": "All",
+    "loadingProducts": "Loading products...",
+    "loading": "Loading...",
+    "noProducts": "No products available",
+    "notification": {
+      "successTitle": "Success",
+      "successMsg": "Product has been added to your cart!"
+    }
+  },
+
+  "profile": {
+    "title": "Profile Information",
+    "username": "Username",
+    "email": "Email"
+  },
+
+  "app": {
+    "title": "E-Commerce",
+    "help": "Help",
+    "contact": "Contact",
+    "promo": "Promotions",
+    "searchPlaceholder": "Search for products...",
+    "info": "Information",
+    "changePassword": "Change Password",
+    "logout": "Logout",
+    "loginRegister": "Login / Register",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "loadingProducts": "Loading products...",
+    "loading": "Loading...",
+    "noProducts": "No products available",
+    "addedToCart": "Product added to cart!",
+    "success": "Success",
+    "accountInfo": "Account Information",
+    "username": "Username",
+    "email": "Email",
+    "copyright": "© 2025 Marketplace. All rights reserved."
+
+  },
+
+  "notification": {
+    "logoutSuccess": "You have logged out successfully.",
+    "fillAll": "Please fill in all fields.",
+    "passwordMismatch": "New password and confirm password do not match.",
+    "userNotFound": "User not found.",
+    "accountNotFound": "Account not found.",
+    "oldPasswordIncorrect": "Old password is incorrect.",
+    "changePasswordSuccess": "Password changed successfully."
+  }
+
+}
