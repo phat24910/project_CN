@@ -119,17 +119,6 @@ Form Đăng ký
   </button>
 </div> -->
 
-
-
-<nz-alert
-  *ngIf="showAlert"
-  [nzType]="alertType"
-  [nzMessage]="alertMessage"
-  nzShowIcon
-  (nzOnClose)="showAlert = false"
-  nzCloseable>
-</nz-alert>
-
 <div class="form-wrapper">
   <form *ngIf="isLogin" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" nz-form [nzLayout]="'vertical'" class="form-box">
     <h2 class="form-title">{{'auth.login_title' | transloco}}</h2>

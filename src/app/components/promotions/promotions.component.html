@@ -1,0 +1,102 @@
+<!-- Hero Section -->
+  <section class="bg-gradient-to-r from-orange-50 to-pink-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">{{ 'promotions.hero.title' | transloco }}</h1>
+      <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">{{ 'promotions.hero.subtitle' | transloco }}</p>
+    </div>
+  </section>
+
+  <!-- Flash Sale Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-orange-600 mb-4">{{ 'promotions.flashSale.title' | transloco }}</h2>
+        <p class="text-gray-600">{{ 'promotions.flashSale.subtitle' | transloco }}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div *ngFor="let product of flashSaleProducts" class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-200 overflow-hidden group relative flex flex-col">
+          <div class="relative">
+            <img [src]="product.thumbnail" alt="Flash sale product" (click)="goToProductDetail(product.id)" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200 cursor-pointer">
+            <div class="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-semibold">-{{ product.discount }}%</div>
+            <div class="absolute top-2 left-2 bg-orange-400 text-white px-2 py-1 rounded-full text-xs font-semibold">{{ 'promotions.timeLeft' | transloco }}: {{ product.timeLeft }}h</div>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2 truncate">{{ product.title }}</h3>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-lg font-bold text-orange-600">${{ product.salePrice }}</span>
+                <span class="text-sm text-gray-500 line-through">${{ product.originalPrice }}</span>
+              </div>
+            </div>
+            <button (click)="addToCart(product)" class="bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md text-sm font-medium transition-colors duration-200 w-full mt-2">{{ 'promotions.flashSale.buyNow' | transloco }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Current Promotions Section -->
+  <!-- <section class="py-16 bg-orange-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-orange-600 mb-4">{{ 'promotions.current.title' | transloco }}</h2>
+        <p class="text-gray-600">{{ 'promotions.current.subtitle' | transloco }}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div *ngFor="let promo of promotions" class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-200 overflow-hidden flex flex-col md:flex-row">
+          <img [src]="promo.image" alt="Promotion image" class="w-full md:w-56 h-48 object-cover md:rounded-l-lg md:rounded-r-none">
+          <div class="flex-1 p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold mb-1 text-orange-600">{{ promo.title | transloco }}</h3>
+              <p class="mb-2 text-gray-600">{{ promo.description | transloco }}</p>
+              <div class="font-bold text-orange-500">-{{ promo.discount }}%</div>
+              <div class="text-sm text-gray-400 mb-2">{{ 'promotions.validUntil' | transloco }}: {{ promo.endDate }}</div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mt-2">
+              <div *ngFor="let product of promo.products" class="bg-orange-50 rounded p-2 flex flex-col items-center">
+                <img [src]="product.thumbnail" alt="Product image" (click)="goToProductDetail(product.id)" class="w-full h-16 object-cover rounded cursor-pointer mb-1">
+                <div class="text-xs truncate text-center">{{ product.title }}</div>
+                <div class="flex items-center gap-1 justify-center">
+                  <span class="text-orange-600 font-semibold">${{ product.price }}</span>
+                  <span class="line-through text-gray-400 text-xs" *ngIf="product.discountPercentage">${{ (product.price / (1 - product.discountPercentage / 100) ) | number:'1.0-2' }}</span>
+                </div>
+                <button (click)="addToCart(product)" class="bg-orange-500 hover:bg-orange-600 text-white py-1 px-2 rounded-md text-xs font-medium transition-colors duration-200 w-full mt-1">{{ 'promotions.current.shopNow' | transloco }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Coupon Codes Section -->
+  <!-- <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-orange-600 mb-4">{{ 'promotions.coupons.title' | transloco }}</h2>
+        <p class="text-gray-600">{{ 'promotions.coupons.subtitle' | transloco }}</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div *ngFor="let coupon of couponCodes" class="bg-gradient-to-br from-orange-100 to-yellow-50 border-2 border-orange-300 rounded-lg shadow-md flex flex-col items-center p-6 hover:shadow-xl transition-all duration-200">
+          <div class="text-lg font-bold text-orange-600 mb-1">{{ coupon.code }}</div>
+          <div class="text-orange-500 font-semibold mb-1">-{{ coupon.discount }}%</div>
+          <div class="text-gray-600 text-sm mb-1 text-center">{{ coupon.description | transloco }}</div>
+          <div class="text-xs text-gray-400">{{ 'promotions.coupons.validUntil' | transloco }}: {{ coupon.validUntil }}</div>
+          <div class="text-xs text-gray-400 mb-2">{{ 'promotions.coupons.minPurchase' | transloco }}: ${{ coupon.minPurchase }}</div>
+          <button (click)="copyCouponCode(coupon.code)" class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md text-sm font-medium transition-colors duration-200 w-full mt-2">{{ 'promotions.coupons.copy' | transloco }}</button>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Newsletter Section -->
+  <!-- <section class="py-16 bg-orange-500">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">{{ 'promotions.newsletter.title' | transloco }}</h2>
+      <p class="text-orange-100 mb-8 text-lg">{{ 'promotions.newsletter.subtitle' | transloco }}</p>
+      <form (submit)="$event.preventDefault()" class="flex flex-col sm:flex-row justify-center items-center gap-2 max-w-xl mx-auto">
+        <input nz-input type="email" placeholder="{{ 'promotions.newsletter.placeholder' | transloco }}" required class="px-4 py-2 rounded-l-full text-gray-800 w-full sm:w-auto" />
+        <button nz-button nzType="primary" class="rounded-r-full px-6 py-2 bg-white text-orange-500 hover:bg-orange-50 font-semibold">{{ 'promotions.newsletter.subscribe' | transloco }}</button>
+      </form>
+    </div>
+  </section> -->

@@ -34,6 +34,7 @@ export class ProductListComponent implements OnInit {
     private service: ProductService,
     private cartService: CartService,
     private router: Router,
+    private route: ActivatedRoute,
     private sharedService: SharedService,
     private notification: NzNotificationService,
     private transloco: TranslocoService
@@ -42,9 +43,24 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategories();
 
+    // Subscribe to search text changes
     this.sharedService.searchText$.subscribe((text) => {
       this.searchText = text.toLowerCase();
       this.loadProducts();
+    });
+
+    // Handle query params for search
+    this.route.queryParams.subscribe(params => {
+      if (params['search']) {
+        this.searchText = params['search'].toLowerCase();
+        this.sharedService.setSearchText(params['search']);
+        this.loadProducts();
+      } else {
+        // Clear search if no query params
+        this.searchText = '';
+        this.sharedService.clearSearchText();
+        this.loadProducts();
+      }
     });
 
     this.loadProducts();
@@ -55,12 +71,12 @@ export class ProductListComponent implements OnInit {
       if (this.router.url === '/') {
         this.searchText = '';
         this.selectedCategory = '';
+        this.sharedService.clearSearchText();
         this.loadProducts();
       }
     });
-
-  this.loadProducts();
   }
+
 
   loadProducts(): void {
     this.isLoading = true;
@@ -74,6 +90,10 @@ export class ProductListComponent implements OnInit {
       this.total = data.length;
       this.pageIndex = 1;
       this.updatePagedProducts();
+      // ensure view returns to top after content update
+      try {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      } catch {}
     });
   }
 
@@ -86,7 +106,7 @@ export class ProductListComponent implements OnInit {
   onPageChange(page: number): void {
     this.pageIndex = page;
     this.updatePagedProducts();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   loadCategories(): void {

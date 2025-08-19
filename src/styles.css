@@ -35,8 +35,9 @@
   box-sizing: border-box;
 }
 
+/* Avoid global smooth scroll to prevent focus-driven jumps with overlays (nz-select, nz-dropdown) */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -47,6 +48,11 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent layout shifts from anchoring to changed content */
+.prevent-scroll-anchoring {
+  overflow-anchor: none;
 }
 
 /* Typography system */

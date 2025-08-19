@@ -41,7 +41,12 @@ import {
   InfoCircleOutline,
   GiftOutline,
   GlobalOutline,
-  DollarOutline
+  DollarOutline,
+  BulbOutline,
+  StarOutline,
+  TeamOutline,
+  ClockCircleOutline,
+  SafetyCertificateOutline
 } from '@ant-design/icons-angular/icons';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
@@ -49,6 +54,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { ShoppingCartOutline } from '@ant-design/icons-angular/icons';
 import { FooterComponent } from './footer/footer.component';
 import { CdkDragPlaceholder } from "@angular/cdk/drag-drop";
@@ -56,9 +62,25 @@ import { TranslocoRootModule } from './transloco-root.modules';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzOverlayModule } from 'ng-zorro-antd/core/overlay';
 import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { PromotionsComponent } from './components/promotions/promotions.component';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 @NgModule({
   providers: [NzNotificationService, { provide: NZ_I18N, useValue: vi_VN }],
-  declarations: [AppComponent, AuthComponent, ProfileComponent, PrimaryOrangeDirective, FooterComponent, ThemeColorsComponent],
+  declarations: [
+    AppComponent, 
+    AuthComponent, 
+    ProfileComponent, 
+    PrimaryOrangeDirective, 
+    FooterComponent, 
+    ThemeColorsComponent,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    PromotionsComponent
+  ],
 
   imports: [
     NzNotificationModule,
@@ -99,16 +121,23 @@ import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
       InfoCircleOutline,
       GiftOutline,
       GlobalOutline,
-      DollarOutline
+      DollarOutline,
+      BulbOutline,
+      StarOutline,
+      TeamOutline,
+      ClockCircleOutline,
+      SafetyCertificateOutline
     ]),
     NzCardModule,
     NzDescriptionsModule,
     NzAvatarModule,
     NzAlertModule,
+    NzToolTipModule,
     CdkDragPlaceholder,
     NzBadgeModule,
     NzOverlayModule,
-    NzNoAnimationModule
+    NzNoAnimationModule,
+    NzCarouselModule
   ],
   bootstrap: [AppComponent]
 })

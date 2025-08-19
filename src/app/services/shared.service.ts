@@ -11,4 +11,8 @@ export class SharedService {
   setSearchText(text: string) {
     this.searchTextSource.next(text);
   }
+
+  clearSearchText() {
+    this.searchTextSource.next('');
+  }
 }

@@ -6,6 +6,10 @@ import { AuthComponent } from './auth/auth.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { CartComponent } from './products/cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { PromotionsComponent } from './components/promotions/promotions.component';
 
 const routes: Routes = [
   {
@@ -14,11 +18,15 @@ const routes: Routes = [
       import('./products/products.module').then(m => m.ProductsModule)
   },
 
-  { path:'', component: ProductListComponent},
+  { path:'', component: HomeComponent},
+  { path:'products', component: ProductListComponent},
   { path:'product-form', component:ProductFormComponent},
   { path:'auth', component: AuthComponent},
   { path: 'cart', component: CartComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'about', component: AboutComponent},
+  { path: 'contact', component: ContactComponent},
+  { path: 'promo', component: PromotionsComponent},
   { path: ':id', component: ProductDetailComponent},
   // { path: '', redirectTo: 'products', pathMatch: 'full' },
   // { path: 'profile', component: ProfileComponent}

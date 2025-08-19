@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CartService } from './services/cart.service';
+import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 import { SharedService } from './services/shared.service';
 import { NotificationService } from './services/Notify.service';
@@ -13,91 +13,85 @@ import { TranslocoService } from '@jsverse/transloco';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Cosmetsy - Beauty & Cosmetics';
+  title = 'product-management';
+  searchText: string = '';
   total = 0;
-  wishlistCount = 0;
   userName: string | null = null;
-  alert: { type: 'error' | 'success' | 'info' | 'warning'; message: string } | null = null;
+  alert: { type: any; message: string } | null = null;
+
   changePasswordVisible = false;
   passwordData = {
     oldPassword: '',
     newPassword: '',
-    confirmPassword: ''
+    confirmPassword: '',
   };
-  searchText = '';
-  showMobileMenu = false;
-  currentLang = 'vi';
-  showAlert = false;
-  alertType = 'info';
-  alertMessage = '';
+  alertMessage: string = '';
+  alertType: 'success' | 'info' | 'warning' | 'error' = 'info';
+  showAlert: boolean = false;
 
   constructor(
     private cartService: CartService,
     private router: Router,
     private userService: UserService,
     private sharedService: SharedService,
-    private notificationService: NotificationService,
-    private nzNotification: NzNotificationService,
+    private notify: NotificationService,
+    private notification: NzNotificationService,
     private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
-    // Lấy số lượng sản phẩm trong giỏ hàng
     this.cartService.cartItemCount$.subscribe(count => {
       this.total = count;
     });
 
-    // Lấy thông tin user
     this.userService.userName$.subscribe(name => {
       this.userName = name;
     });
 
-    // Load user từ localStorage
     this.userService.loadUserFromLocalStorage();
 
-    // Lấy ngôn ngữ hiện tại
-    this.currentLang = this.translocoService.getActiveLang();
-  }
+    this.notify.alert$.subscribe(alert => {
+      this.alert = alert;
+    });
 
-  // Phương thức đơn giản để mua sắm
-  goShopping(): void {
-    alert('Chào mừng bạn đến với Cosmetsy!');
+    const saved = localStorage.getItem('lang');
+    if (saved) this.translocoService.setActiveLang(saved);
+    else this.translocoService.setActiveLang('vi');
   }
 
   goHome(): void {
-    this.router.navigate(['/']);
+    this.sharedService.setSearchText('');
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/']);
+    });
   }
 
-  onSearchChange(): void {
-    if (this.searchText.trim()) {
-      this.router.navigate(['/products'], { queryParams: { search: this.searchText } });
-    }
-  }
-
-  setLang(lang: string): void {
-    console.log('Setting language to:', lang);
-    this.currentLang = lang;
+  setLang(lang: string) {
     this.translocoService.setActiveLang(lang);
-    // Close mobile menu if open
-    if (this.showMobileMenu) {
-      this.showMobileMenu = false;
-    }
+    localStorage.setItem('lang', lang);
+  }
+
+  onSearchChange(event?: any): void {
+    const value = event !== undefined ? event : this.searchText;
+    this.sharedService.setSearchText(value.trim());
   }
 
   showInfo(): void {
-    console.log('Show info clicked');
-    this.nzNotification.info('Thông tin', 'Thông tin người dùng');
-  }
-
-  changePassword(): void {
-    console.log('Change password clicked');
-    this.changePasswordVisible = true;
+    this.router.navigate(['/profile']);
   }
 
   logout(): void {
-    console.log('Logout clicked');
+    localStorage.clear();
     this.userService.logout();
     this.router.navigate(['/auth']);
+    this.notification.info(
+      this.translocoService.translate('app.logout'),
+      this.translocoService.translate('notification.logoutSuccess')
+    );
+  }
+
+  changePassword(): void {
+    this.changePasswordVisible = true;
   }
 
   handleCancel(): void {
@@ -106,30 +100,62 @@ export class AppComponent implements OnInit {
   }
 
   handleChangePassword(): void {
-    if (this.passwordData.newPassword !== this.passwordData.confirmPassword) {
-      this.showAlertMessage('error', 'Mật khẩu mới không khớp');
+    const { oldPassword, newPassword, confirmPassword } = this.passwordData;
+
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      this.showAlertMessage(this.translocoService.translate('notification.fillAll'), 'warning');
       return;
     }
-    
-    // Xử lý đổi mật khẩu
-    this.showAlertMessage('success', 'Đổi mật khẩu thành công');
-    this.handleCancel();
+
+    if (newPassword !== confirmPassword) {
+      this.showAlertMessage(this.translocoService.translate('notification.passwordMismatch'), 'error');
+      return;
+    }
+
+    const email = localStorage.getItem('email');
+    if (!email) {
+      this.showAlertMessage(this.translocoService.translate('notification.userNotFound'), 'error');
+      return;
+    }
+
+    const storedUserStr = localStorage.getItem(`username_${email}`);
+    if (!storedUserStr) {
+      this.showAlertMessage(this.translocoService.translate('notification.accountNotFound'), 'error');
+      return;
+    }
+
+    const storedUser = JSON.parse(storedUserStr);
+    if (storedUser.password !== oldPassword) {
+      this.showAlertMessage(this.translocoService.translate('notification.oldPasswordIncorrect'), 'error');
+      return;
+    }
+
+    storedUser.password = newPassword;
+    localStorage.setItem(`username_${email}`, JSON.stringify(storedUser));
+    this.showAlertMessage(this.translocoService.translate('notification.changePasswordSuccess'), 'success');
+
+    setTimeout(() => {
+      this.changePasswordVisible = false;
+      this.resetPasswordForm();
+    }, 2000);
   }
 
   resetPasswordForm(): void {
     this.passwordData = {
       oldPassword: '',
       newPassword: '',
-      confirmPassword: ''
+      confirmPassword: '',
     };
-    this.showAlert = false;
   }
 
-  showAlertMessage(type: 'error' | 'success' | 'info' | 'warning', message: string): void {
-    this.alert = { type, message };
+  showAlertMessage(message: string, type: 'success' | 'info' | 'warning' | 'error') {
+    this.alertMessage = message;
+    this.alertType = type;
+    this.showAlert = true;
+
     setTimeout(() => {
-      this.alert = null;
-    }, 3000);
+      this.showAlert = false;
+    }, 2000);
   }
 }
 

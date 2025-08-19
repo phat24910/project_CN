@@ -1,0 +1,66 @@
+/*!* Home Component Styles *!*/
+/*.hero-section {*/
+/*  background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 100%);*/
+/*}*/
+
+/*.product-card {*/
+/*  transition: all 0.3s ease;*/
+/*}*/
+
+/*.product-card:hover {*/
+/*  transform: translateY(-5px);*/
+/*}*/
+
+/*.discount-badge {*/
+/*  position: absolute;*/
+/*  top: 8px;*/
+/*  right: 8px;*/
+/*  background: linear-gradient(135deg, #ef4444, #dc2626);*/
+/*  color: white;*/
+/*  padding: 4px 8px;*/
+/*  border-radius: 9999px;*/
+/*  font-size: 0.75rem;*/
+/*  font-weight: 600;*/
+/*  z-index: 10;*/
+/*}*/
+
+/*.rank-badge {*/
+/*  position: absolute;*/
+/*  top: 8px;*/
+/*  left: 8px;*/
+/*  background: linear-gradient(135deg, #ef4444, #dc2626);*/
+/*  color: white;*/
+/*  padding: 4px 8px;*/
+/*  border-radius: 9999px;*/
+/*  font-size: 0.75rem;*/
+/*  font-weight: 600;*/
+/*  z-index: 10;*/
+/*}*/
+
+/*.new-badge {*/
+/*  position: absolute;*/
+/*  top: 8px;*/
+/*  left: 8px;*/
+/*  background: linear-gradient(135deg, #10b981, #059669);*/
+/*  color: white;*/
+/*  padding: 4px 8px;*/
+/*  border-radius: 9999px;*/
+/*  font-size: 0.75rem;*/
+/*  font-weight: 600;*/
+/*  z-index: 10;*/
+/*}*/
+
+/*.cta-section {*/
+/*  background: linear-gradient(135deg, #f97316, #ea580c);*/
+/*}*/
+
+/*!* Responsive adjustments *!*/
+/*@media (max-width: 768px) {*/
+/*  .hero-section h1 {*/
+/*    font-size: 2.5rem;*/
+/*  }*/
+/*  */
+/*  .hero-section p {*/
+/*    font-size: 1rem;*/
+/*  }*/
+/*}*/

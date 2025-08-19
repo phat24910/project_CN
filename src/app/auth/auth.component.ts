@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -10,7 +10,7 @@ import { TranslocoService } from '@jsverse/transloco';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   constructor(private router: Router,
     private userService: UserService,
     private notify: NotificationService,
@@ -19,9 +19,11 @@ export class AuthComponent {
 
   isLogin = true;
 
-  alertMessage: string = '';
-  alertType: 'success' | 'info' | 'warning' | 'error' = 'success';
-  showAlert: boolean = false;
+
+
+  ngOnInit() {
+    // Không cần subscribe notification service ở đây vì đã có trong app component
+  }
 
   showLogin() {
     this.isLogin = true;

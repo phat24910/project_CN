@@ -38,9 +38,8 @@ export class ProductService {
   // }
 
   getCategories(): Observable<string[]> {
-  return this.http.get<any>('https://dummyjson.com/products/categories')
-    .pipe(map((categories: any) => Array.isArray(categories) ? categories : []));
-}
+    return this.http.get<string[]>('https://dummyjson.com/products/categories');
+  }
 
 
   // getProductsByCategory(category: string, keyword?: string): Observable<any[]> {

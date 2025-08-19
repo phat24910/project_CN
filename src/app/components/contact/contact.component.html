@@ -1,0 +1,102 @@
+<div class="hero-section bg-gradient-to-r from-orange-50 to-pink-50 py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+      {{ 'contact.hero.title' | transloco }}
+    </h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      {{ 'contact.hero.subtitle' | transloco }}
+    </p>
+  </div>
+</div>
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ 'contact.form.title' | transloco }}</h2>
+        <p class="text-gray-600 mb-8">{{ 'contact.form.subtitle' | transloco }}</p>
+
+        <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{{ 'contact.form.name' | transloco }}</label>
+              <input nz-input type="text" name="name" [(ngModel)]="contactData.name" required
+                     class="w-full rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">{{ 'contact.form.email' | transloco }}</label>
+              <input nz-input type="email" name="email" [(ngModel)]="contactData.email" required
+                     class="w-full rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ 'contact.form.subject' | transloco }}</label>
+            <input nz-input type="text" name="subject" [(ngModel)]="contactData.subject" required
+                   class="w-full rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">{{ 'contact.form.message' | transloco }}</label>
+            <textarea nz-input name="message" [(ngModel)]="contactData.message" required rows="5"
+                      class="w-full rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500"></textarea>
+          </div>
+
+          <button type="submit"
+                  class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-200">
+            {{ 'contact.form.submit' | transloco }}
+          </button>
+        </form>
+      </div>
+
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ 'contact.info.title' | transloco }}</h2>
+        <p class="text-gray-600 mb-8">{{ 'contact.info.subtitle' | transloco }}</p>
+
+        <div class="space-y-6">
+          <div *ngFor="let info of contactInfo" class="flex items-start gap-4">
+            <div class="bg-orange-100 p-3 rounded-lg">
+              <span nz-icon [nzType]="info.icon" nzTheme="outline" class="text-xl text-orange-600"></span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-gray-900 mb-1">{{ info.title | transloco }}</h4>
+              <a *ngIf="info.link" [href]="info.link" target="_blank"
+                 class="text-orange-600 hover:text-orange-700 transition-colors duration-200">
+                {{ info.content | transloco }}
+              </a>
+              <p *ngIf="!info.link" class="text-gray-600">{{ info.content | transloco }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ 'contact.faq.title' | transloco }}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-gray-50 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3">{{ 'contact.faq.q1' | transloco }}</h3>
+        <p class="text-gray-600">{{ 'contact.faq.a1' | transloco }}</p>
+      </div>
+
+      <div class="bg-gray-50 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3">{{ 'contact.faq.q2' | transloco }}</h3>
+        <p class="text-gray-600">{{ 'contact.faq.a2' | transloco }}</p>
+      </div>
+
+      <div class="bg-gray-50 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3">{{ 'contact.faq.q3' | transloco }}</h3>
+        <p class="text-gray-600">{{ 'contact.faq.a3' | transloco }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+

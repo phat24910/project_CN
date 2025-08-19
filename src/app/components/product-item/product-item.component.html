@@ -4,11 +4,20 @@
   [nzCover]="coverTemplate">
 
   <ng-template #coverTemplate>
-    <img
-      [src]="product.thumbnail || product.images[0]"
-      [alt]="product.title"
-      class="product-img w-full h-36 sm:h-44 md:h-56 object-contain p-2 bg-white rounded-t-lg"
-    />
+    <ng-container *ngIf="product.images?.length > 1; else singleImage">
+      <nz-carousel nzAutoPlay [nzDots]="true" class="rounded-t-lg">
+        <div nz-carousel-content *ngFor="let img of product.images">
+          <img [src]="img" [alt]="product.title" class="product-img w-full h-36 sm:h-44 md:h-56 object-contain p-2 bg-white rounded-t-lg" />
+        </div>
+      </nz-carousel>
+    </ng-container>
+    <ng-template #singleImage>
+      <img
+        [src]="product.thumbnail || product.images[0]"
+        [alt]="product.title"
+        class="product-img w-full h-36 sm:h-44 md:h-56 object-contain p-2 bg-white rounded-t-lg"
+      />
+    </ng-template>
   </ng-template>
 
   <div class="px-2 sm:px-3 py-2 flex-1 flex flex-col justify-between">

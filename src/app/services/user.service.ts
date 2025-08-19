@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { NotificationService } from './Notify.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,9 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
   private userNameSubject = new BehaviorSubject<string | null>(null);
 
-
   userName$ = this.userNameSubject.asObservable();
+
+  constructor(private notificationService: NotificationService) {}
 
   setUserName(name: string) {
     this.userNameSubject.next(name);
@@ -30,5 +32,6 @@ export class UserService {
     this.userNameSubject.next(null);
     localStorage.removeItem('username');
     localStorage.removeItem('email');
+    this.notificationService.show('success', 'Đăng xuất thành công!');
   }
 }

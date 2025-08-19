@@ -40,24 +40,18 @@
   },
 
   "footer": {
-  "marketplace": "MARKETPLACE",
-  "description": "Website providing high-quality products, trustworthy service, reasonable prices, and fast nationwide delivery.",
-  "quickLinks": "QUICK LINKS",
-  "home": "Home",
-  "products": "Products",
-  "about": "About Us",
-  "contact": "Contact",
-  "promo": "Promotions",
-  "contactTitle": "CONTACT",
-  "newsletterTitle": "NEWSLETTER",
-  "newsletterDesc": "Subscribe to our newsletter for the latest updates and offers.",
-  "emailPlaceholder": "Enter your email address",
-  "subscribe": "Subscribe",
-  "address": "123 ABC Street, Ho Chi Minh City",
-  "phone": "+84 123 456 789",
-  "email": "phat@example.com",
-  "followUs": "FOLLOW US",
-  "copyright": "© 2025 Marketplace. All rights reserved."
+    "marketplace": "MARKETPLACE",
+    "description": "Website providing high-quality products, trustworthy service, reasonable prices, and fast nationwide delivery.",
+    "quickLinks": "QUICK LINKS",
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact",
+    "contactTitle": "CONTACT",
+    "address": "123 ABC Street, Ho Chi Minh City",
+    "phone": "+84 123 456 789",
+    "email": "phat@example.com",
+    "followUs": "FOLLOW US",
+    "copyright": "© 2025 Marketplace. All rights reserved."
   },
 
   "cart": {
@@ -129,7 +123,7 @@
   },
 
   "app": {
-    "title": "E-Commerce",
+    "title": "MyShop",
     "help": "Help",
     "contact": "Contact",
     "promo": "Promotions",
@@ -150,9 +144,7 @@
     "success": "Success",
     "accountInfo": "Account Information",
     "username": "Username",
-    "email": "Email",
-    "copyright": "© 2025 Marketplace. All rights reserved."
-
+    "email": "Email"
   },
 
   "notification": {

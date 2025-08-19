@@ -40,24 +40,18 @@
   },
 
   "footer": {
-  "marketplace": "SÀN THƯƠNG MẠI",
-  "description": "Trang web cung cấp sản phẩm chất lượng, uy tín, giá hợp lý và giao hàng nhanh trên toàn quốc.",
-  "quickLinks": "LIÊN KẾT NHANH",
-  "home": "Trang chủ",
-  "products": "Sản phẩm",
-  "about": "Về chúng tôi",
-  "contact": "Liên hệ",
-  "promo": "Khuyến mãi",
-  "contactTitle": "LIÊN HỆ",
-  "newsletterTitle": "BẢN TIN",
-  "newsletterDesc": "Đăng ký nhận bản tin để cập nhật ưu đãi mới nhất.",
-  "emailPlaceholder": "Nhập email của bạn",
-  "subscribe": "Đăng ký",
-  "address": "123 Đường ABC, TP.HCM",
-  "phone": "0123 456 789",
-  "email": "phat@example.com",
-  "followUs": "THEO DÕI CHÚNG TÔI",
-  "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu."
+    "marketplace": "SÀN THƯƠNG MẠI",
+    "description": "Trang web cung cấp sản phẩm chất lượng, uy tín, giá hợp lý và giao hàng nhanh trên toàn quốc.",
+    "quickLinks": "LIÊN KẾT NHANH",
+    "home": "Trang chủ",
+    "about": "Về chúng tôi",
+    "contact": "Liên hệ",
+    "contactTitle": "LIÊN HỆ",
+    "address": "123 Đường ABC, TP.HCM",
+    "phone": "0123 456 789",
+    "email": "phat@example.com",
+    "followUs": "THEO DÕI CHÚNG TÔI",
+    "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu."
   },
 
   "cart": {
@@ -129,7 +123,7 @@
   },
 
   "app": {
-    "title": "Thương mại điện tử",
+    "title": "Cửa hàng của tôi",
     "help": "Trợ giúp",
     "contact": "Liên hệ",
     "promo": "Khuyến mãi",
@@ -150,9 +144,7 @@
     "success": "Thành công",
     "accountInfo": "Thông tin tài khoản",
     "username": "Tên tài khoản",
-    "email": "Email",
-    "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu."
-
+    "email": "Email"
   },
 
    "notification": {

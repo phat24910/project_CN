@@ -39,6 +39,7 @@ import { TranslocoService } from '@jsverse/transloco';
 })
 export class ProductDetailComponent implements OnInit {
   product: any;
+  selectedImageIdx = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,7 +51,10 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.service.getProduct(id).subscribe(p => (this.product = p));
+    this.service.getProduct(id).subscribe(p => {
+      this.product = p;
+      this.selectedImageIdx = 0;
+    });
   }
 
   addToCart(): void {
@@ -61,5 +65,15 @@ export class ProductDetailComponent implements OnInit {
 
   buyNow(): void {
     this.addToCart();
+  }
+
+  prevImage(): void {
+    if (!this.product?.images?.length) return;
+    this.selectedImageIdx = (this.selectedImageIdx - 1 + this.product.images.length) % this.product.images.length;
+  }
+
+  nextImage(): void {
+    if (!this.product?.images?.length) return;
+    this.selectedImageIdx = (this.selectedImageIdx + 1) % this.product.images.length;
   }
 }

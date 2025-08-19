@@ -1,0 +1,113 @@
+<!-- Hero Section -->
+<div class="hero-section bg-gradient-to-r from-orange-50 to-yellow-50 py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+      {{ 'about.hero.title' | transloco }}
+    </h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      {{ 'about.hero.subtitle' | transloco }}
+    </p>
+  </div>
+</div>
+
+<!-- Story Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ 'about.story.title' | transloco }}</h2>
+        <p class="text-gray-600 mb-6">{{ 'about.story.paragraph1' | transloco }}</p>
+        <p class="text-gray-600 mb-6">{{ 'about.story.paragraph2' | transloco }}</p>
+        <p class="text-gray-600">{{ 'about.story.paragraph3' | transloco }}</p>
+      </div>
+      <div class="relative">
+        <div class="bg-orange-100 rounded-lg p-8">
+          <div class="text-center">
+            <span nz-icon nzType="bulb" nzTheme="outline" class="text-6xl text-orange-500 mb-4"></span>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ 'about.story.mission.title' | transloco }}</h3>
+            <p class="text-gray-600">{{ 'about.story.mission.description' | transloco }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<!-- <section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ 'about.stats.title' | transloco }}</h2>
+      <p class="text-gray-600">{{ 'about.stats.subtitle' | transloco }}</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div *ngFor="let stat of stats" class="text-center">
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <div class="text-3xl md:text-4xl font-bold text-orange-600 mb-2">{{ stat.number }}</div>
+          <div class="text-gray-600">{{ stat.label | transloco }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Values Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ 'about.values.title' | transloco }}</h2>
+      <p class="text-gray-600">{{ 'about.values.subtitle' | transloco }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let value of values" class="text-center">
+        <div class="bg-orange-50 rounded-lg p-6 h-full">
+          <span nz-icon [nzType]="value.icon" nzTheme="outline" class="text-4xl text-orange-500 mb-4"></span>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ value.title | transloco }}</h3>
+          <p class="text-gray-600">{{ value.description | transloco }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ 'about.team.title' | transloco }}</h2>
+      <p class="text-gray-600">{{ 'about.team.subtitle' | transloco }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div *ngFor="let member of team" class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="bg-orange-100 h-48 flex items-center justify-center">
+          <span nz-icon nzType="user" nzTheme="outline" class="text-6xl text-orange-500"></span>
+        </div>
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ member.name | transloco }}</h3>
+          <p class="text-orange-600 font-medium mb-3">{{ member.position | transloco }}</p>
+          <p class="text-gray-600">{{ member.description | transloco }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-orange-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold text-white mb-4">{{ 'about.cta.title' | transloco }}</h2>
+    <p class="text-orange-100 mb-8 text-lg">{{ 'about.cta.subtitle' | transloco }}</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button class="bg-white text-orange-500 hover:bg-orange-50 px-8 py-3 rounded-full font-semibold transition-all duration-200">
+        {{ 'about.cta.contact' | transloco }}
+      </button>
+      <button class="border-2 border-white text-white hover:bg-white hover:text-orange-500 px-8 py-3 rounded-full font-semibold transition-all duration-200">
+        {{ 'about.cta.learnMore' | transloco }}
+      </button>
+    </div>
+  </div>
+</section>
+
