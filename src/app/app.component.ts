@@ -17,7 +17,12 @@ export class AppComponent implements OnInit {
   searchText: string = '';
   total = 0;
   userName: string | null = null;
+  userEmail: string | null = null;
   alert: { type: any; message: string } | null = null;
+  currentLang: string = 'vi';
+  showMobileMenu: boolean = false;
+  showInfoModal: boolean = false;
+  showSearch: boolean = false;
 
   changePasswordVisible = false;
   passwordData = {
@@ -30,10 +35,10 @@ export class AppComponent implements OnInit {
   showAlert: boolean = false;
 
   constructor(
+    public router: Router,
     private cartService: CartService,
-    private router: Router,
-    private userService: UserService,
     private sharedService: SharedService,
+    private userService: UserService,
     private notify: NotificationService,
     private notification: NzNotificationService,
     private translocoService: TranslocoService
@@ -55,8 +60,19 @@ export class AppComponent implements OnInit {
     });
 
     const saved = localStorage.getItem('lang');
-    if (saved) this.translocoService.setActiveLang(saved);
-    else this.translocoService.setActiveLang('vi');
+    if (saved) {
+      this.currentLang = saved;
+      this.translocoService.setActiveLang(saved);
+    } else {
+      this.currentLang = 'vi';
+      this.translocoService.setActiveLang('vi');
+    }
+
+    // Load user email from localStorage
+    const email = localStorage.getItem('email');
+    if (email) {
+      this.userEmail = email;
+    }
   }
 
   goHome(): void {
@@ -67,17 +83,27 @@ export class AppComponent implements OnInit {
   }
 
   setLang(lang: string) {
+    this.currentLang = lang;
     this.translocoService.setActiveLang(lang);
     localStorage.setItem('lang', lang);
   }
 
+  toggleSearch(): void {
+    this.showSearch = !this.showSearch;
+  }
+
   onSearchChange(event?: any): void {
     const value = event !== undefined ? event : this.searchText;
-    this.sharedService.setSearchText(value.trim());
+    if (value && value.trim()) {
+      this.sharedService.setSearchText(value.trim());
+      this.showSearch = false;
+      this.router.navigate(['/products'], { queryParams: { search: value.trim() } });
+      this.searchText = '';
+    }
   }
 
   showInfo(): void {
-    this.router.navigate(['/profile']);
+    this.showInfoModal = true;
   }
 
   logout(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ProductService } from '../../core/product.service';
 import { CartService } from '../../services/cart.service';
@@ -7,15 +7,56 @@ import { SharedService } from '../../services/shared.service';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { TranslocoService } from '@jsverse/transloco';
+import { Subscription } from 'rxjs';
+
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  tags: string[];
+  brand: string;
+  sku: string;
+  weight: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  reviews: Array<{
+    rating: number;
+    comment: string;
+    date: string;
+    reviewerName: string;
+    reviewerEmail: string;
+  }>;
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  meta: {
+    createdAt: string;
+    updatedAt: string;
+    barcode: string;
+    qrCode: string;
+  };
+  images: string[];
+  thumbnail: string;
+}
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
-  products: any[] = [];
-
+export class ProductListComponent implements OnInit, OnDestroy {
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
   categories: string[] = [];
   selectedCategory: string = '';
   searchText: string = '';
@@ -29,6 +70,7 @@ export class ProductListComponent implements OnInit {
   pageIndex = 1;
   total = 0;
   pagedProducts: any[] = [];
+  private subscriptions = new Subscription();
 
   constructor(
     private service: ProductService,
@@ -45,21 +87,23 @@ export class ProductListComponent implements OnInit {
 
     // Subscribe to search text changes
     this.sharedService.searchText$.subscribe((text) => {
-      this.searchText = text.toLowerCase();
-      this.loadProducts();
+      this.searchText = text ? text.toLowerCase() : '';
+      this.filterProducts();
+      this.updatePagination();
     });
 
-    // Handle query params for search
     this.route.queryParams.subscribe(params => {
       if (params['search']) {
         this.searchText = params['search'].toLowerCase();
         this.sharedService.setSearchText(params['search']);
-        this.loadProducts();
+        this.filterProducts();
+        this.updatePagination();
       } else {
-        // Clear search if no query params
+        
         this.searchText = '';
         this.sharedService.clearSearchText();
-        this.loadProducts();
+        this.filterProducts();
+        this.updatePagination();
       }
     });
 
@@ -72,60 +116,75 @@ export class ProductListComponent implements OnInit {
         this.searchText = '';
         this.selectedCategory = '';
         this.sharedService.clearSearchText();
-        this.loadProducts();
+        this.filterProducts();
+        this.updatePagination();
       }
     });
   }
 
-
   loadProducts(): void {
     this.isLoading = true;
-    const isAll = !this.selectedCategory || this.selectedCategory === '' || this.selectedCategory === 'Tất cả';
-    const observable = isAll
-      ? this.service.getProducts(this.searchText)
-      : this.service.getProductsByCategory(this.selectedCategory, this.searchText);
-    observable.subscribe((data: any[]) => {
-      this.products = data;
-      this.isLoading = false;
-      this.total = data.length;
-      this.pageIndex = 1;
-      this.updatePagedProducts();
-      // ensure view returns to top after content update
-      try {
-        window.scrollTo({ top: 0, behavior: 'auto' });
-      } catch {}
+    this.service.getAllProducts().subscribe({
+      next: (products: Product[]) => {
+        this.products = products;
+        this.filterProducts();
+        this.updatePagination();
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error loading products:', error);
+        this.isLoading = false;
+      }
     });
   }
 
-  updatePagedProducts(): void {
-    const start = (this.pageIndex - 1) * this.pageSize;
-    const end = start + this.pageSize;
-    this.pagedProducts = this.products.slice(start, end);
+  filterProducts(): void {
+    let filtered = this.products;
+
+    // Filter by category
+    if (this.selectedCategory && this.selectedCategory.trim() !== '') {
+      filtered = filtered.filter(product =>
+        (product.category || '').toLowerCase() === this.selectedCategory.toLowerCase()
+      );
+    }
+
+    // Filter by search text
+    if (this.searchText && this.searchText.trim() !== '') {
+      const searchLower = this.searchText.toLowerCase();
+      filtered = filtered.filter(product =>
+        (product.title || '').toLowerCase().includes(searchLower) ||
+        (product.description || '').toLowerCase().includes(searchLower) ||
+        (product.category || '').toLowerCase().includes(searchLower) ||
+        (product.brand || '').toLowerCase().includes(searchLower)
+      );
+    }
+
+    this.filteredProducts = filtered;
+    this.total = filtered.length;
+    this.pageIndex = 1; // Reset page
   }
 
-  onPageChange(page: number): void {
-    this.pageIndex = page;
-    this.updatePagedProducts();
-    window.scrollTo({ top: 0, behavior: 'auto' });
+  updatePagination(): void {
+    const startIndex = (this.pageIndex - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.pagedProducts = this.filteredProducts.slice(startIndex, endIndex);
   }
 
-  loadCategories(): void {
-    this.isLoadingCategories = true;
-    this.service.getCategories().subscribe((data: any[]) => {
-      this.categories = data.map(cat => typeof cat === 'string' ? cat : cat.name);
-      this.isLoadingCategories = false;
-    });
+  onCategoryChange(): void {
+    this.pageIndex = 1; // Reset to first page
+    this.filterProducts();
+    this.updatePagination();
   }
 
-  onCategoryChange(category: string): void {
-    this.selectedCategory = category;
-    this.isCategoryLoading = true;
+  onSearchChange(): void {
+    this.pageIndex = 1; // Reset to first page
+    this.filterProducts();
+    this.updatePagination();
+  }
 
-    this.loadProducts();
-
-    setTimeout(() => {
-      this.isCategoryLoading = false;
-    }, 300);
+  onPageIndexChange(pageIndex: number): void {
+    this.pageIndex = pageIndex;
+    this.updatePagination();
   }
 
   addToCart(product: any): void {
@@ -136,11 +195,21 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  goToDetail(id: number): void {
-    this.router.navigate(['/products', id]);
+  loadCategories(): void {
+    this.isLoadingCategories = true;
+    this.service.getCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+        this.isLoadingCategories = false;
+      },
+      error: (error) => {
+        console.error('Error loading categories:', error);
+        this.isLoadingCategories = false;
+      }
+    });
   }
 
-  getStars(rate: number): number[] {
-    return [1, 2, 3, 4, 5];
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -2,73 +2,107 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  tags: string[];
+  brand: string;
+  sku: string;
+  weight: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  reviews: Array<{
+    rating: number;
+    comment: string;
+    date: string;
+    reviewerName: string;
+    reviewerEmail: string;
+  }>;
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  meta: {
+    createdAt: string;
+    updatedAt: string;
+    barcode: string;
+    qrCode: string;
+  };
+  images: string[];
+  thumbnail: string;
+}
+
+interface ApiResponse {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   private api = 'https://dummyjson.com/products';
 
-  // private api = 'https://fakestoreapi.com/products';
-
-  // private api = 'http://localhost:3000/products';
-
   constructor(private http: HttpClient) {}
 
-  getProducts(keyword?: string, skip: number = 0, limit: number = 30): Observable<any[]> {
+  getProducts(keyword?: string, skip: number = 0, limit: number = 100): Observable<Product[]> {
     let url = '';
     if (keyword && keyword.trim() !== '') {
       url = `https://dummyjson.com/products/search?q=${encodeURIComponent(keyword)}&skip=${skip}&limit=${limit}`;
     } else {
       url = `${this.api}?skip=${skip}&limit=${limit}`;
     }
-    return this.http.get<any>(url).pipe(
-      map((response: any) => response.products)
+    return this.http.get<ApiResponse>(url).pipe(
+      map((response: ApiResponse) => response.products)
     );
   }
 
-
-  getProduct(id: number) {
-    return this.http.get<any>(`${this.api}/${id}`);
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.api}/${id}`);
   }
-
-  addProduct (product: any) {
-    return this.http.post(this.api + '/add', product);
-  }
-
-  // getCategories(): Observable<string[]> {
-  //   return this.http.get<string[]>('https://fakestoreapi.com/products/categories');
-  // }
 
   getCategories(): Observable<string[]> {
-    return this.http.get<string[]>('https://dummyjson.com/products/categories');
+    return this.http.get<ApiResponse>(`${this.api}?limit=100`).pipe(
+      map((response: ApiResponse) => {
+        const categories = [...new Set(response.products.map((product: Product) => product.category))];
+        return categories.sort();
+      })
+    );
   }
 
-
-  // getProductsByCategory(category: string, keyword?: string): Observable<any[]> {
-  //   return this.http.get<any[]>(`https://fakestoreapi.com/products/category/${category}`).pipe(
-  //     map((products: any[]) => {
-  //       if (!keyword) return products;
-  //       return products.filter(p =>
-  //         p.title.toLowerCase().includes(keyword.toLowerCase())
-  //       );
-  //     })
-  //   );
-  // }
-
-  getProductsByCategory(category: string, keyword?: string, skip: number = 0, limit: number = 30): Observable<any[]> {
+  getProductsByCategory(category: string, keyword?: string): Observable<Product[]> {
+    let url = `${this.api}?limit=100`;
     if (keyword && keyword.trim() !== '') {
-      const url = `https://dummyjson.com/products/search?q=${encodeURIComponent(keyword)}&skip=${skip}&limit=${limit}`;
-      return this.http.get<any>(url).pipe(
-        map((response: any) => {
-          let products = response.products.filter((p: any) => p.category === category);
-          return products.slice(0, limit);
-        })
-      );
-    } else {
-      let url = `https://dummyjson.com/products/category/${encodeURIComponent(category)}?skip=${skip}&limit=${limit}`;
-      return this.http.get<any>(url).pipe(
-        map((response: any) => response.products)
-      );
+      url = `https://dummyjson.com/products/search?q=${encodeURIComponent(keyword)}&limit=100`;
     }
+    
+    return this.http.get<ApiResponse>(url).pipe(
+      map((response: ApiResponse) => {
+        let products = response.products;
+        if (category && category.trim() !== '') {
+          products = products.filter((product: Product) => 
+            product.category.toLowerCase() === category.toLowerCase()
+          );
+        }
+        return products;
+      })
+    );
   }
 
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<ApiResponse>(`${this.api}?limit=100`).pipe(
+      map((response: ApiResponse) => response.products)
+    );
+  }
 }
 

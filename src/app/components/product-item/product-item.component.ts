@@ -1,27 +1,5 @@
-// import { Component, EventEmitter, Input, Output } from '@angular/core';
-
-// @Component({
-//   selector: 'app-product-item',
-//   templateUrl: './product-item.component.html',
-//   styleUrls: ['./product-item.component.css']
-// })
-// export class ProductItemComponent {
-//   @Input() product: any;
-//   @Output() addToCart = new EventEmitter<any>();
-
-//   onAddToCart() {
-//     this.addToCart.emit(this.product);
-//   }
-
-//   getStars(rate: number): number[] {
-//     return [1, 2, 3, 4, 5];
-//   }
-// }
-
-
-
-
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface Product {
   id: number;
@@ -43,11 +21,17 @@ export class ProductItemComponent {
   @Input() product!: Product;
   @Output() addToCart = new EventEmitter<Product>();
 
+  constructor(private router: Router) {}
+
   onAddToCart() {
     this.addToCart.emit(this.product);
   }
 
- getStars(rate: number): number[] {
+  viewDetails(productId: number): void {
+    this.router.navigate(['/products', productId]);
+  }
+
+  getStars(rate: number): number[] {
     return [1, 2, 3, 4, 5];
   }
 }

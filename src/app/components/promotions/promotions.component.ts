@@ -5,14 +5,54 @@ import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { TranslocoService } from '@jsverse/transloco';
 
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  tags: string[];
+  brand: string;
+  sku: string;
+  weight: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  reviews: Array<{
+    rating: number;
+    comment: string;
+    date: string;
+    reviewerName: string;
+    reviewerEmail: string;
+  }>;
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  meta: {
+    createdAt: string;
+    updatedAt: string;
+    barcode: string;
+    qrCode: string;
+  };
+  images: string[];
+  thumbnail: string;
+}
+
 @Component({
   selector: 'app-promotions',
   templateUrl: './promotions.component.html',
   styleUrls: ['./promotions.component.css']
 })
 export class PromotionsComponent implements OnInit {
-  promotions: any[] = [];
-  flashSaleProducts: any[] = [];
+  flashSaleProducts: Product[] = [];
+  currentPromotions: Product[] = [];
   couponCodes: any[] = [];
   isLoading = true;
 
@@ -34,35 +74,7 @@ export class PromotionsComponent implements OnInit {
     this.isLoading = true;
     this.productService.getProducts().subscribe(products => {
       // dữ liệu khuyến mãi fake
-      this.promotions = [
-        {
-          id: 1,
-          title: 'promotions.summer.title',
-          description: 'promotions.summer.description',
-          discount: 30,
-          endDate: '2025-02-28',
-          image: products[0]?.thumbnail || 'assets/promo-1.jpg',
-          products: products.slice(0, 4)
-        },
-        {
-          id: 2,
-          title: 'promotions.newYear.title',
-          description: 'promotions.newYear.description',
-          discount: 50,
-          endDate: '2025-01-31',
-          image: products[1]?.thumbnail || 'assets/promo-2.jpg',
-          products: products.slice(4, 8)
-        },
-        {
-          id: 3,
-          title: 'promotions.weekend.title',
-          description: 'promotions.weekend.description',
-          discount: 20,
-          endDate: '2025-01-15',
-          image: products[2]?.thumbnail || 'assets/promo-3.jpg',
-          products: products.slice(8, 12)
-        }
-      ];
+      this.currentPromotions = products.slice(0, 3); // Assuming 3 promotions for now
       this.isLoading = false;
     });
   }

@@ -51,14 +51,40 @@
     "phone": "+84 123 456 789",
     "email": "phat@example.com",
     "followUs": "FOLLOW US",
-    "copyright": "© 2025 Marketplace. All rights reserved."
+    "copyright": "© 2025 Marketplace. All rights reserved.",
+    "newsletter": {
+      "title": "Subscribe for Early Information",
+      "subtitle": "Get notified about new products, special promotions and exclusive offers",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "onlineStatus": "Online 24/7",
+    "followBenefits": "Follow us to receive:",
+    "benefits": {
+      "promotions": "Promotions",
+      "newProducts": "New Products",
+      "news": "News"
+    },
+    "policies": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "returns": "Return Policy"
+    }
   },
 
   "cart": {
+    "items": {
+      "title": "Shopping Cart"
+    },
+    "summary": {
+      "title": "Order Summary"
+    },
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "total": "Total",
     "discountPlaceholder": "Enter discount code (e.g., giam10)",
     "apply": "Apply",
-    "discountLabel": "Discount {{percent}}%:",
-    "total": "Total:",
+    "discountLabel": "Discount Code",
     "checkout": "Checkout",
     "clearCart": "Clear Cart",
     "qrTitle": "Scan the QR code to pay:",
@@ -123,10 +149,14 @@
   },
 
   "app": {
-    "title": "MyShop",
-    "help": "Help",
+    "title": "E-Commerce",
+    "subtitle": "Online Shop",
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
     "contact": "Contact",
     "promo": "Promotions",
+    "help": "Help",
     "searchPlaceholder": "Search for products...",
     "info": "Information",
     "changePassword": "Change Password",
@@ -144,7 +174,10 @@
     "success": "Success",
     "accountInfo": "Account Information",
     "username": "Username",
-    "email": "Email"
+    "email": "Email",
+    "welcome": "Welcome",
+    "close": "Close",
+    "copyright": "© 2025 Marketplace. All rights reserved."
   },
 
   "notification": {
@@ -155,6 +188,182 @@
     "accountNotFound": "Account not found.",
     "oldPasswordIncorrect": "Old password is incorrect.",
     "changePasswordSuccess": "Password changed successfully."
-  }
+  },
 
+  "home": {
+    "hero": {
+      "title": "Welcome to the E-Commerce platform",
+      "subtitle": "Discover amazing products with the best prices and quality",
+      "shopNow": "Shop Now"
+    },
+    "featured": {
+      "title": "Featured Products",
+      "subtitle": "Handpicked products just for you",
+      "badge": "Featured",
+      "viewAll": "View All Products"
+    },
+    "bestSellers": {
+      "title": "Best Sellers",
+      "subtitle": "Most popular products this month",
+      "rank": "1",
+      "inStock": "In Stock"
+    },
+    "sale": {
+      "title": "Sale Products",
+      "subtitle": "Limited time offers with great discounts",
+      "buyNow": "Buy Now"
+    },
+    "newArrivals": {
+      "title": "New Arrivals",
+      "subtitle": "Fresh products just arrived",
+      "new": "NEW",
+      "available": "Available"
+    },
+    "cta": {
+      "title": "Ready to Start Shopping?",
+      "subtitle": "Join thousands of satisfied customers",
+      "button": "Start Shopping"
+    }
+  },
+
+  "about": {
+    "hero": {
+      "title": "About MyShop",
+      "subtitle": "Your trusted partner for quality products and excellent service"
+    },
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "Founded with a vision to provide the best shopping experience, MyShop has been serving customers since 2020. We believe in quality, transparency, and customer satisfaction above everything else.",
+      "paragraph2": "Our journey began with a simple idea: make quality products accessible to everyone at reasonable prices. Today, we're proud to offer a wide range of products that meet the highest standards.",
+      "paragraph3": "We continue to grow and evolve, always keeping our customers' needs at the heart of everything we do.",
+      "mission": {
+        "title": "Our Mission",
+        "description": "To provide exceptional products and services that enhance our customers' lives while maintaining the highest standards of quality and integrity."
+      }
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "The principles that guide everything we do",
+      "quality": {
+        "title": "Quality First",
+        "description": "We never compromise on quality. Every product in our catalog meets our strict standards."
+      },
+      "safety": {
+        "title": "Safety & Trust",
+        "description": "Your safety and trust are our top priorities. We ensure all products are safe and reliable."
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "We strive for excellence in every aspect of our business, from product selection to customer service."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We embrace new ideas and technologies to continuously improve our services and product offerings."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Meet the dedicated professionals behind MyShop",
+      "member1": {
+        "name": "John Smith",
+        "position": "CEO & Founder",
+        "description": "Passionate about creating the best shopping experience for customers."
+      },
+      "member2": {
+        "name": "Sarah Johnson",
+        "position": "Head of Operations",
+        "description": "Ensuring smooth operations and excellent customer service."
+      },
+      "member3": {
+        "name": "Mike Davis",
+        "position": "Head of Technology",
+        "description": "Building innovative solutions to enhance user experience."
+      }
+    }
+  },
+
+  "contact": {
+    "hero": {
+      "title": "Contact Us",
+      "subtitle": "We'd love to hear from you. Get in touch with us!"
+    },
+    "form": {
+      "title": "Send us a Message",
+      "subtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+      "name": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message"
+    },
+    "info": {
+      "title": "Get in Touch",
+      "subtitle": "Here are other ways to reach us:",
+      "address": {
+        "title": "Address",
+        "content": "123 ABC Street, Ho Chi Minh City, Vietnam"
+      },
+      "phone": {
+        "title": "Phone",
+        "content": "+84 123 456 789"
+      },
+      "email": {
+        "title": "Email",
+        "content": "info@myshop.com"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "content": "Monday - Friday: 9:00 AM - 6:00 PM"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How can I track my order?",
+      "a1": "You can track your order through your account dashboard or by using the tracking number sent to your email.",
+      "q2": "What is your return policy?",
+      "a2": "We offer a 30-day return policy for most products. Please contact our customer service for specific details.",
+      "q3": "Do you ship internationally?",
+      "a3": "Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location."
+    },
+    "success": {
+      "title": "Message Sent!",
+      "message": "Thank you for contacting us. We'll get back to you soon!"
+    },
+    "error": {
+      "title": "Error",
+      "message": "Please fill in all required fields and try again."
+    }
+  },
+
+  "promotions": {
+    "hero": {
+      "title": "Special Promotions",
+      "subtitle": "Discover amazing deals and offers just for you"
+    },
+    "flashSale": {
+      "title": "Flash Sale",
+      "subtitle": "Limited time offers - don't miss out!",
+      "buyNow": "Buy Now"
+    },
+    "timeLeft": "Time Left",
+    "current": {
+      "title": "Current Promotions",
+      "subtitle": "Ongoing deals and special offers",
+      "shopNow": "Shop Now"
+    },
+    "validUntil": "Valid Until",
+    "coupons": {
+      "title": "Coupon Codes",
+      "subtitle": "Use these codes to get extra discounts",
+      "copy": "Copy Code",
+      "validUntil": "Valid Until",
+      "minPurchase": "Min Purchase"
+    },
+    "newsletter": {
+      "title": "Stay Updated",
+      "subtitle": "Subscribe to our newsletter for exclusive offers and updates",
+      "placeholder": "Enter your email address",
+      "subscribe": "Subscribe"
+    }
+  }
 }

@@ -6,7 +6,7 @@
     <nz-select
     class="custom-category-select w-full sm:w-[160px] md:w-[200px] lg:w-[240px]"
     [(ngModel)]="selectedCategory"
-    (ngModelChange)="onCategoryChange($event)"
+    (ngModelChange)="onCategoryChange()"
     nzPlaceHolder="{{ 'productList.selectCategory' | transloco }}"
     [nzLoading]="isLoadingCategories">
     <nz-option nzValue="" nzLabel="{{ 'productList.all' | transloco }}"></nz-option>
@@ -64,7 +64,7 @@
         [nzPageIndex]="pageIndex"
         [nzTotal]="total"
         [nzPageSize]="pageSize"
-        (nzPageIndexChange)="onPageChange($event)"
+        (nzPageIndexChange)="onPageIndexChange($event)"
         [nzShowQuickJumper]="true"
         [nzShowSizeChanger]="false">
       </nz-pagination>

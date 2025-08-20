@@ -51,14 +51,40 @@
     "phone": "0123 456 789",
     "email": "phat@example.com",
     "followUs": "THEO DÕI CHÚNG TÔI",
-    "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu."
+    "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu.",
+    "newsletter": {
+      "title": "Đăng ký nhận thông tin sớm",
+      "subtitle": "Nhận thông báo về sản phẩm mới, khuyến mãi đặc biệt và ưu đãi độc quyền",
+      "placeholder": "Nhập email của bạn",
+      "button": "Đăng ký"
+    },
+    "onlineStatus": "Online 24/7",
+    "followBenefits": "Theo dõi chúng tôi để nhận:",
+    "benefits": {
+      "promotions": "Khuyến mãi",
+      "newProducts": "Sản phẩm mới",
+      "news": "Tin tức"
+    },
+    "policies": {
+      "privacy": "Chính sách bảo mật",
+      "terms": "Điều khoản sử dụng",
+      "returns": "Chính sách hoàn trả"
+    }
   },
 
   "cart": {
+    "items": {
+      "title": "Giỏ hàng"
+    },
+    "summary": {
+      "title": "Tóm tắt đơn hàng"
+    },
+    "subtotal": "Tạm tính",
+    "discount": "Giảm giá",
+    "total": "Thành tiền",
     "discountPlaceholder": "Nhập mã giảm giá (VD: giam10)",
     "apply": "Áp dụng",
-    "discountLabel": "Giảm {{percent}}%:",
-    "total": "Thành tiền:",
+    "discountLabel": "Mã giảm giá",
     "checkout": "Thanh toán",
     "clearCart": "Xóa giỏ hàng",
     "qrTitle": "Quét mã QR để thanh toán:",
@@ -123,10 +149,14 @@
   },
 
   "app": {
-    "title": "Cửa hàng của tôi",
-    "help": "Trợ giúp",
+    "title": "Thương mại điện tử",
+    "subtitle": "Cửa hàng trực tuyến",
+    "home": "Trang chủ",
+    "products": "Sản phẩm",
+    "about": "Về chúng tôi",
     "contact": "Liên hệ",
     "promo": "Khuyến mãi",
+    "help": "Trợ giúp",
     "searchPlaceholder": "Tìm kiếm sản phẩm...",
     "info": "Thông tin",
     "changePassword": "Đổi mật khẩu",
@@ -144,7 +174,10 @@
     "success": "Thành công",
     "accountInfo": "Thông tin tài khoản",
     "username": "Tên tài khoản",
-    "email": "Email"
+    "email": "Email",
+    "welcome": "Chào mừng",
+    "close": "Đóng",
+    "copyright": "© 2025 Sàn thương mại. Mọi quyền được bảo lưu."
   },
 
    "notification": {
@@ -155,5 +188,182 @@
     "accountNotFound": "Không tìm thấy tài khoản.",
     "oldPasswordIncorrect": "Mật khẩu cũ không đúng.",
     "changePasswordSuccess": "Đổi mật khẩu thành công."
+  },
+
+  "home": {
+    "hero": {
+      "title": "Chào mừng đến với sàn thương mại điện tử",
+      "subtitle": "Khám phá những sản phẩm tuyệt vời với giá cả và chất lượng tốt nhất",
+      "shopNow": "Mua sắm ngay"
+    },
+    "featured": {
+      "title": "Sản phẩm nổi bật",
+      "subtitle": "Những sản phẩm được chọn lọc dành riêng cho bạn",
+      "badge": "Nổi bật",
+      "viewAll": "Xem tất cả sản phẩm"
+    },
+    "bestSellers": {
+      "title": "Sản phẩm bán chạy",
+      "subtitle": "Những sản phẩm phổ biến nhất trong tháng",
+      "rank": "1",
+      "inStock": "Còn hàng"
+    },
+    "sale": {
+      "title": "Sản phẩm giảm giá",
+      "subtitle": "Ưu đãi có thời hạn với mức giảm giá lớn",
+      "buyNow": "Mua ngay"
+    },
+    "newArrivals": {
+      "title": "Sản phẩm mới",
+      "subtitle": "Những sản phẩm mới nhất vừa đến",
+      "new": "MỚI",
+      "available": "Có sẵn"
+    },
+    "cta": {
+      "title": "Sẵn sàng bắt đầu mua sắm?",
+      "subtitle": "Tham gia cùng hàng nghìn khách hàng hài lòng",
+      "button": "Bắt đầu mua sắm"
+    }
+  },
+
+  "about": {
+    "hero": {
+      "title": "Về Cửa hàng của tôi",
+      "subtitle": "Đối tác đáng tin cậy của bạn về sản phẩm chất lượng và dịch vụ xuất sắc"
+    },
+    "story": {
+      "title": "Câu chuyện của chúng tôi",
+      "paragraph1": "Được thành lập với tầm nhìn mang đến trải nghiệm mua sắm tốt nhất, Cửa hàng của tôi đã phục vụ khách hàng từ năm 2020. Chúng tôi tin tưởng vào chất lượng, minh bạch và sự hài lòng của khách hàng trên tất cả mọi thứ.",
+      "paragraph2": "Hành trình của chúng tôi bắt đầu với một ý tưởng đơn giản: làm cho sản phẩm chất lượng có thể tiếp cận được với mọi người ở mức giá hợp lý. Ngày nay, chúng tôi tự hào cung cấp một loạt các sản phẩm đáp ứng các tiêu chuẩn cao nhất.",
+      "paragraph3": "Chúng tôi tiếp tục phát triển và tiến hóa, luôn đặt nhu cầu của khách hàng vào trung tâm của mọi việc chúng tôi làm.",
+      "mission": {
+        "title": "Sứ mệnh của chúng tôi",
+        "description": "Cung cấp sản phẩm và dịch vụ xuất sắc để nâng cao cuộc sống của khách hàng trong khi duy trì các tiêu chuẩn cao nhất về chất lượng và tính toàn vẹn."
+      }
+    },
+    "values": {
+      "title": "Giá trị của chúng tôi",
+      "subtitle": "Những nguyên tắc hướng dẫn mọi việc chúng tôi làm",
+      "quality": {
+        "title": "Chất lượng trước tiên",
+        "description": "Chúng tôi không bao giờ thỏa hiệp về chất lượng. Mọi sản phẩm trong danh mục của chúng tôi đều đáp ứng các tiêu chuẩn nghiêm ngặt."
+      },
+      "safety": {
+        "title": "An toàn & Tin cậy",
+        "description": "Sự an toàn và tin cậy của bạn là ưu tiên hàng đầu của chúng tôi. Chúng tôi đảm bảo tất cả sản phẩm đều an toàn và đáng tin cậy."
+      },
+      "excellence": {
+        "title": "Xuất sắc",
+        "description": "Chúng tôi phấn đấu cho sự xuất sắc trong mọi khía cạnh của doanh nghiệp, từ việc lựa chọn sản phẩm đến dịch vụ khách hàng."
+      },
+      "innovation": {
+        "title": "Đổi mới",
+        "description": "Chúng tôi chào đón những ý tưởng và công nghệ mới để liên tục cải thiện dịch vụ và sản phẩm của mình."
+      }
+    },
+    "team": {
+      "title": "Đội ngũ của chúng tôi",
+      "subtitle": "Gặp gỡ những chuyên gia tận tâm đứng sau Cửa hàng của tôi",
+      "member1": {
+        "name": "Nguyễn Văn A",
+        "position": "CEO & Người sáng lập",
+        "description": "Đam mê tạo ra trải nghiệm mua sắm tốt nhất cho khách hàng."
+      },
+      "member2": {
+        "name": "Trần Thị B",
+        "position": "Trưởng phòng Vận hành",
+        "description": "Đảm bảo hoạt động trơn tru và dịch vụ khách hàng xuất sắc."
+      },
+      "member3": {
+        "name": "Lê Văn C",
+        "position": "Trưởng phòng Công nghệ",
+        "description": "Xây dựng các giải pháp đổi mới để nâng cao trải nghiệm người dùng."
+      }
+    }
+  },
+
+  "contact": {
+    "hero": {
+      "title": "Liên hệ với chúng tôi",
+      "subtitle": "Chúng tôi rất muốn nghe từ bạn. Hãy liên hệ với chúng tôi!"
+    },
+    "form": {
+      "title": "Gửi tin nhắn cho chúng tôi",
+      "subtitle": "Điền vào biểu mẫu bên dưới và chúng tôi sẽ liên hệ lại với bạn sớm nhất có thể.",
+      "name": "Họ và tên",
+      "email": "Địa chỉ email",
+      "subject": "Tiêu đề",
+      "message": "Tin nhắn",
+      "submit": "Gửi tin nhắn"
+    },
+    "info": {
+      "title": "Liên hệ với chúng tôi",
+      "subtitle": "Đây là những cách khác để liên hệ với chúng tôi:",
+      "address": {
+        "title": "Địa chỉ",
+        "content": "123 Đường ABC, TP.HCM, Việt Nam"
+      },
+      "phone": {
+        "title": "Điện thoại",
+        "content": "0123 456 789"
+      },
+      "email": {
+        "title": "Email",
+        "content": "info@cuahangcuatoi.com"
+      },
+      "hours": {
+        "title": "Giờ làm việc",
+        "content": "Thứ 2 - Thứ 6: 9:00 - 18:00"
+      }
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "q1": "Làm thế nào để theo dõi đơn hàng của tôi?",
+      "a1": "Bạn có thể theo dõi đơn hàng thông qua bảng điều khiển tài khoản hoặc sử dụng mã theo dõi được gửi đến email của bạn.",
+      "q2": "Chính sách hoàn trả của bạn là gì?",
+      "a2": "Chúng tôi cung cấp chính sách hoàn trả 30 ngày cho hầu hết các sản phẩm. Vui lòng liên hệ dịch vụ khách hàng để biết chi tiết cụ thể.",
+      "q3": "Bạn có giao hàng quốc tế không?",
+      "a3": "Có, chúng tôi giao hàng đến hầu hết các quốc gia trên thế giới. Chi phí vận chuyển và thời gian giao hàng thay đổi theo địa điểm."
+    },
+    "success": {
+      "title": "Đã gửi tin nhắn!",
+      "message": "Cảm ơn bạn đã liên hệ với chúng tôi. Chúng tôi sẽ liên hệ lại với bạn sớm!"
+    },
+    "error": {
+      "title": "Lỗi",
+      "message": "Vui lòng điền vào tất cả các trường bắt buộc và thử lại."
+    }
+  },
+
+  "promotions": {
+    "hero": {
+      "title": "Khuyến mãi đặc biệt",
+      "subtitle": "Khám phá những ưu đãi và khuyến mãi tuyệt vời dành riêng cho bạn"
+    },
+    "flashSale": {
+      "title": "Flash Sale",
+      "subtitle": "Ưu đãi có thời hạn - đừng bỏ lỡ!",
+      "buyNow": "Mua ngay"
+    },
+    "timeLeft": "Thời gian còn lại",
+    "current": {
+      "title": "Khuyến mãi hiện tại",
+      "subtitle": "Những ưu đãi và khuyến mãi đang diễn ra",
+      "shopNow": "Mua sắm ngay"
+    },
+    "validUntil": "Có hiệu lực đến",
+    "coupons": {
+      "title": "Mã giảm giá",
+      "subtitle": "Sử dụng những mã này để được giảm giá thêm",
+      "copy": "Sao chép mã",
+      "validUntil": "Có hiệu lực đến",
+      "minPurchase": "Giá trị tối thiểu"
+    },
+    "newsletter": {
+      "title": "Cập nhật thông tin",
+      "subtitle": "Đăng ký nhận bản tin để nhận ưu đãi độc quyền và cập nhật",
+      "placeholder": "Nhập địa chỉ email của bạn",
+      "subscribe": "Đăng ký"
+    }
   }
 }

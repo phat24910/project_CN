@@ -22,7 +22,7 @@
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2 truncate">{{ product.title }}</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2 break-words leading-tight min-h-[3.5rem]">{{ product.title }}</h3>
               <div class="flex items-center justify-between mb-3">
                 <span class="text-lg font-bold text-orange-600">${{ product.salePrice }}</span>
                 <span class="text-sm text-gray-500 line-through">${{ product.originalPrice }}</span>
@@ -55,7 +55,7 @@
             <div class="grid grid-cols-2 gap-2 mt-2">
               <div *ngFor="let product of promo.products" class="bg-orange-50 rounded p-2 flex flex-col items-center">
                 <img [src]="product.thumbnail" alt="Product image" (click)="goToProductDetail(product.id)" class="w-full h-16 object-cover rounded cursor-pointer mb-1">
-                <div class="text-xs truncate text-center">{{ product.title }}</div>
+                <div class="text-xs break-words text-center leading-tight min-h-[2rem]">{{ product.title }}</div>
                 <div class="flex items-center gap-1 justify-center">
                   <span class="text-orange-600 font-semibold">${{ product.price }}</span>
                   <span class="line-through text-gray-400 text-xs" *ngIf="product.discountPercentage">${{ (product.price / (1 - product.discountPercentage / 100) ) | number:'1.0-2' }}</span>

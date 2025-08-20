@@ -1,5 +1,4 @@
 <!-- Main Header -->
-
 <header class="bg-white shadow-lg sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between py-4">
@@ -7,82 +6,163 @@
       <!-- Logo -->
       <a (click)="goHome()" class="flex items-center gap-4 cursor-pointer group">
         <div class="relative">
-          <img src="assets/Logo.svg" alt="Cosmetsy Logo" class="h-16 w-16 object-contain group-hover:scale-105 transition-transform duration-200" />
-          <div class="absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full animate-pulse"></div>
+          <img src="assets/Logo.svg" alt="Logo" class="h-20 w-20 object-contain group-hover:scale-105 transition-transform duration-200" />
+          <div class="absolute -top-1 -right-1 w-5 h-5 bg-orange-500 rounded-full animate-pulse"></div>
         </div>
         <div class="flex flex-col">
-          <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
+          <span class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
             {{'app.title' | transloco}}
           </span>
-<!--          <span class="text-sm text-gray-500 font-medium">Beauty & Cosmetics</span>-->
+          <span class="text-sm text-gray-500 font-medium">{{'app.subtitle' | transloco}}</span>
         </div>
       </a>
 
-
-
-      <!-- Language Selector (Desktop) -->
-
-<div class="lang-switch flex gap-2 items-center justify-center p-2">
-  <button
-    nz-button
-          nz-dropdown
-          [nzDropdownMenu]="langMenuTop"
-          nzPlacement="bottomLeft"
-          nzTrigger="click"
-          [nzClickHide]="true"
-          [nzOverlayClassName]="'lang-switch-overlay'"
-        class="text-gray-600 border border-gray-300 bg-white hover:bg-orange-50 hover:border-orange-300 transition-all duration-200 px-3 py-2 rounded-md flex items-center gap-2"
-        >
-        <span class="font-medium text-sm">{{ currentLang === 'vi' ? 'VN' : 'EN' }}</span>
-        <span nz-icon nzType="down" nzTheme="outline"></span>
-  </button>
-        <nz-dropdown-menu #langMenuTop="nzDropdownMenu">
-          <ul nz-menu>
-            <li nz-menu-item (click)="setLang('vi')">VN - Tiếng Việt</li>
-            <li nz-menu-item (click)="setLang('en')">EN - English</li>
-          </ul>
-        </nz-dropdown-menu>
-
-
-
-      <!-- Wishlist -->
-        <a href="#" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200 group">
-          <span nz-icon nzType="heart" nzTheme="outline" class="text-lg text-gray-600 group-hover:text-orange-600"></span>
-          <span class="absolute -top-1 -right-1 bg-orange-500 text-xs px-1 py-0.5 rounded-full text-white font-semibold">0</span>
+      <!-- Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-8 text-base font-medium">
+        <a routerLink="/" routerLinkActive="active-link text-orange-600"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="transition-all duration-200 hover:text-orange-600 relative group cursor-pointer nav-link">
+          {{ 'app.home' | transloco }}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200 underline"></span>
         </a>
+
+        <a routerLink="/products" routerLinkActive="active-link text-orange-600"
+           class="transition-all duration-200 hover:text-orange-600 relative group cursor-pointer nav-link">
+          {{ 'app.products' | transloco }}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200 underline"></span>
+        </a>
+
+        <a routerLink="/about" routerLinkActive="active-link text-orange-600"
+           class="transition-all duration-200 hover:text-orange-600 relative group cursor-pointer nav-link">
+          {{ 'app.about' | transloco }}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200 underline"></span>
+        </a>
+
+        <a routerLink="/contact" routerLinkActive="active-link text-orange-600"
+           class="transition-all duration-200 hover:text-orange-600 relative group cursor-pointer nav-link">
+          {{ 'app.contact' | transloco }}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200 underline"></span>
+        </a>
+
+        <a routerLink="/promo" routerLinkActive="active-link text-orange-600"
+           class="transition-all duration-200 hover:text-orange-600 relative group cursor-pointer nav-link">
+          {{ 'app.promo' | transloco }}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200 underline"></span>
+        </a>
+      </nav>
+
+      <!-- Right Side Actions -->
+      <div class="flex items-center gap-4">
+        <!-- Language Selector -->
+        <div class="lang-switch flex gap-2 items-center justify-center p-2">
+          <button
+            nz-button
+            nz-dropdown
+            [nzDropdownMenu]="langMenuTop"
+            nzPlacement="bottomLeft"
+            nzTrigger="click"
+            [nzClickHide]="true"
+            [nzOverlayClassName]="'lang-switch-overlay'"
+            class="text-gray-600 border border-gray-300 bg-white hover:bg-orange-50 hover:border-orange-300 transition-all duration-200 px-3 py-2 rounded-md flex items-center gap-2"
+          >
+            <img [src]="currentLang === 'vi' ? 'assets/vi.svg' : 'assets/us.svg'"
+                 [alt]="currentLang === 'vi' ? 'Vietnamese' : 'English'"
+                 class="w-5 h-5 object-contain" />
+            <span class="font-medium text-sm">{{ currentLang === 'vi' ? 'VN' : 'EN' }}</span>
+            <span nz-icon nzType="down" nzTheme="outline"></span>
+          </button>
+          <nz-dropdown-menu #langMenuTop="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="$event.preventDefault(); $event.stopPropagation(); setLang('vi')" class="flex items-center gap-2">
+                <img src="assets/vi.svg" alt="Vietnamese" class="w-4 h-4 object-contain" />
+                VN - Tiếng Việt
+              </li>
+              <li nz-menu-item (click)="$event.preventDefault(); $event.stopPropagation(); setLang('en')" class="flex items-center gap-2">
+                <img src="assets/us.svg" alt="English" class="w-4 h-4 object-contain" />
+                EN - English
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+
+        <!-- Search Icon -->
+        <div class="relative">
+          <button (click)="toggleSearch()"
+                  class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200 group">
+            <span nz-icon nzType="search" nzTheme="outline" class="text-lg text-gray-600 group-hover:text-orange-600"></span>
+          </button>
+
+          <!-- Search Bar -->
+          <div *ngIf="showSearch"
+               class="absolute top-12 right-0 w-80 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50 animate-slideInDown">
+            <div class="flex items-center bg-gray-50 rounded-full px-3 py-2 shadow-sm border border-gray-200 focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-100 transition-all duration-200">
+              <input nz-input
+                     [(ngModel)]="searchText"
+                     (keyup.enter)="onSearchChange()"
+                     [placeholder]="'app.searchPlaceholder' | transloco"
+                     class="!border-0 !shadow-none bg-transparent px-2 py-1 text-sm w-full min-w-0" />
+              <button (click)="onSearchChange()"
+                      class="ml-2 rounded-full bg-orange-500 hover:bg-orange-600 p-2 text-white transition-colors duration-200 shadow">
+                <span nz-icon nzType="search" nzTheme="outline" class="text-lg text-white"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wishlist -->
+        <!-- <a href="#" (click)="$event.preventDefault()"
+           class="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200 group">
+          <span nz-icon nzType="heart" nzTheme="outline"
+                class="text-lg text-gray-600 group-hover:text-orange-600"></span>
+          <span class="absolute -top-1 -right-1 relative flex size-3">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"></span>
+            <span class="relative inline-flex size-3 rounded-full bg-orange-500"></span>
+          </span>
+        </a> -->
 
         <!-- Cart -->
         <a routerLink="/cart" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200 group">
-          <span nz-icon nzType="shopping-cart" nzTheme="outline" class="text-lg text-gray-600 group-hover:text-orange-600"></span>
-          <span *ngIf="total > 0" class="absolute -top-1 -right-1 bg-orange-500 text-xs px-1 py-0.5 rounded-full text-white font-semibold animate-bounce">{{ total }}</span>
+          <span nz-icon nzType="shopping" nzTheme="outline" class="text-lg text-gray-600 group-hover:text-orange-600"></span>
+          <span *ngIf="total > 0" class="absolute -top-1 -right-1 flex items-center justify-center size-5">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"></span>
+            <span class="relative inline-flex items-center justify-center size-5 rounded-full bg-orange-500 text-xs text-white font-semibold">{{ total }}</span>
+          </span>
         </a>
 
-                 <!-- User Menu -->
-         <ng-container *ngIf="userName; else guestLinks">
-           <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight" nzTrigger="click"
-            class="flex items-center gap-2 w-10 h-10 rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-colors duration-200 justify-center shadow">
-             <nz-avatar nzSize="small" nzIcon="user" class="text-white" />
-           </button>
-           <nz-dropdown-menu #menu="nzDropdownMenu">
-             <ul nz-menu>
-               <li nz-menu-item (click)="showInfo()" class="flex items-center gap-2">
-                 <span nz-icon nzType="user" nzTheme="outline"></span>
-                 {{'app.info' | transloco}}
-               </li>
-               <li nz-menu-item (click)="changePassword()" class="flex items-center gap-2">
-                 <span nz-icon nzType="lock" nzTheme="outline"></span>
-                 {{'app.changePassword' | transloco}}
-               </li>
-               <li nz-menu-item (click)="logout()" class="flex items-center gap-2 text-red-600">
-                 <span nz-icon nzType="logout" nzTheme="outline"></span>
-                 {{'app.logout' | transloco}}
-               </li>
-             </ul>
-           </nz-dropdown-menu>
-         </ng-container>
+        <!-- User Menu -->
+        <ng-container *ngIf="userName; else guestLinks">
+          <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight" nzTrigger="click"
+                  class="flex items-center gap-2 px-2 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-colors duration-200 shadow"
+                  nzTooltipTitle="userName" nzTooltipPlacement="bottom">
+            <span nz-icon nzType="user" nzTheme="outline" class="text-white"></span>
+            <span class="text-xs font-medium max-w-16 truncate hidden sm:inline">{{ userName }}</span>
+          </button>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item class="flex items-center gap-2 cursor-default">
+                <span nz-icon nzType="user" nzTheme="outline"></span>
+                <span class="font-medium">{{ userName }}</span>
+              </li>
+              <li nz-menu-divider></li>
+              <li nz-menu-item (click)="showInfo()" class="flex items-center gap-2">
+                <span nz-icon nzType="user" nzTheme="outline"></span>
+                {{'app.info' | transloco}}
+              </li>
+              <li nz-menu-item (click)="changePassword()" class="flex items-center gap-2">
+                <span nz-icon nzType="lock" nzTheme="outline"></span>
+                {{'app.changePassword' | transloco}}
+              </li>
+              <li nz-menu-divider></li>
+              <li nz-menu-item (click)="logout()" class="flex items-center gap-2 text-red-600">
+                <span nz-icon nzType="logout" nzTheme="outline"></span>
+                {{'app.logout' | transloco}}
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </ng-container>
         <ng-template #guestLinks>
           <a routerLink="/auth"
-           class="w-10 h-10 flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-colors duration-200 shadow">
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-colors duration-200 shadow">
             <span nz-icon nzType="user" nzTheme="outline" class="text-lg"></span>
           </a>
         </ng-template>
@@ -90,81 +170,10 @@
         <!-- Mobile menu button -->
         <button class="lg:hidden text-gray-600 text-xl p-2 rounded-full bg-gray-50 hover:bg-orange-50 transition-all duration-200" (click)="showMobileMenu = true">
           <span nz-icon nzType="menu" nzTheme="outline"></span>
-  </button>
-</div>
-
-<header class=" bg-[#f66c10]  text-white">
-  <div class="flex items-center justify-between max-w-6xl mx-auto px-4 py-2">
-    <div class="flex items-center gap-2">
-      <a (click)="goHome()" class="cursor-pointer flex items-center gap-2">
-        <img src="assets/logo.svg" alt="Logo" class="h-14" />
-        <span class="text-lg font-bold">{{'app.title' | transloco}}</span>
-      </a>
-    </div>
-
-    <div class="flex items-center gap-4 text-sm">
-      <a routerLink="/help" class="hover:underline">{{'app.help' | transloco}}</a>
-      <a routerLink="/contact" class="hover:underline">{{'app.contact' | transloco}}</a>
-      <a routerLink="/promo" class="hover:underline">{{'app.promo' | transloco}}</a>
-    </div>
-  </div>
-
-  <!-- Search Bar -->
-  <div class="border-t border-gray-100 bg-gradient-to-r from-gray-50 to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-      <div class="flex items-center justify-center">
-        <div class="flex items-center bg-gray-50 rounded-full px-4 py-2 w-full max-w-md shadow-sm border border-gray-200 focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-100 transition-all duration-200">
-          <span nz-icon nzType="search" nzTheme="outline" class="text-gray-400 mr-2"></span>
-        <input nz-input
-        [(ngModel)]="searchText"
-        (keyup.enter)="onSearchChange()"
-            [placeholder]="'app.searchPlaceholder' | transloco"
-            class="bg-transparent border-none focus:outline-none px-2 py-1 text-sm w-full min-w-0" />
-          <button (click)="onSearchChange()"
-                  class="ml-2 rounded-full bg-orange-500 hover:bg-orange-600 p-2 text-white transition-colors duration-200 shadow">
-            <span nz-icon nzType="search" nzTheme="outline" class="text-lg text-white"></span>
         </button>
-        </div>
       </div>
-      </div>
-    </div>
-
-  <!-- Navigation Menu -->
-  <div class="border-t border-gray-100 bg-gradient-to-r from-gray-50 to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <nav class="hidden lg:flex items-center justify-center py-4 desktop-nav">
-        <div class="flex items-center gap-8 text-base font-medium">
-          <a routerLink="/" routerLinkActive="text-orange-600"
-             class="transition-all duration-200 hover:text-orange-600 relative group">
-            {{ 'footer.home' | transloco }}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
-          </a>
-          <a routerLink="/products" routerLinkActive="text-orange-600"
-             class="transition-all duration-200 hover:text-orange-600 relative group">
-            {{ 'footer.products' | transloco }}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
-          </a>
-          <a routerLink="/about" routerLinkActive="text-orange-600"
-             class="transition-all duration-200 hover:text-orange-600 relative group">
-            {{ 'footer.about' | transloco }}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
-          </a>
-          <a routerLink="/contact" routerLinkActive="text-orange-600"
-             class="transition-all duration-200 hover:text-orange-600 relative group">
-            {{ 'footer.contact' | transloco }}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
-          </a>
-          <a routerLink="/promo" routerLinkActive="text-orange-600"
-             class="transition-all duration-200 hover:text-orange-600 relative group">
-            {{ 'footer.promo' | transloco }}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-200"></span>
-          </a>
-        </div>
-      </nav>
     </div>
   </div>
-
-
 </header>
 
 <!-- Mobile Menu Overlay -->
@@ -176,40 +185,38 @@
 
     <!-- Mobile Logo -->
     <div class="mb-8 flex items-center gap-3">
-      <img src="assets/Logo.svg" alt="Logo" class="h-12 w-auto" />
+      <img src="assets/Logo.svg" alt="Logo" class="h-16 w-auto" />
       <span class="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
         {{'app.title' | transloco}}
       </span>
     </div>
 
-
-
     <!-- Mobile Navigation -->
     <nav class="flex flex-col gap-2 text-lg font-semibold mobile-nav">
-      <a routerLink="/" (click)="showMobileMenu = false"
-         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
-        <span nz-icon nzType="home" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
-        <span class="group-hover:text-orange-600">{{ 'footer.home' | transloco }}</span>
+      <a routerLink="/" routerLinkActive="text-orange-600" [routerLinkActiveOptions]="{exact: true}" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800 cursor-pointer">
+        <span nz-icon nzType="home" nzTheme="outline" class="text-gray-500"></span>
+        <span>{{ 'app.home' | transloco }}</span>
       </a>
-      <a routerLink="/products" (click)="showMobileMenu = false"
-         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
-        <span nz-icon nzType="shopping" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
-        <span class="group-hover:text-orange-600">{{ 'footer.products' | transloco }}</span>
+      <a routerLink="/products" routerLinkActive="text-orange-600" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800 cursor-pointer">
+        <span nz-icon nzType="shopping" nzTheme="outline" class="text-gray-500"></span>
+        <span>{{ 'app.products' | transloco }}</span>
       </a>
-      <a routerLink="/about" (click)="showMobileMenu = false"
-         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
-        <span nz-icon nzType="info-circle" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
-        <span class="group-hover:text-orange-600">{{ 'footer.about' | transloco }}</span>
+      <a routerLink="/about" routerLinkActive="text-orange-600" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800 cursor-pointer">
+        <span nz-icon nzType="info-circle" nzTheme="outline" class="text-gray-500"></span>
+        <span>{{ 'app.about' | transloco }}</span>
       </a>
-      <a routerLink="/contact" (click)="showMobileMenu = false"
-         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
-        <span nz-icon nzType="phone" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
-        <span class="group-hover:text-orange-600">{{ 'footer.contact' | transloco }}</span>
+      <a routerLink="/contact" routerLinkActive="text-orange-600" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800 cursor-pointer">
+        <span nz-icon nzType="phone" nzTheme="outline" class="text-gray-500"></span>
+        <span>{{ 'app.contact' | transloco }}</span>
       </a>
-      <a routerLink="/promo" (click)="showMobileMenu = false"
-         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800">
-        <span nz-icon nzType="gift" nzTheme="outline" class="text-gray-500 group-hover:text-orange-600"></span>
-        <span class="group-hover:text-orange-600">{{ 'footer.promo' | transloco }}</span>
+      <a routerLink="/promo" routerLinkActive="text-orange-600" (click)="showMobileMenu = false"
+         class="py-3 px-4 rounded-lg hover:bg-orange-50 transition-colors duration-200 flex items-center gap-3 group text-gray-800 cursor-pointer">
+        <span nz-icon nzType="gift" nzTheme="outline" class="text-gray-500"></span>
+        <span>{{ 'app.promo' | transloco }}</span>
       </a>
     </nav>
 
@@ -218,21 +225,24 @@
       <div class="flex gap-2">
         <button nz-button nz-dropdown [nzDropdownMenu]="langMenuMobile" nzPlacement="bottomLeft" nzTrigger="click" [nzOverlayClassName]="'lang-switch-mobile-overlay'"
                 class="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-200 text-base font-semibold bg-white hover:bg-orange-50 transition-all duration-200">
-          <span nz-icon nzType="global" nzTheme="outline" class="text-orange-600"></span>
+          <img [src]="currentLang === 'vi' ? 'assets/vi.svg' : 'assets/us.svg'"
+               [alt]="currentLang === 'vi' ? 'Vietnamese' : 'English'"
+               class="w-5 h-5 object-contain" />
           <span>{{ currentLang === 'vi' ? 'VN' : 'EN' }}</span>
           <span nz-icon nzType="down" nzTheme="outline"></span>
         </button>
         <nz-dropdown-menu #langMenuMobile="nzDropdownMenu">
           <ul nz-menu>
-            <li nz-menu-item (click)="setLang('vi')">VN - Tiếng Việt</li>
-            <li nz-menu-item (click)="setLang('en')">EN - English</li>
+            <li nz-menu-item (click)="$event.preventDefault(); $event.stopPropagation(); setLang('vi')" class="flex items-center gap-2">
+              <img src="assets/vi.svg" alt="Vietnamese" class="w-4 h-4 object-contain" />
+              VN - Tiếng Việt
+            </li>
+            <li nz-menu-item (click)="$event.preventDefault(); $event.stopPropagation(); setLang('en')" class="flex items-center gap-2">
+              <img src="assets/us.svg" alt="English" class="w-4 h-4 object-contain" />
+              EN - English
+            </li>
           </ul>
         </nz-dropdown-menu>
-        <button class="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-200 text-base font-semibold bg-white opacity-60 cursor-not-allowed">
-          <span nz-icon nzType="dollar" nzTheme="outline"></span>
-          <span>USD</span>
-          <span nz-icon nzType="down" nzTheme="outline"></span>
-        </button>
       </div>
 
       <!-- Social Links -->
@@ -260,19 +270,69 @@
   <div class="flex-1 cursor-pointer" (click)="showMobileMenu = false"></div>
 </div>
 
+<!-- User Info Modal -->
+<nz-modal [nzContent]="userInfoTpl"
+           [(nzVisible)]="showInfoModal"
+           nzTitle="{{ 'app.accountInfo' | transloco }}"
+           [nzFooter]="userInfoFooterTpl"
+           (nzOnCancel)="showInfoModal = false"
+           class="custom-modal">
+  <ng-template #userInfoTpl>
+    <div class="space-y-4">
+      <div class="flex items-center gap-3 p-4 bg-orange-50 rounded-lg">
+        <span nz-icon nzType="user" nzTheme="outline" class="text-2xl text-orange-600"></span>
+        <div>
+          <p class="text-sm text-gray-600">{{ 'app.welcome' | transloco }}</p>
+          <p class="font-semibold text-lg text-orange-700">{{ userName }}</p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+          <span nz-icon nzType="user" nzTheme="outline" class="text-gray-500"></span>
+          <div>
+            <p class="text-sm text-gray-600">{{ 'app.username' | transloco }}</p>
+            <p class="font-medium text-gray-800">{{ userName }}</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+          <span nz-icon nzType="mail" nzTheme="outline" class="text-gray-500"></span>
+          <div>
+            <p class="text-sm text-gray-600">{{ 'app.email' | transloco }}</p>
+            <p class="font-medium text-gray-800">{{ userEmail }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #userInfoFooterTpl>
+    <div class="flex gap-2">
+      <button nz-button (click)="changePassword()"
+              class="border-orange-300 text-orange-600 hover:border-orange-500 hover:bg-orange-50">
+        {{'app.changePassword' | transloco}}
+      </button>
+      <button nz-button (click)="showInfoModal = false"
+              class="border-gray-300 text-gray-700 hover:border-orange-500 hover:text-orange-600">
+        {{'app.close' | transloco}}
+      </button>
+    </div>
+  </ng-template>
+</nz-modal>
+
 <!-- Change Password Modal -->
 <nz-modal [nzContent]="contentTpl"
-  [(nzVisible)]="changePasswordVisible"
-  nzTitle="{{ 'app.changePassword' | transloco }}"
-  [nzFooter]="footerTpl"
-  (nzOnCancel)="handleCancel()"
-  class="custom-modal"
->
+           [(nzVisible)]="changePasswordVisible"
+           nzTitle="{{ 'app.changePassword' | transloco }}"
+           [nzFooter]="footerTpl"
+           (nzOnCancel)="handleCancel()"
+           class="custom-modal">
   <ng-template #contentTpl>
     <nz-alert
-      *ngIf="showAlert"
-      [nzType]="alertType"
-      [nzMessage]="alertMessage"
+      *ngIf="alert"
+      [nzType]="alert.type"
+      [nzMessage]="alert.message"
       nzShowIcon
       style="margin-bottom: 16px;">
     </nz-alert>
@@ -301,12 +361,13 @@
             name="newPassword"
             [(ngModel)]="passwordData.newPassword"
             required
+            class="rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500"
           >
         </div>
       </div>
 
       <div nz-form-item>
-        <div nz-form-label><label>{{'app.confirmPassword' | transloco}}</label></div>
+        <div nz-form-label><label class="font-medium text-gray-700">{{'app.confirmPassword' | transloco}}</label></div>
         <div nz-form-control>
           <input
             nz-input
@@ -314,6 +375,7 @@
             name="confirmPassword"
             [(ngModel)]="passwordData.confirmPassword"
             required
+            class="rounded-lg border-gray-300 focus:border-orange-500 focus:ring-orange-500"
           >
         </div>
       </div>
@@ -321,31 +383,37 @@
   </ng-template>
 
   <ng-template #footerTpl>
-    <button nz-button (click)="handleCancel()">{{'app.cancel' | transloco}}</button>
+    <button nz-button (click)="handleCancel()"
+            class="border-gray-300 text-gray-700 hover:border-orange-500 hover:text-orange-600">
+      {{'app.cancel' | transloco}}
+    </button>
     <button
       nz-button
-      class="!bg-orange-500 !border-orange-500 text-white hover:!bg-orange-600"
-      (click)="handleChangePassword()">{{'app.confirm' | transloco}}
+      class="!bg-gradient-to-r !from-orange-500 !to-orange-600 !border-orange-500 text-white hover:!from-orange-600 hover:!to-orange-700 shadow-md"
+      (click)="handleChangePassword()">
+      {{'app.confirm' | transloco}}
     </button>
   </ng-template>
 </nz-modal>
 
-
+<!-- Alert Messages -->
 <ng-container *ngIf="alert">
-  <nz-alert
-    [nzType]="alert.type"
-    [nzMessage]="alert.message"
-    nzShowIcon
-    nzBanner
-    class="my-4 max-w-xl mx-auto"
-  ></nz-alert>
+  <div class="fixed top-20 right-4 z-[1000] max-w-md w-full animate-slideInRight">
+    <nz-alert
+      [nzType]="alert.type"
+      [nzMessage]="alert.message"
+      nzShowIcon
+      nzCloseable
+      (nzOnClose)="alert = null"
+      class="rounded-lg shadow-lg"
+    ></nz-alert>
+  </div>
 </ng-container>
 
-<hr>
-<router-outlet></router-outlet>
+<!-- Main Content -->
+<main class="min-h-screen bg-gray-50">
+  <router-outlet></router-outlet>
+</main>
+
 <app-footer></app-footer>
-
-
-
-
 
